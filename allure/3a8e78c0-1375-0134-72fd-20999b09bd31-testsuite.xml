@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<ns2:test-suite xmlns="" xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1465809297699" stop="1465809300337">
+  <name>Login</name>
+  <title>Login</title>
+  <test-cases>
+    <test-case start="1465809297720" stop="1465809300337" status="failed">
+      <name>Email</name>
+      <title>Email</title>
+      <failure>
+        <message>end of file reached</message>
+        <stack-trace>features/features/Login.feature:49:in `Given I check mailbox "daniel.vygovskiy@gmail.com" for "clevergig" email'</stack-trace>
+      </failure>
+      <steps>
+        <step start="1465809300334" stop="1465809300334" status="failed">
+          <name>I check mailbox "daniel.vygovskiy@gmail.com" for "clevergig" email</name>
+          <title>I check mailbox "daniel.vygovskiy@gmail.com" for "clevergig" email</title>
+          <attachments/>
+        </step>
+        <step start="1465809300334" stop="1465809300335" status="canceled">
+          <name>I return to the "Home" page</name>
+          <title>I return to the "Home" page</title>
+          <attachments/>
+        </step>
+      </steps>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="70305200732660"/>
+        <label name="host" value="Daniels-MacBook-Pro.local"/>
+        <label name="feature" value="Login"/>
+        <label name="story" value="Email"/>
+      </labels>
+      <parameters/>
+    </test-case>
+  </test-cases>
+  <labels>
+    <label name="severity" value="normal"/>
+    <label name="thread" value="70305200732660"/>
+    <label name="host" value="Daniels-MacBook-Pro.local"/>
+  </labels>
+</ns2:test-suite>

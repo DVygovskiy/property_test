@@ -1,0 +1,20 @@
+{
+  "hosts" : [ {
+    "title" : "Daniels-MacBook-Pro.local",
+    "threads" : [ {
+      "title" : "70305200732660",
+      "testCases" : [ {
+        "uid" : "34325a7b1f2187ad",
+        "name" : "Email",
+        "title" : "Email",
+        "time" : {
+          "start" : 1465809297720,
+          "stop" : 1465809300337,
+          "duration" : 2617
+        },
+        "severity" : "NORMAL",
+        "status" : "FAILED"
+      } ]
+    } ]
+  } ]
+}

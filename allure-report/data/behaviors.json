@@ -1,0 +1,37 @@
+{
+  "features" : [ {
+    "title" : "Login",
+    "statistic" : {
+      "total" : 1,
+      "passed" : 0,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 1,
+      "broken" : 0
+    },
+    "stories" : [ {
+      "uid" : "b349cbbecbf90d1a",
+      "title" : "Email",
+      "statistic" : {
+        "total" : 1,
+        "passed" : 0,
+        "pending" : 0,
+        "canceled" : 0,
+        "failed" : 1,
+        "broken" : 0
+      },
+      "testCases" : [ {
+        "uid" : "34325a7b1f2187ad",
+        "name" : "Email",
+        "title" : "Email",
+        "time" : {
+          "start" : 1465809297720,
+          "stop" : 1465809300337,
+          "duration" : 2617
+        },
+        "severity" : "NORMAL",
+        "status" : "FAILED"
+      } ]
+    } ]
+  } ]
+}

@@ -1,0 +1,29 @@
+{
+  "defectsList" : [ {
+    "title" : "Product defects",
+    "status" : "FAILED",
+    "defects" : [ {
+      "uid" : "fb72c9ecdbda0680",
+      "failure" : {
+        "message" : "end of file reached",
+        "stackTrace" : "features/features/Login.feature:49:in `Given I check mailbox \"daniel.vygovskiy@gmail.com\" for \"clevergig\" email'"
+      },
+      "testCases" : [ {
+        "uid" : "34325a7b1f2187ad",
+        "name" : "Email",
+        "title" : "Email",
+        "time" : {
+          "start" : 1465809297720,
+          "stop" : 1465809300337,
+          "duration" : 2617
+        },
+        "severity" : "NORMAL",
+        "status" : "FAILED"
+      } ]
+    } ]
+  }, {
+    "title" : "Test defects",
+    "status" : "BROKEN",
+    "defects" : [ ]
+  } ]
+}

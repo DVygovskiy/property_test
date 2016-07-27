@@ -1,0 +1,83 @@
+{
+  "uid" : "34325a7b1f2187ad",
+  "name" : "Email",
+  "title" : "Email",
+  "time" : {
+    "start" : 1465809297720,
+    "stop" : 1465809300337,
+    "duration" : 2617
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 2
+  },
+  "failure" : {
+    "message" : "end of file reached",
+    "stackTrace" : "features/features/Login.feature:49:in `Given I check mailbox \"daniel.vygovskiy@gmail.com\" for \"clevergig\" email'"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "FAILED",
+  "testId" : null,
+  "suite" : {
+    "uid" : "7c0ab04545691530",
+    "name" : "Login",
+    "title" : "Login"
+  },
+  "steps" : [ {
+    "name" : "I check mailbox \"daniel.vygovskiy@gmail.com\" for \"clevergig\" email",
+    "title" : "I check mailbox \"daniel.vygovskiy@gmail.com\" for \"clevergig\" email",
+    "time" : {
+      "start" : 1465809300334,
+      "stop" : 1465809300334,
+      "duration" : 0
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 0
+    },
+    "status" : "FAILED",
+    "attachments" : [ ],
+    "steps" : [ ]
+  }, {
+    "name" : "I return to the \"Home\" page",
+    "title" : "I return to the \"Home\" page",
+    "time" : {
+      "start" : 1465809300334,
+      "stop" : 1465809300335,
+      "duration" : 1
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 0
+    },
+    "status" : "CANCELED",
+    "attachments" : [ ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "labels" : [ {
+    "name" : "thread",
+    "value" : "70305200732660"
+  }, {
+    "name" : "suite-name",
+    "value" : "Login"
+  }, {
+    "name" : "suite-title",
+    "value" : "Login"
+  }, {
+    "name" : "severity",
+    "value" : "normal"
+  }, {
+    "name" : "story",
+    "value" : "Email"
+  }, {
+    "name" : "feature",
+    "value" : "Login"
+  }, {
+    "name" : "host",
+    "value" : "Daniels-MacBook-Pro.local"
+  } ],
+  "parameters" : [ ]
+}

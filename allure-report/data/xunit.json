@@ -1,0 +1,38 @@
+{
+  "time" : {
+    "start" : 1465809297720,
+    "stop" : 1465809300337,
+    "duration" : 2617
+  },
+  "testSuites" : [ {
+    "uid" : "7c0ab04545691530",
+    "name" : "Login",
+    "title" : "Login",
+    "time" : {
+      "start" : 1465809297720,
+      "stop" : 1465809300337,
+      "duration" : 2617
+    },
+    "statistic" : {
+      "total" : 1,
+      "passed" : 0,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 1,
+      "broken" : 0
+    },
+    "description" : null,
+    "testCases" : [ {
+      "uid" : "34325a7b1f2187ad",
+      "name" : "Email",
+      "title" : "Email",
+      "time" : {
+        "start" : 1465809297720,
+        "stop" : 1465809300337,
+        "duration" : 2617
+      },
+      "severity" : "NORMAL",
+      "status" : "FAILED"
+    } ]
+  } ]
+}
