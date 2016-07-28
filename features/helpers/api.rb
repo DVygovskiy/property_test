@@ -64,7 +64,7 @@ class API
     )
     cookies = api.cookies.map { |key, value| "#{key}=#{value}" }.join("; ")
 
-    events = api.get(URI('http://rc.clevergig.nl/events/upcoming'),
+    events = api.get(URI("#{WEB_DATA[:base_url]}/events/upcoming"),
                      :headers => {'Cookie' => cookies,
                                   'Accept' => 'text/html, application/xhtml+xml, */*',
                                   'Referer' => "#{WEB_DATA[:base_url]}/dashboard"},
