@@ -18,7 +18,6 @@ class HomePage < BasePage
 
   def sing_up_button
     "//header//a[contains(text(), 'Inloggen')]"
-
   end
 
 end

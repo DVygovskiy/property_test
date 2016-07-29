@@ -17,16 +17,12 @@ end
 
 
 After do
-  #Capybara.current_session.cleanup!
-  #Capybara.current_session.reset!
-  #Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
-  #Capybara.send(:session_pool).each { |name, ses| ses.reset! }
-  #Capybara.reset_sessions!
+  Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
+  Capybara.send(:session_pool).each { |name, ses| ses.reset! }
 end
 
 After do |scenario|
   Capybara.reset_sessions!
   @test_world.clean
   @test_context = nil
-
 end

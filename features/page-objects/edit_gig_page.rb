@@ -4,13 +4,13 @@ require 'selenium-webdriver'
 require 'site_prism'
 require_relative './base_page.rb'
 
-class AdminPage < BasePage
+class EditGigPage < BasePage
 
   def title
-    "Admin"
+    "Description"
   end
 
-  set_url "#{WEB_DATA[:base_url]}/admin/"
+  set_url ""
 
   def user_management_tab
     "//span[contains(text(), 'Users management')]"
@@ -78,6 +78,14 @@ class AdminPage < BasePage
 
   def gigs_table
     "//table/tbody"
+  end
+
+  def status
+    "html/body/div[1]/div/section[2]/div/div/form/div[3]/select"
+  end
+
+  def update_button
+    "//input[@value='Update']"
   end
 
 

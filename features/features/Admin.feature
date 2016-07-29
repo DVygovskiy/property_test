@@ -1,8 +1,8 @@
 Feature: Create gig
 
 
-  @admin
-  Scenario: Personal gig creation
+
+  Scenario: Personal gig creation2
     Given API create following GIG:
       | role              | Bardienst                 |
       | type              | Urgent                    |
@@ -12,7 +12,25 @@ Feature: Create gig
       | description       | Test                      |
       | venue description | My                        |
       | location          | Amsterdam                 |
+    When I loged in as "Admin"
+    And I click the "Gigs" tab
+    Then I should see table with "Gigs"
+    And I look for the first "Gig" with "Expired" status within "Gigs" table
+    And I click the "Edit" it
 
+@admin
+    Scenario: Admin edit
+      Given I loged in as "Admin"
+      And I click the "Gigs" tab
+      Then I should see table with "Gigs"
+      And I look for the first "Gig" with "Pending" status within "Gigs" table
+      And I click the "Edit" it
+      Then I am on the "Edit gig" page
+      And I select "Status" to "Expired"
+      And I click the "Update" button
+      And I should see the text "Gig is bijgewerkt "
+      Then I go back
+      And I should see status "Expired" for the first "Gig" within "Gigs" table
 
    @urgent_gig
    Scenario: Urgent gig creation
@@ -36,4 +54,14 @@ Feature: Create gig
      Scenario: DB
        Given I am connected to mysql
 
-
+@gig
+  Scenario: Personal gig creation
+    Given API create following GIG:
+      | role              | Bardienst                 |
+      | type              | Urgent                    |
+      | date              | today        |
+      | start time        | + 3 hours from round local |
+      | end time          | + 10 hours from round local |
+      | description       | Test                      |
+      | venue description | My                        |
+      | location          | Amsterdam                 |

@@ -3,7 +3,7 @@ require 'capybara/cucumber'
 require 'selenium-webdriver'
 require 'site_prism/page'
 require 'site_prism'
-
+require 'nokogiri'
 require_relative '../data_objects/web_data'
 
 class BasePage < SitePrism::Page
@@ -39,26 +39,73 @@ class BasePage < SitePrism::Page
 
   def check_element_attr(element, query)
     i = false
-    attr = Hash.new(:text => element.text,
+    attr = {:text => element.text,
                     :value => element.value,
                     :href => element[:href],
                     :title => element[:title]
-    )
+    }
     attr.each_key do |key|
-       i = true unless attr[:key] != query
+      i = true unless attr[key] != query
     end
     return i
   end
 
+  def find_in_child(path, atr)
+    all(:xpath, "#{path}/child::*").to_a.reverse.each do |node|
+      if check_element_attr(node, atr)
+        click_the(node)
+        return true
+      end
+    end
+    false
+  end
+
 
   def find_from_table(table, text)
-      table_object = find_element(table)
-      rows_path  = table_object.path + "/child::*"
-      node = all(:xpath, "#{rows_path}").detect { |node| node.has_content?(text) }
-      return node
+    rows_path = table.path + "/child::*"
+    node = all(:xpath, "#{rows_path}").detect { |node| node.has_content?(text) }
+    return node
+  end
+
+  def find_first_from_table(table, text)
+    rows_path = table.path + "/child::*"
+    node = all(:xpath, "#{rows_path}").each do |nod|
+      if nod.has_content?(text)
+        return nod
+      end
+    end
   end
 
   def make_action_in_table(row, action)
+    nodes_path = row.path + "/child::*"
+    all(:xpath, "#{nodes_path}").each do |node|
+      path = node.path
+      if all(:xpath, "#{path}/child::*").empty?
+        if check_element_attr(node, action)
+           click_the(node)
+        end
+      end
+      until all(:xpath, "#{path}/child::*").empty?
+        if find_in_child(path, action)
+          return
+        end
+        path = path + "/child::*"
+      end
+    end
+    sleep(5)
+  end
+
+
+=begin
+  def make_action_in_table(row, action)
+    binding.pry
+    nodes_path  = row.path + "/child::*"
+    all(:xpath, "#{nodes_path}").each do |node|
+      if all(:xpath, "#{nodes_path}/child::*").empty?
+        click_the(node) unless check_element_attr(node, action)
+      else
+        all(:xpath, "#{nodes_path}/child::*")
+    end
     row.all('td').each do |td|
       if !td.all('a').empty?
         td.all('a').each do |a|
@@ -73,6 +120,8 @@ class BasePage < SitePrism::Page
       end
     end
   end
+=end
+
 
   def quick_click(text)
     if has_xpath?(".//*[contains(text(),'#{text}')]")

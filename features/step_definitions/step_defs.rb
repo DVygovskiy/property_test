@@ -61,7 +61,10 @@ end
 
 When(/^I open the "([^"]*)" page$/) do |arg|
   @page = Finder.page_class(arg)
-  @page.load
+  begin
+    @page.load
+  rescue
+  end
   begin
     expect(page).to have_text @page.title
     @current_page = @page
@@ -82,7 +85,7 @@ When(/^I click the "([^"]*)" (link|button|tab)$/) do |text, control|
   @current_page.click_the(Finder.element_of_page(@current_page, selector))
   new_window = page.driver.browser.window_handles.last
   page.driver.browser.switch_to.window(new_window)
-  #page.evaluate_script('window.history.back()')
+  sleep(0.5)
 
 end
 
@@ -104,12 +107,22 @@ end
 
 And(/^I look for "([^"]*)" within "([^"]*)" table$/) do |element, name_of_table|
   name_of_table = name_of_table.to_s.downcase + "_table"
-  test_context[:current_table] = element_of_page(@current_page, name_of_table)
-  test_context[:current_row]= @current_page.get_row_from_table(test_context[:current_table], element)
+  test_context[:current_table] = Finder.element_of_page(@current_page, name_of_table)
+  test_context[:current_row]= @current_page.find_from_table(test_context[:current_table], element)
+  expect(!test_context[:current_row].nil?)
+end
+
+And(/^I look for the first "([^"]*)" with "([^"]*)" ([^"]*) within "([^"]*)" table$/) do |any, arg, any2, name_of_table|
+  name_of_table = name_of_table.to_s.downcase + "_table"
+  test_context[:current_table] = Finder.element_of_page(@current_page, name_of_table)
+  test_context[:current_row]= @current_page.find_first_from_table(test_context[:current_table], arg)
+  expect(!test_context[:current_row].nil?)
+  test_context[:current_row_path] = test_context[:current_row].path
 end
 
 And(/^I click the "([^"]*)" it$/) do |action|
   @current_page.make_action_in_table(test_context[:current_row], action)
+  sleep(5)
 end
 
 
@@ -212,7 +225,7 @@ And(/^I set up (duration|time) from "([^"]*)" to "([^"]*)" (local|round local)$/
   test_context[:gigs_e_time] = e_time
 end
 
-And(/^I select "([^"]*)" with name "([^"]*)"$/) do |any, name|
+And(/^I select "([^"]*)" with ([^"]*) "([^"]*)"$/) do |any, arg, name|
   nodes_path = test_context[:current_search_results].path + "/child::*"
   node = all(:xpath, "#{nodes_path}").detect { |node| node.has_content?(name) }
   expect(!node.nil?)
@@ -266,7 +279,6 @@ end
 
 Given(/^I am connected to mysql$/) do
   mysql = Mysql.new("localhost", "root", "admin", "clevergig_rc")
-  binding.pry
 
   res = mysql.query("SELECT id from users where email = 'clevergig@mail.ru';")
   rows = res.num_rows
@@ -322,8 +334,25 @@ Given(/^API create following GIG:$/) do |table|
   desc = table.rows_hash[:description]
   v_desc = table.rows_hash[:'venue description']
   location = table.rows_hash[:location]
-  @test_context = ["", start_time, end_time]
   API.create_gig(type, role, date, start_time, end_time, desc, v_desc, location)
-  binding.pry
 end
 
+
+And(/^I sleep$/) do
+  sleep(5)
+end
+
+And(/^It's ([^"]*) is "([^"]*)"$/) do |any, text|
+  expect(test_context[:current_row].has_text? text)
+end
+
+And(/^I should see ([^"]*) "([^"]*)" for the first "([^"]*)" within "([^"]*)" table$/) do |any, text, arg2, arg3|
+  expect((find(test_context[:current_row_path])).has_text? text)
+end
+
+Then(/^I go back$/) do
+  page.evaluate_script('window.history.back()')
+  if page.has_text? @current_page.title
+    page.evaluate_script('window.history.back()')
+  end
+end
