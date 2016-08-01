@@ -13,14 +13,16 @@ require 'bundler/setup'
 class API
   include HTTParty_with_cookies
   def self.login(user)
-    uri = URI("#{WEB_DATA[:api_url]}/auth/login")
-    res = Net::HTTP.post_form(uri, 'email' => "#{(0...8).map { (65 + rand(26)).chr }.join}@mail.ru", 'password' => '123456')
+    uri_login = URI("#{WEB_DATA[:api_url]}/auth/login")
+    res = Net::HTTP.post_form(uri_login, 'email' => "tkach.danilo@mail.ru", 'password' => 'qwerty')
     res.header.each_header { |key, value| puts "#{key} = #{value}" }
-    token = JSON.parse(res.body)["token"]
+    return JSON.parse(res.body)["token"]
+  end
 
-    uri_set_me = URI('https://www.clevergig.nl/api/v1/users/me')
-    req_set = Net::HTTP::Put.new(uri_set_me)
-    req_set.initialize_http_header({'Authorization' => "Bearer #{token}"})
+def list_of_gigs(token)
+    uri_gigs_list = URI("#{WEB_DATA[:api_url]}/events")
+    http = Net::HTTP.new(uri_gigs_list.host, uri_gigs_list.port)
+    data = http.get(uri_gigs_list.request_uri, initheader = {'Authorization' => "Bearer #{token}"})
 
 
     uri = URI('https://www.clevergig.nl/api/v1/auth/signup')
