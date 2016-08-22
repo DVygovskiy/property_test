@@ -10,6 +10,11 @@ class BasePage < SitePrism::Page
 
   set_url ""
 
+  def self.selector(element_name, find_selector)
+    define_method element_name.to_s do |*args|
+      find_selector
+    end
+  end
 
   def find_element(locator, text = nil)
     begin

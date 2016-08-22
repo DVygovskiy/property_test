@@ -13,48 +13,26 @@ class ConfirmationPage < BasePage
   set_url "#{::WEB_DATA[:base_url]}/events/confirmation"
 
 
-  def new_gig_tab
-    "//a[contains(text(), 'Nieuwe gig')]"
-  end
+  selector :new_gig_tab, "//a[contains(text(), 'Nieuwe gig')]"
 
-  def my_gig_tab
-    "//a[contains(text(), 'Mijn gigs')]"
-  end
+  selector :my_gig_tab, "//a[contains(text(), 'Mijn gigs')]"
 
-  def profile_tab
-    "//a[contains(text(), 'Bedrijfprofiel')]"
-  end
+  selector :profile_tab, "//a[contains(text(), 'Bedrijfprofiel')]"
 
-  def settings_tab
-    "//a[contains(text(), 'Instellingen')]"
-  end
+  selector :settings_tab, "//a[contains(text(), 'Instellingen')]"
 
-  def logout_button
-    "//a//span[contains(text(), 'Uitloggen')]"
-  end
+  selector :logout_button, "//a//span[contains(text(), 'Uitloggen')]"
 
-  def venue_name
-    "//*[@class='breadcrumbs']/span"
-  end
+  selector :venue_name, "//*[@class='breadcrumbs']/span"
 
-  def promo_code_field
-    ".//*[@name='promocode']"
-  end
+  selector :promo_code_field, ".//*[@name='promocode']"
 
-  def use_promo_button
-    ".//*[@value='Toepassen']"
-  end
+  selector :use_promo_button, ".//*[@value='Toepassen']"
 
-  def payment_system
-    ".//*[@role='combobox']"
-  end
+  selector :payment_system, ".//*[@role='combobox']"
 
-  def terms
-    ".//*[@id='afterpay_terms']"
-  end
+  selector :terms, ".//*[@id='afterpay_terms']"
 
-  def finish_button
-    ".//*[@id='step3']/form/div[2]/input"
-  end
+  selector :finish_button, ".//*[@id='step3']/form/div[2]/input"
 
 end

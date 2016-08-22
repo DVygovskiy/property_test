@@ -12,73 +12,36 @@ class AdminPage < BasePage
 
   set_url "#{WEB_DATA[:base_url]}/admin/"
 
-  def user_management_tab
-    "//span[contains(text(), 'Users management')]"
-  end
+  selector :user_management_tab, "//span[contains(text(), 'Users management')]"
 
-  def user_management_tab
-    "//span[contains(text(), 'Users management')]"
-  end
+  selector :workers_tab, "//span[contains(text(), 'Workers')]"
 
-  def workers_tab
-    "//span[contains(text(), 'Workers')]"
-  end
+  selector :reviews_tab, "//span[contains(text(), 'Reviews')]"
 
-  def reviews_tab
-    "//span[contains(text(), 'Reviews')]"
-  end
+  selector :promo_tab, "//span[contains(text(), 'Promo')]"
 
-  def promo_tab
-    "//span[contains(text(), 'Promo')]"
-  end
+  selector :referral_promo_tab, "//span[contains(text(), 'Referral promo')]"
 
-  def referral_promo_tab
-    "//span[contains(text(), 'Referral promo')]"
-  end
+  selector :gigs_tab, "//span[contains(text(), 'Gigs')]"
 
-  def gigs_tab
-    "//span[contains(text(), 'Gigs')]"
-  end
+  selector :roles_tab, "//span[contains(text(), 'Roles')]"
 
-  def roles_tab
-    "//span[contains(text(), 'Roles')]"
-  end
+  selector :payments_tab, "//span[contains(text(), 'Payments')]"
 
-  def payments_tab
-    "//span[contains(text(), 'Payments')]"
-  end
+  selector :payments_from_customers_tab, "//span[contains(text(), 'Payments from customers')]"
 
-  def payments_from_customers_tab
-    "//span[contains(text(), 'Payments from customers')]"
-  end
+  selector :payouts_to_workers_tab, "//span[contains(text(), 'Payouts to workers')]"
 
-  def payouts_to_workers_tab
-    "//span[contains(text(), 'Payouts to workers')]"
-  end
+  selector :pending_payouts_tab, "//span[contains(text(), 'Pending payouts')]"
 
-  def pending_payouts_tab
-    "//span[contains(text(), 'Pending payouts')]"
-  end
+  selector :settings_tab, "//span[contains(text(), 'Settings')]"
 
-  def settings_tab
-    "//span[contains(text(), 'Settings')]"
-  end
+  selector :gigs_under_settings_section_tab, "html/body/div[1]/aside/section/ul/li[8]/ul/li[2]/a/span"
 
-  def gigs_under_settings_section_tab
-    "html/body/div[1]/aside/section/ul/li[8]/ul/li[2]/a/span"
-  end
+  selector :promo_under_settings_section_tab, "html/body/div[1]/aside/section/ul/li[8]/ul/li[3]/a/span"
 
-  def promo_under_settings_section_tab
-    "html/body/div[1]/aside/section/ul/li[8]/ul/li[3]/a/span"
-  end
+  selector :workers_table, '*//div[1]/div/section[2]/div[3]/div/div/div[1]/table'
 
-  def workers_table
-    '*//div[1]/div/section[2]/div[3]/div/div/div[1]/table'
-  end
-
-  def gigs_table
-    "//table/tbody"
-  end
-
+  selector :gigs_table, "//table/tbody"
 
 end

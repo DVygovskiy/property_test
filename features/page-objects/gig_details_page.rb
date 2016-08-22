@@ -12,62 +12,43 @@ class GigDetailsPage < BasePage
 
   set_url "#{::WEB_DATA[:base_url]}/events/new"
 
+  selector :new_gig_tab, "//a[contains(text(), 'Nieuwe gig')]"
 
-  def new_gig_tab
-    "//a[contains(text(), 'Nieuwe gig')]"
-  end
+  selector :my_gig_tab, "//a[contains(text(), 'Mijn gigs')]"
 
-  def my_gig_tab
-    "//a[contains(text(), 'Mijn gigs')]"
-  end
+  selector :profile_tab, "//a[contains(text(), 'Bedrijfprofiel')]"
 
-  def profile_tab
-    "//a[contains(text(), 'Bedrijfprofiel')]"
-  end
+  selector :settings_tab, "//a[contains(text(), 'Instellingen')]"
 
-  def settings_tab
-    "//a[contains(text(), 'Instellingen')]"
-  end
+  selector :logout_button, "//a//span[contains(text(), 'Uitloggen')]"
 
-  def logout_button
-    "//a//span[contains(text(), 'Uitloggen')]"
-  end
+  selector :venue_name, "//*[@class='breadcrumbs']/span"
 
-  def venue_name
-    "//*[@class='breadcrumbs']/span"
-  end
+  selector :date_picker, "//*[@id='datepicker']"
 
-  def date_picker
-    "//*[@id='datepicker']"
-  end
+  selector :description_field, ".//*[@placeholder='Een korte omschrijving van de gig']"
 
-  def description_field
-    ".//*[@placeholder='Een korte omschrijving van de gig']"
-  end
+  selector :about_venue_field, ".//*[@placeholder='Omschrijving']"
 
-  def about_venue_field
-    ".//*[@placeholder='Omschrijving']"
-  end
+  selector :required_skills_field, ".//*[@placeholder='Welke vaardigheden zijn nodig']"
 
-  def required_skills_field
-    ".//*[@placeholder='Welke vaardigheden zijn nodig']"
-  end
+  selector :required_clothing_field, ".//*[@placeholder='Welke kleding richtlijnen zijn er']"
 
-  def required_clothing_field
-    ".//*[@placeholder='Welke kleding richtlijnen zijn er']"
-  end
+  selector :proceed_button, ".//*[@id='step1']/form/div[4]/input"
 
-  def proceed_button
-    ".//*[@id='step1']/form/div[4]/input"
-  end
+  selector :start_time, ".//*[@id='timepicker1']"
 
-  def start_time
-    ".//*[@id='timepicker1']"
-  end
+  selector :end_time, ".//*[@id='timepicker2']"
 
-  def end_time
-    ".//*[@id='timepicker2']"
-  end
+  selector :workers_search_result, "#cards"
+
+  selector :select_button, ".//button[contains(text(),'Select')]"
+
+  selector :payment_system, ".//*[@role='combobox']"
+
+  selector :terms, ".//*[@id='afterpay_terms']"
+
+  selector :finish_button, ".//*[@id='step3']/form/div[2]/input"
 
   def choose_date(datetime)
     find_element(date_picker).set datetime
@@ -78,24 +59,6 @@ class GigDetailsPage < BasePage
     page.driver.browser.execute_script("$(arguments[0]).val('#{e_time}');", find_element(end_time).native)
   end
 
-  def workers_search_result
-    "#cards"
-  end
 
-  def select_button
-    ".//button[contains(text(),'Select')]"
-  end
-
-  def payment_system
-    ".//*[@role='combobox']"
-  end
-
-  def terms
-    ".//*[@id='afterpay_terms']"
-  end
-
-  def finish_button
-    ".//*[@id='step3']/form/div[2]/input"
-  end
 
 end

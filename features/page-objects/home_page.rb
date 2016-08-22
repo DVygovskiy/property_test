@@ -12,12 +12,14 @@ class HomePage < BasePage
 
   set_url "#{WEB_DATA[:base_url]}"
 
-  def register_button
-    '*//div[1]/div/div[2]/section[1]/div/div[1]/div/div/div[1]/div[2]/a[1]'
-  end
+  selector :register_button, '*//div[1]/div/div[2]/section[1]/div/div[1]/div/div/div[1]/div[2]/a[1]'
 
-  def sing_up_button
-    "//header//a[contains(text(), 'Inloggen')]"
-  end
+  selector :sing_up_button, "//header//a[contains(text(), 'Inloggen')]"
+
+  selector :email_field, "//input[@name='email']"
+
+  selector :password_field, "//input[@name='password']"
+
+  selector :create_account_button, "//button[@type='submit']"
 
 end

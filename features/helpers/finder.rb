@@ -2,10 +2,6 @@ require_relative '../page-objects/base_page'
 
 class Finder < BasePage
 
-  def find_page_class(text)
-
-  end
-
   def self.element_of_page(page, text)
     web_element = page.find_element(page.send(text))
     return web_element

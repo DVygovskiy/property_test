@@ -12,34 +12,18 @@ class MyGigsPage < BasePage
 
   set_url "#{::WEB_DATA[:base_url]}/events/upcoming"
 
+  selector :new_gig_tab, "//a[contains(text(), 'Nieuwe gig')]"
 
-  def new_gig_tab
-    "//a[contains(text(), 'Nieuwe gig')]"
-  end
+  selector :my_gig_tab, "//a[contains(text(), 'Mijn gigs')]"
 
-  def my_gig_tab
-    "//a[contains(text(), 'Mijn gigs')]"
-  end
+  selector :profile_tab, "//a[contains(text(), 'Bedrijfprofiel')]"
 
-  def profile_tab
-    "//a[contains(text(), 'Bedrijfprofiel')]"
-  end
+  selector :settings_tab, "//a[contains(text(), 'Instellingen')]"
 
-  def settings_tab
-    "//a[contains(text(), 'Instellingen')]"
-  end
+  selector :logout_button, "//a//span[contains(text(), 'Uitloggen')]"
 
-  def logout_button
-    "//a//span[contains(text(), 'Uitloggen')]"
-  end
+  selector :venue_name, "//*[@class='breadcrumbs']/span"
 
-  def venue_name
-    "//*[@class='breadcrumbs']/span"
-  end
-
-  def gigs_table
-    ".//*[@class='category_group']"
-  end
-
+  selector :gigs_table, ".//*[@class='category_group']"
 
 end

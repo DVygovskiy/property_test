@@ -32,6 +32,30 @@ Feature: Create gig
       Then I go back
       And I should see status "Expired" for the first "Gig" within "Gigs" table
 
+@admin
+  Scenario: Admin complete
+  Given API create following GIG:
+    | role              | Bardienst                 |
+    | type              | Urgent                    |
+    | date              | today        |
+    | start time        | + 3 hours from round local |
+    | end time          | + 10 hours from round local |
+    | description       | Test                      |
+    | venue description | My                        |
+    | location          | Amsterdam                 |
+  When Worker accept gig with description "Test"
+  Then I loged in as "Admin"
+  And I click the "Gigs" tab
+  Then I should see table with "Gigs"
+  And I look for the first "Gig" with "Accepted" status within "Gigs" table
+  And I click the "Edit" it
+  Then I am on the "Edit gig" page
+  And I select "Status" to "Completed"
+  And I click the "Update" button
+  And I should see the text "Gig is bijgewerkt "
+  Then I go back
+  And I should see status "Completed" for the first "Gig" within "Gigs" table
+
    @urgent_gig
    Scenario: Urgent gig creation
      Given I loged in as "Valid user"
@@ -65,3 +89,7 @@ Feature: Create gig
       | description       | Test                      |
       | venue description | My                        |
       | location          | Amsterdam                 |
+
+  @accept
+  Scenario: Accept gig
+    Given Worker accept gig with id "694"

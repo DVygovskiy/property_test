@@ -12,19 +12,44 @@ require 'bundler/setup'
 
 class API
   include HTTParty_with_cookies
-  def self.login(user)
+
+  def self.login_app()
     uri_login = URI("#{WEB_DATA[:api_url]}/auth/login")
     res = Net::HTTP.post_form(uri_login, 'email' => "tkach.danilo@mail.ru", 'password' => 'qwerty')
     res.header.each_header { |key, value| puts "#{key} = #{value}" }
     return JSON.parse(res.body)["token"]
   end
 
-def list_of_gigs(token)
+  def self.list_of_gigs()
+    @token = login_app()
     uri_gigs_list = URI("#{WEB_DATA[:api_url]}/events")
     http = Net::HTTP.new(uri_gigs_list.host, uri_gigs_list.port)
-    data = http.get(uri_gigs_list.request_uri, initheader = {'Authorization' => "Bearer #{token}"})
+    data = http.get(uri_gigs_list.request_uri, initheader = {'Authorization' => "Bearer #{@token}"})
+    return json_gigs = JSON.parse(data.body)["data"]
+  end
+
+  def self.id_of_latest_gig(query)
+    id = 0
+    list_of_gigs().each do |gig|
+      gig.each_key do |key|
+        if gig[key].to_s == query
+          id = gig["id"]
+        end
+      end
+    end
+    return id
+  end
+
+  def self.accept_gig(query)
+    id = id_of_latest_gig(query)
+    uri_accept_gig = URI("#{WEB_DATA[:api_url]}/events/#{id}/accept")
+    req = Net::HTTP::Put.new(uri_accept_gig, initheader = {'Authorization' => "Bearer #{@token}"})
+    response = Net::HTTP.new(uri_accept_gig.host, uri_accept_gig.port).start {|http| http.request(req) }
+    puts response.code
+  end
 
 
+  def sign_up
     uri = URI('https://www.clevergig.nl/api/v1/auth/signup')
     res = Net::HTTP.post_form(uri, 'email' => "#{(0...8).map { (65 + rand(26)).chr }.join}@mail.ru", 'password' => '123456')
     res.header.each_header { |key, value| puts "#{key} = #{value}" }

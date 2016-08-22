@@ -12,51 +12,26 @@ class DashboardPage < BasePage
 
   set_url "#{::WEB_DATA[:base_url]}/dashboard"
 
+  selector :new_gig_tab, "//a[contains(text(), 'Nieuwe gig')]"
 
-  def new_gig_tab
-    "//a[contains(text(), 'Nieuwe gig')]"
-  end
+  selector :my_gig_tab, "//a[contains(text(), 'Mijn gigs')]"
 
-  def my_gig_tab
-    "//a[contains(text(), 'Mijn gigs')]"
-  end
+  selector :profile_tab, "//a[contains(text(), 'Bedrijfprofiel')]"
 
-  def profile_tab
-    "//a[contains(text(), 'Bedrijfprofiel')]"
-  end
+  selector :settings_tab, "//a[contains(text(), 'Instellingen')]"
 
-  def settings_tab
-    "//a[contains(text(), 'Instellingen')]"
-  end
+  selector :logout_button, "//a//span[contains(text(), 'Uitloggen')]"
 
-  def logout_button
-    "//a//span[contains(text(), 'Uitloggen')]"
-  end
+  selector :venue_name, "//*[@class='breadcrumbs']/span"
 
-  def venue_name
-    "//*[@class='breadcrumbs']/span"
-  end
+  selector :urgent_bardienst_button, "//div[1]/div[2]/div[1]/div/div[1]/div[1]/a[1]"
 
-  def urgent_bardienst_button
-    "//div[1]/div[2]/div[1]/div/div[1]/div[1]/a[1]"
-  end
+  selector :personal_bardienst_button, "//div[1]/div[2]/div[1]/div/div[1]/div[1]/a[2]"
 
-  def personal_bardienst_button
-    "//div[1]/div[2]/div[1]/div/div[1]/div[1]/a[2]"
-  end
+  selector :urgent_bediening_button, "//div[1]/div[2]/div[1]/div/div[1]/div[2]/a[1]"
 
-  def urgent_bediening_button
-    "//div[1]/div[2]/div[1]/div/div[1]/div[2]/a[1]"
-  end
+  selector :personal_bediening_button, "//div[1]/div[2]/div[1]/div/div[1]/div[2]/a[2]"
 
-  def personal_bediening_button
-    "//div[1]/div[2]/div[1]/div/div[1]/div[2]/a[2]"
-  end
-
-  def proceed_button
-    "//*[@id='step1']/form/div[4]/input"
-  end
-
-
+  selector :proceed_button, "//*[@id='step1']/form/div[4]/input"
 
 end

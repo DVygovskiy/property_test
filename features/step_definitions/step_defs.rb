@@ -356,3 +356,7 @@ Then(/^I go back$/) do
     page.evaluate_script('window.history.back()')
   end
 end
+
+Given(/^([^"]*) accept gig with ([^"]*) "([^"]*)"$/) do |any, any2, query|
+  API.accept_gig(query)
+end

@@ -12,44 +12,16 @@ class LoginPage < BasePage
 
   set_url  "#{WEB_DATA[:base_url]}/auth/login"
 
-  def login_button
-    './/*[@id=\'login\']/input[2]'
-  end
+  selector :login_button, './/*[@id=\'login\']/input[2]'
 
-  def email_field
-    './/*[@id=\'login\']/span[1]/input'
-  end
+  selector :email_field, './/*[@id=\'login\']/span[1]/input'
 
-  def password_field
-    './/*[@id=\'login\']/span[2]/input'
-  end
+  selector :password_field, './/*[@id=\'login\']/span[2]/input'
 
-  def make_account_button
-    './/*[@id=\'login\']/a[2]'
-  end
+  selector :make_account_button, './/*[@id=\'login\']/a[2]'
 
-  def facebook_link
-    './/*[@id=\'login\']/div/a[1]'
-  end
+  selector :facebook_link , './/*[@id=\'login\']/div/a[1]'
 
-  def linkedin_link
-    './/*[@id=\'login\']/div/a[2]'
-  end
-
-  def facebook_login
-    assert_text("Log into Facebook")
-    find_element(self.facebook_link).click
-    fill_in('email', :with => "dante521@bigmir.net")
-    fill_in('pass', :with => "brn521")
-    find('#loginbutton').click
-  end
-
-  def linkedin_login
-    assert_text("Sign in to LinkedIn and allow access:")
-    find_element(self.linkedin_link).click
-    fill_in('Email', :with => "daniel.vygovskiy@gmail.com")
-    fill_in('Password', :with => "Faust521")
-    find_button('Allow access').click
-  end
+  selector :linkedin_link, './/*[@id=\'login\']/div/a[2]'
 
 end

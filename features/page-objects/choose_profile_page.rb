@@ -12,60 +12,32 @@ class ChooseProfilePage < BasePage
 
   set_url "#{::WEB_DATA[:base_url]}/events/select-worker"
 
-  def new_gig_tab
-    "//a[contains(text(), 'Nieuwe gig')]"
-  end
+  selector :new_gig_tab, "//a[contains(text(), 'Nieuwe gig')]"
 
-  def my_gig_tab
-    "//a[contains(text(), 'Mijn gigs')]"
-  end
+  selector :my_gig_tab, "//a[contains(text(), 'Mijn gigs')]"
 
-  def profile_tab
-    "//a[contains(text(), 'Bedrijfprofiel')]"
-  end
+  selector :profile_tab, "//a[contains(text(), 'Bedrijfprofiel')]"
 
-  def settings_tab
-    "//a[contains(text(), 'Instellingen')]"
-  end
+  selector :settings_tab, "//a[contains(text(), 'Instellingen')]"
 
-  def logout_button
-    "//a//span[contains(text(), 'Uitloggen')]"
-  end
+  selector :logout_button, "//a//span[contains(text(), 'Uitloggen')]"
 
-  def venue_name
-    "//*[@class='breadcrumbs']/span"
-  end
+  selector :venue_name, "//*[@class='breadcrumbs']/span"
 
-  def date_picker
-    "//*[@id='datepicker']"
-  end
+  selector :date_picker, "//*[@id='datepicker']"
 
-  def description_field
-    ".//*[@placeholder='Een korte omschrijving van de gig']"
-  end
+  selector :description_field, ".//*[@placeholder='Een korte omschrijving van de gig']"
 
-  def about_venue_field
-    ".//*[@placeholder='Omschrijving']"
-  end
+  selector :about_venue_field, ".//*[@placeholder='Omschrijving']"
 
-  def workers_search_result
-    "#cards"
-  end
+  selector :workers_search_result, "#cards"
 
-  def select_button
-    ".//button[contains(text(),'Select')]"
-  end
+  selector :select_button, ".//button[contains(text(),'Select')]"
 
-  def payment_system
-    ".//*[@role='combobox']"
-  end
+  selector :payment_system, ".//*[@role='combobox']"
 
-  def terms
-    ".//*[@id='afterpay_terms']"
-  end
+  selector :terms, ".//*[@id='afterpay_terms']"
 
-  def finish_button
-    ".//*[@id='step3']/form/div[2]/input"
-  end
+  selector :finish_button, ".//*[@id='step3']/form/div[2]/input"
 
 end

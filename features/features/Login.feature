@@ -12,12 +12,12 @@ Scenario: Common login
 
 
 
-@login1
+@l
 Scenario: Facebook
   When I open the "Home" page
-  And I click the "Sing up" button
-  Then I am on the "Login" page
-  Then I login using Facebook
+  And I type "clevergig@mail2.ru" into "Email" field
+  And I type "123456" into "Password" field
+  And I click the "Create account" button
 
 
 @login2
