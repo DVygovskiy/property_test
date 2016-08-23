@@ -19,24 +19,6 @@ require_relative '../data_objects/user.rb'
 require 'mysql'
 
 
-Given(/^the user "([^\"]*)" exists$/) do |user_alias|
-  user = User.new
-  @test_world.add_user(user_alias, user)
-end
-
-When(/^I open the homepage$/) do
-  @home.load
-end
-
-When(/^I search for "([^\"]*)"/) do |text|
-  @home.search text
-end
-
-When(/^I search for user "([^"]*)"$/) do |user_alias|
-  user = @test_world.get_user user_alias
-  @home.search user.name
-end
-
 Then(/^I should be on the search results for "([^\"]*)"$/) do |search_text|
   expect(@results.current_url).to include search_text
 end
@@ -70,6 +52,34 @@ When(/^I open the "([^"]*)" page$/) do |arg|
     @current_page = @page
   rescue
     screenshot_and_save_page
+  end
+end
+
+And(/^I fill in form as follows:$/) do |table|
+  table.rows_hash.keys.each do |key|
+    text = table.rows_hash[key]
+    if key.to_s.include? "set the date picker"
+      macro %(I set the date picker date to "#{text}")
+    elsif key.to_s.include? "set the date"
+      macro %(I #{key} to #{text})
+    elsif key.to_s.include? "checkbox"
+      if key.to_s.include? "uncheck"
+        macro %(I uncheck "#{text}" checkbox)
+      else
+        macro %(I check "#{text}" checkbox)
+      end
+    elsif key.to_s.include? "image"
+      if key.to_s.include? "choose"
+        macro %(I choose "#{text}" image)
+      else
+        macro %(I upload image from galery as "#{text}" image)
+      end
+    elsif key.to_s.include? "dropbox"
+      key = key.to_s.gsub(" dropbox", "")
+      macro %(I click "#{key}" dropbox and select "#{text}")
+    else
+      macro %(I type "#{text}" into "#{key}" field)
+    end
   end
 end
 
@@ -262,17 +272,19 @@ And(/^I select "([^"]*)" to "([^"]*)"$/) do |selection, option|
 end
 
 
-And(/^I agree with Terms$/) do
-  terms = Finder.element_of_page(@current_page, "terms")
-  unless terms.checked?
-    @current_page.click_the(terms)
+And(/^I chceck "([^"]*)" checkbox$/) do |locator|
+  locator = locator.to_s.downcase.gsub(" ", "_") + "_checkbox"
+  checkbox = Finder.element_of_page(@current_page, locator)
+  unless checkbox.checked?
+    @current_page.click_the(checkbox)
   end
 end
 
-And(/^I don't agree with Terms$/) do
-  terms = Finder.element_of_page(@current_page, "terms").set(false)
-  if terms.checked?
-    @current_page.click_the(terms)
+And(/^I unchceck "([^"]*)" checkbox$/) do |locator|
+  ocator = selection.to_s.downcase.gsub(" ", "_") + "_checkbox"
+  checkbox = Finder.element_of_page(@current_page, locator)
+  if checkbox.checked?
+    @current_page.click_the(checkbox)
   end
 end
 
@@ -287,6 +299,8 @@ Given(/^I am connected to mysql$/) do
   end
   mysql.close
 end
+
+
 
 #upload image
 #find(:xpath, "//input[@id='upload-image']".set("/test/file/path/")
@@ -359,4 +373,28 @@ end
 
 Given(/^([^"]*) accept gig with ([^"]*) "([^"]*)"$/) do |any, any2, query|
   API.accept_gig(query)
+end
+
+Given(/^I resize window to "([^"]*)"$/) do |arg|
+  x = arg.to_s.split("x")[0]
+  y = arg.to_s.split("x")[1]
+  Capybara.current_session.driver.browser.manage.window.resize_to(x,y)
+end
+
+And(/^I upload "([^"]*)" image as "([^"]*)"$/) do |image, where|
+  binding.pry
+  selector = where.to_s.downcase.gsub(" ", "_") + "_image"
+  locator = Finder.locator(@current_page, selector)
+  @current_page.upload_image(locator, image)
+  sleep(3)
+
+end
+
+Then(/^I see pop up with "([^"]*)" text$/) do |text|
+  expect(page.should have_content(text))
+
+end
+
+Then(/^I am redirected to "([^"]*)" page$/) do |arg|
+  step %(I am on the "#{arg}" page)
 end

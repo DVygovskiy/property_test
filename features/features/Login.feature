@@ -1,31 +1,20 @@
 Feature: Login
 
-@login
-Scenario: Common login
-  Given I open the "Home" page
-  And I click the "Sing up" button
-  When I am on the "Login" page
-  And I type "clevergig@mail.ru" into "Email" field
-  And I type "123456" into "Password" field
-  And I click the "Login" button
-  Then I am on the "Dashboard" page
-
-
-
-@l
-Scenario: Facebook
-  When I open the "Home" page
-  And I type "clevergig@mail2.ru" into "Email" field
-  And I type "123456" into "Password" field
-  And I click the "Create account" button
-
-
-@login2
-Scenario: Linkedin
-    When I open the "Home" page
+  Background:
+    Given I resize window to "1240x960"
+  @login
+  Scenario: Common login
+    Given I open the "Home" page
     And I click the "Sing up" button
-    Then I am on the "Login" page
-    Then I login using Linkedin
+    When I am on the "Login" page
+    And I type "clevergig@mail.ru" into "Email" field
+    And I type "123456" into "Password" field
+    And I click the "Login" button
+    Then I am on the "Dashboard" page
+    And I upload "Family2.png" image as company logo
+
+
+
 
 
 @admintable

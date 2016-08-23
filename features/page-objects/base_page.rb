@@ -26,6 +26,16 @@ class BasePage < SitePrism::Page
     end
   end
 
+  def upload_image(locator, image)
+    begin
+      page.has_xpath?(locator)
+      find(:xpath, locator).set(File.absolute_path("#{image}"))
+    rescue
+      page.has_css?(locator)
+      find(:css, locator).set(File.absolute_path("#{image}"))
+    end
+  end
+
   def click_the(element)
     if element.kind_of? String
       element = find_element(element)

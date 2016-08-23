@@ -8,6 +8,10 @@ class Finder < BasePage
   end
 
 
+  def self.locator(page, text)
+    page.send(text)
+  end
+
   def self.element(text)
     @path = "#{File.expand_path("../../", __FILE__)}/page-objects/*.rb"
     Dir[@path].each do |file|
@@ -41,7 +45,7 @@ class Finder < BasePage
       file_name = pn.basename.to_s.gsub(".rb", "")
       class_id = file_name.classify.constantize
       if class_id.instance_methods(false).grep(text.to_sym).any?
-        @current_page.find_element(@current_page.send(text))
+        @current_page.send(text)
       end
     end
   end

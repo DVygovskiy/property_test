@@ -10,9 +10,9 @@
       "broken" : 0
     },
     "time" : {
-      "start" : 1465809297720,
-      "stop" : 1465809300337,
-      "duration" : 2617
+      "start" : 1471956258225,
+      "stop" : 1471956272279,
+      "duration" : 14054
     },
     "name" : "total",
     "type" : "TOTAL"
@@ -21,14 +21,14 @@
     "type" : "DEFECTS",
     "data" : [ {
       "count" : 1,
-      "message" : "end of file reached",
+      "message" : "expected to find text \"Welkom bij clevergig\" in \"Ervaren horecapersoneel binnen handbereik - clevergig.nl Blog Vraag demo aan Inloggen clevergig 2016. All rights reserved. Wil je bijverdienen in de horeca? Werken op jouw voorwaarden? Lees meer Download app Blog Vraag demo aan Inloggen Vul openstaande shifts. Gemakkelijk. Snel. Drukke dag voor de boeg? Onverwacht mooi weer? Zieke collega? Huur ervaren horeca personeel in om shifts te vullen. Regel het snel met een paar clicks. En dat voor maar €16 per uur. Beschikbaar in Amsterdam. Account aanmaken go next Kies een rol Via onze website beschrijft u de opdracht. Denk aan belangrijke vaardigheden en richtlijnen voor kleding. \\\"Het is altijd lastig de eerste keer werken bij Urban Salad, maar Jessin pakte het goed op. Het ging allemaal prima. Top dus!\\\" Jasper van Wieren, Urban Salad Ontvang een match De clevergig smartphone app doet zijn werk. Een ervaren kracht accepteert snel uw openstaande shift. \\\"Maya is een ervaren horeca professional die van vele markten thuis is. Zeer vriendelijk en correct!\\\" Maurits van Tienen, Lodewijck’s Eetcafe Run uw operatie Uw personele uitdaging is opgelost en uw klanten ervaren een uitstekende service. \\\"Lisa was great! Her experience as a dishwasher was evident. We'd gladly have her back whenever we're short-staffed and needing a dependable extra hand.\\\" Claire Sullivan, CRAVE Good Food 123 Kwaliteit clevergig screent grondig alle kandidaten op ervaring. Zo bent u verzekerd van een goede en betrouwbare hulpkracht. Transparantie Bekijk het profiel van je hulpkracht en lees beoordelingen. Geef zelf ook een beoordeling na de gig en betaal veilig online via iDEAL of AfterPay. Snelheid Na het plaatsen van uw opdracht, vinden we razendsnel een geschikte kandidaat via notificaties naar de clevergig smartphone app. 123 Maak kennis met onze professionals clevergig heeft een groot netwerk van ervaren horeca personeel. De een gebruikt clevergig om wat bij te verdienen naast een vaste baan in de horeca. De ander als primaire bron van inkomsten. Wat ze allemaal gemeen hebben is een enorme passie voor horeca en gastvrijheid! Ik ben een jaar geleden verliefd geworden op de horeca. Sindsdien werk ik op veel verschillende plekken. Ik hou van de variatie in een full-time werkweek. Ik werk heel graag met mensen en om iemand’s dag een beetje beter te maken! Maya, Bardienst Ik ben op mijn 15de begonnen in de horeca en heb sinsdien altijd een bijbaan in de horeca gehad. De horeca is uitdagend, elke dag anders en brengt je in contact met nieuwe mensen! Het werken in een team en het orde houden in de drukte vormt voor mij een mooie afwisseling op mijn werk als psycholoog in opleiding. Esther, Bediening Ik werk nu al ruim 5 jaar in de horeca achter de bar. Het trekt mij heel erg omdat het gewoon leuk werk is en omdat je onder de mensen bent. Lars, Bar Al sinds mijn 13e ben ik werkzaam in de horeca in binnen en buitenland. De sfeer, variatie en (misschien gek) het harde werken trekken me zeer aan! Nu ben ik erg benieuwd wat Nederland te bieden heeft! Chermaine, Bediening Hoe werkt onze screening? Betrouwbaarheid en kwaliteit staan voorop. En niet elke kandidaat komt door onze screening heen. We vragen minimaal 1 jaar ervaring, plus een referentie van een oud-werkgever. 1 Identiteitscontrole We controleren de identiteit van elke aanmelding. 2 Orientatie sessie We doen een kort interview voor een nadere kennismaking. 3 Ervaringscheck We nemen contact op met een eerdere werkgever. Vraag demo aan Meerdere Amsterdamse horecazaken gingen u voor. Laat geen shift ongevuld en maak vandaag nog een account aan. Dit emailadres is al in gebruik Account aanmaken Horeca Blog Vraag demo aan Account aanmaken Support Bijverdienen App downloaden Support celevergig B.V. 2016. All rights reserved\"",
       "status" : "FAILED"
     } ]
   }, {
     "name" : "xunit",
     "type" : "TITLE_STATISTICS",
     "data" : [ {
-      "title" : "Login",
+      "title" : "Registration",
       "statistic" : {
         "total" : 1,
         "passed" : 0,
@@ -42,7 +42,7 @@
     "name" : "behaviors",
     "type" : "TITLE_STATISTICS",
     "data" : [ {
-      "title" : "Login",
+      "title" : "Registration",
       "statistic" : {
         "total" : 1,
         "passed" : 0,

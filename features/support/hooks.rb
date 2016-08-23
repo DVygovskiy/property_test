@@ -17,6 +17,18 @@ end
 
 
 After do |scenario|
+  if(scenario.failed?)
+    binding.pry
+    time = Time.now.strftime('%Y_%m_%d_%Y_%H_%M_%S_')
+    name_of_scenario = time + scenario.name.gsub(/\s+/, "_").gsub("/","_")
+    puts "Name of snapshot is #{name_of_scenario}"
+    file_path = File.expand_path("../screenshots",__FILE__)+'/'+name_of_scenario +'.png'
+    page.driver.browser.save_screenshot file_path
+    puts "Snapshot is taken"
+    puts "#===========================================================#"
+    puts "Scenario:: #{scenario.name}"
+    puts "#===========================================================#"
+  end
   #Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
   #Capybara.send(:session_pool).each { |name, ses| ses.reset! }
   if ENV['reset'] == "true"
@@ -25,3 +37,6 @@ After do |scenario|
   @test_world.clean
   @test_context = nil
 end
+Cucumber::RunningTestCase::Scenario
+Cucumber::Core::Test::Case
+Cucumber::Core::Test::Step

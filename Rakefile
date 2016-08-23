@@ -17,7 +17,7 @@ end
 def parallel_demo(driver)
   use_driver driver
   puts "Running a parallel demo using #{ENV['DRIVER']}"
-  system('bundle exec parallel_cucumber ./ -o "-t @parallel-demo -t ~@ignore"')
+  system('bundle exec parallel_cucumber ./ -o "-t @l"')
   fail 'build failed!' unless $?.exitstatus == 0
 end
 
@@ -39,6 +39,10 @@ end
 
 task :browserstack do
   demo 'browserstack'
+end
+
+task :parallel_safari do
+  parallel_demo 'safari'
 end
 
 task :parallel_phantomjs do

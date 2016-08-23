@@ -7,7 +7,7 @@ require_relative './base_page.rb'
 class HomePage < BasePage
 
   def title
-    "Ervaren horecapersoneel"
+    "Wil je bijverdienen in de horeca? Werken op jouw voorwaarden?"
   end
 
   set_url "#{WEB_DATA[:base_url]}"
@@ -21,5 +21,11 @@ class HomePage < BasePage
   selector :password_field, "//input[@name='password']"
 
   selector :create_account_button, "//button[@type='submit']"
+
+  selector :agree_terms_checkbox, "//input[@type='checkbox']"
+
+  selector :complete_profile_button, "html/body/main/div[1]/div/div[1]/div/div[2]/div[2]/a[1]"
+
+  selector :skip_button, "html/body/main/div[1]/div/div[1]/div/div[2]/div[2]/a[2]"
 
 end

@@ -1,12 +1,12 @@
 {
   "testCases" : [ {
-    "uid" : "34325a7b1f2187ad",
-    "name" : "Email",
-    "title" : "Email",
+    "uid" : "35afe0e0ad2992d9",
+    "name" : "Registration with image",
+    "title" : "Registration with image",
     "time" : {
-      "start" : 1465809297720,
-      "stop" : 1465809300337,
-      "duration" : 2617
+      "start" : 1471956258225,
+      "stop" : 1471956272279,
+      "duration" : 14054
     },
     "severity" : "NORMAL",
     "status" : "FAILED"
