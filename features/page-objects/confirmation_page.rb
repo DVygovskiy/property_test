@@ -31,7 +31,7 @@ class ConfirmationPage < BasePage
 
   selector :payment_system, ".//*[@role='combobox']"
 
-  selector :terms, ".//*[@id='afterpay_terms']"
+  selector :terms_checkbox, ".//*[@id='afterpay_terms']"
 
   selector :finish_button, ".//*[@id='step3']/form/div[2]/input"
 

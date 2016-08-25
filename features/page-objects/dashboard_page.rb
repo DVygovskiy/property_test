@@ -24,11 +24,11 @@ class DashboardPage < BasePage
 
   selector :venue_name, "//*[@class='breadcrumbs']/span"
 
-  selector :urgent_bardienst_button, "//div[1]/div[2]/div[1]/div/div[1]/div[1]/a[1]"
+  selector :urgent_bardienst_button, "//a[@name='urgent'][contains(@href,'Bardienst')]"
 
   selector :personal_bardienst_button, "//div[1]/div[2]/div[1]/div/div[1]/div[1]/a[2]"
 
-  selector :urgent_bediening_button, "//div[1]/div[2]/div[1]/div/div[1]/div[2]/a[1]"
+  selector :urgent_bediening_button, "//a[@name='urgent'][contains(@href,'Bediening')]"
 
   selector :personal_bediening_button, "//div[1]/div[2]/div[1]/div/div[1]/div[2]/a[2]"
 

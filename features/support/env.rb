@@ -27,7 +27,6 @@ def setup_chrome
     config.run_server = false
     config.default_selector = :xpath
     config.default_max_wait_time = 5
-
     # capybara 2.1 config options
     config.match = :prefer_exact
     config.ignore_hidden_elements = false

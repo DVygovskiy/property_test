@@ -17,6 +17,7 @@ require 'rspec'
 require_relative '../data_objects/web_data.rb'
 require_relative '../data_objects/user.rb'
 require 'mysql'
+require 'ffaker'
 
 
 Then(/^I should be on the search results for "([^\"]*)"$/) do |search_text|
@@ -27,7 +28,6 @@ Then(/^I should be on the search results for user "([^"]*)"$/) do |user_alias|
   name = @test_world.get_user(user_alias).name
   expect(@results.current_url).to include name.tr(' ', '+')
 end
-
 
 
 Then(/^I should see search results for query "([^"]*)"$/) do |user_alias|
@@ -58,23 +58,31 @@ end
 And(/^I fill in form as follows:$/) do |table|
   table.rows_hash.keys.each do |key|
     text = table.rows_hash[key]
-    if key.to_s.include? "set the date picker"
-      macro %(I set the date picker date to "#{text}")
-    elsif key.to_s.include? "set the date"
-      macro %(I #{key} to #{text})
+    if key.to_s.include? "set up the date"
+      if text.to_s.include? "from"
+        text = text.gsub(" days from today")
+        step %(I set up the date to "#{text}" days from today)
+      else
+        step %(I set up the date to today)
+      end
+    elsif (key.to_s.include? "set up duration") || (key.to_s.include? "set up time")
+      step %(I set up duration #{text})
     elsif key.to_s.include? "checkbox"
       if key.to_s.include? "uncheck"
-        macro %(I uncheck "#{text}" checkbox)
+        step %(I uncheck "#{text}" checkbox)
       else
-        macro %(I check "#{text}" checkbox)
+        step %(I check "#{text}" checkbox)
       end
     elsif key.to_s.include? "image"
-        macro %(I upload "#{text}" image as "#{key}")
-    elsif key.to_s.include? "dropbox"
-      key = key.to_s.gsub(" dropbox", "")
-      macro %(I click "#{key}" dropbox and select "#{text}")
+      step %(I upload "#{text}" image as "#{key}")
+    elsif key.to_s.include? "select"
+      key = key.to_s.gsub("select ", "")
+      step %(I select "#{key}" to "#{text}")
+    elsif (key.to_s.include? "change")
+      key = key.to_s.gsub("change ", "")
+      step %(I select "#{key}" to "#{text}")
     else
-      macro %(I type "#{text}" into "#{key}" field)
+      step %(I type "#{text}" into "#{key}" field)
     end
   end
 end
@@ -102,6 +110,13 @@ end
 And(/^I type "([^"]*)" into "([^"]*)" field$/) do |text, field|
   selector = field.to_s.downcase + "_field"
   selector = selector.gsub(" ", "_")
+  if text.to_s.downcase.include? "random"
+    if text.to_s.downcase.include? "email"
+      text = FFaker::Internet.email
+    else
+      text = FFaker::Lorem.characters(9)
+    end
+  end
   Finder.element_of_page(@current_page, selector).set text
 end
 
@@ -201,7 +216,7 @@ Given(/^I loged in as "([^"]*)"$/) do |arg|
 end
 
 
-And(/^I set up durtion from "([^"]*)" to "([^"]*)"$/) do |s_time, e_time|
+And(/^I set up duration from "([^"]*)" to "([^"]*)"$/) do |s_time, e_time|
   @current_page.set_duration(s_time, e_time)
 end
 
@@ -226,7 +241,7 @@ And(/^I set up (duration|time) from "([^"]*)" to "([^"]*)" (local|round local)$/
   end
   s_time = (local_time + 3600 * (start.to_s.gsub("+", "").to_i)).strftime("%H:%M")
   e_time = (local_time + 3600 * (ending.to_s.gsub("+", "").to_i)).strftime("%H:%M")
-  step %(I set up durtion from "#{s_time}" to "#{e_time}")
+  step %(I set up duration from "#{s_time}" to "#{e_time}")
   test_context[:gigs_s_time] = s_time
   test_context[:gigs_e_time] = e_time
 end
@@ -247,7 +262,7 @@ end
 And(/^I set up the date to "([^"]*)" days from today$/) do |days|
   date = Time.now
   if days.include? "+"
-     date = date + days.to_s.gsub("+", "").to_i * 86400
+    date = date + days.to_s.gsub("+", "").to_i * 86400
   else
     date = date - days.to_s.gsub("+", "").to_i * 86400
   end
@@ -256,7 +271,7 @@ And(/^I set up the date to "([^"]*)" days from today$/) do |days|
   test_context[:gigs_date] = date
 end
 
-And(/^I set up date to today$/) do
+And(/^I set up the date to today$/) do
   step %(I set up the date to "0" days from today)
 end
 
@@ -267,8 +282,11 @@ And(/^I select "([^"]*)" to "([^"]*)"$/) do |selection, option|
   @current_page.click_the(find(:xpath, "//option[contains(text(), '#{option}')]"))
 end
 
+And(/^I change "([^"]*)" to "([^"]*)"$/) do |selection, option|
+  step %(I select "#{selection}" to "#{option}")
+end
 
-And(/^I chceck "([^"]*)" checkbox$/) do |locator|
+And(/^I check "([^"]*)" checkbox$/) do |locator|
   locator = locator.to_s.downcase.gsub(" ", "_") + "_checkbox"
   checkbox = Finder.element_of_page(@current_page, locator)
   unless checkbox.checked?
@@ -276,8 +294,8 @@ And(/^I chceck "([^"]*)" checkbox$/) do |locator|
   end
 end
 
-And(/^I unchceck "([^"]*)" checkbox$/) do |locator|
-  ocator = selection.to_s.downcase.gsub(" ", "_") + "_checkbox"
+And(/^I uncheck "([^"]*)" checkbox$/) do |locator|
+  locator = selection.to_s.downcase.gsub(" ", "_") + "_checkbox"
   checkbox = Finder.element_of_page(@current_page, locator)
   if checkbox.checked?
     @current_page.click_the(checkbox)
@@ -301,7 +319,6 @@ And(/^I quick_click "([^"]*)"$/) do |arg|
 end
 
 Given(/^API create following GIG:$/) do |table|
-
   type = table.rows_hash[:type]
   if type == 'not urgent'
     type = 'regular'
@@ -361,7 +378,7 @@ end
 Given(/^I resize window to "([^"]*)"$/) do |arg|
   x = arg.to_s.split("x")[0]
   y = arg.to_s.split("x")[1]
-  Capybara.current_session.driver.browser.manage.window.resize_to(x,y)
+  Capybara.current_session.driver.browser.manage.window.resize_to(x, y)
 end
 
 And(/^I upload "([^"]*)" image as "([^"]*)"$/) do |image, where|
@@ -369,6 +386,7 @@ And(/^I upload "([^"]*)" image as "([^"]*)"$/) do |image, where|
   locator = Finder.locator(@current_page, selector)
   @current_page.upload_image(locator, image)
   sleep(3)
+  page.driver.browser.save_screenshot File.expand_path("../screenshots", __FILE__)+"upload_image.jpg"
 end
 
 Then(/^I see pop up with "([^"]*)" text$/) do |text|
@@ -381,5 +399,12 @@ Then(/^I am redirected to "([^"]*)" page$/) do |arg|
 end
 
 And(/^I sleep$/) do
- sleep(6)
+  sleep(6)
+end
+
+And(/^I drop "([^"]*)" to "([^"]*)" dropzone$/) do |image, where|
+  selector = where.to_s.downcase.gsub(" ", "_") + "_image"
+  locator = Finder.locator(@current_page, selector)
+  @current_page.drop_image(locator, image)
+  sleep(3)
 end

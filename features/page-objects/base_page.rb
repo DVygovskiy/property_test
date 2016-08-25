@@ -37,6 +37,28 @@ class BasePage < SitePrism::Page
     end
   end
 
+
+  #Not working. Should be implemented
+  def drop_image(locator, image)
+    # Generate a fake input selector
+    page.execute_script <<-JS
+    fakeFileInput = window.$('<input/>').attr(
+      {id: 'fakeFileInput', type:'file'}
+    ).appendTo('body');
+    JS
+    file_path = "#{File.expand_path("../../", __FILE__)}/images/#{image}"
+    # Attach the file to the fake input selector with Capybara
+    attach_file("fakeFileInput", file_path)
+    # Add the file to a fileList array
+    page.execute_script("var fileList = [fakeFileInput.get(0).files[0]]")
+    # Trigger the fake drop event
+    page.execute_script <<-JS
+    var e = jQuery.Event('drop', { dataTransfer : { files : [fakeFileInput.get(0).files[0]]  } });
+    $('.upload_zone').dropzone.listeners[0].events.drop(e);
+    JS
+    sleep(10)
+  end
+
   def click_the(element)
     if element.kind_of? String
       element = find_element(element)

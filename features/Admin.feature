@@ -56,7 +56,7 @@ Feature: Create gig
   Then I go back
   And I should see status "Completed" for the first "Gig" within "Gigs" table
 
-   @urgent_gig
+
    Scenario: Urgent gig creation
      Given I loged in as "Valid user"
      And I am on the "Dashboard" page

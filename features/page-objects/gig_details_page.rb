@@ -30,9 +30,9 @@ class GigDetailsPage < BasePage
 
   selector :about_venue_field, ".//*[@placeholder='Omschrijving']"
 
-  selector :required_skills_field, ".//*[@placeholder='Welke vaardigheden zijn nodig']"
+  selector :required_skills_field, ".//*[@placeholder='Welke andere vaardigheden zijn nodig?']"
 
-  selector :required_clothing_field, ".//*[@placeholder='Welke kleding richtlijnen zijn er']"
+  selector :required_clothing_field, ".//*[@placeholder='Welke kleding richtlijnen zijn er?']"
 
   selector :proceed_button, ".//*[@id='step1']/form/div[4]/input"
 
@@ -46,9 +46,13 @@ class GigDetailsPage < BasePage
 
   selector :payment_system, ".//*[@role='combobox']"
 
-  selector :terms, ".//*[@id='afterpay_terms']"
+  selector :terms_checkbox, ".//*[@id='afterpay_terms']"
 
   selector :finish_button, ".//*[@id='step3']/form/div[2]/input"
+
+  selector :first_role_skills_checkbox, "//input[@name='roleSkills[]'][@value=1]"
+
+  selector :second_role_skills_checkbox, "//input[@name='roleSkills[]'][@value=2]"
 
   def choose_date(datetime)
     find_element(date_picker).set datetime
