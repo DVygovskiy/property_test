@@ -69,11 +69,7 @@ And(/^I fill in form as follows:$/) do |table|
         macro %(I check "#{text}" checkbox)
       end
     elsif key.to_s.include? "image"
-      if key.to_s.include? "choose"
-        macro %(I choose "#{text}" image)
-      else
-        macro %(I upload image from galery as "#{text}" image)
-      end
+        macro %(I upload "#{text}" image as "#{key}")
     elsif key.to_s.include? "dropbox"
       key = key.to_s.gsub(" dropbox", "")
       macro %(I click "#{key}" dropbox and select "#{text}")
@@ -300,15 +296,6 @@ Given(/^I am connected to mysql$/) do
   mysql.close
 end
 
-
-
-#upload image
-#find(:xpath, "//input[@id='upload-image']".set("/test/file/path/")
-#attach_file("image[upload]", "/test/file/path") - name, id, label
-
-#assert image
-#page.has_xpath?("//img[contains(@style, 'bmw_740')]")
-
 And(/^I quick_click "([^"]*)"$/) do |arg|
   @current_page.quick_click(arg)
 end
@@ -352,10 +339,6 @@ Given(/^API create following GIG:$/) do |table|
 end
 
 
-And(/^I sleep$/) do
-  sleep(5)
-end
-
 And(/^It's ([^"]*) is "([^"]*)"$/) do |any, text|
   expect(test_context[:current_row].has_text? text)
 end
@@ -382,12 +365,10 @@ Given(/^I resize window to "([^"]*)"$/) do |arg|
 end
 
 And(/^I upload "([^"]*)" image as "([^"]*)"$/) do |image, where|
-  binding.pry
   selector = where.to_s.downcase.gsub(" ", "_") + "_image"
   locator = Finder.locator(@current_page, selector)
   @current_page.upload_image(locator, image)
   sleep(3)
-
 end
 
 Then(/^I see pop up with "([^"]*)" text$/) do |text|
@@ -397,4 +378,8 @@ end
 
 Then(/^I am redirected to "([^"]*)" page$/) do |arg|
   step %(I am on the "#{arg}" page)
+end
+
+And(/^I sleep$/) do
+ sleep(6)
 end

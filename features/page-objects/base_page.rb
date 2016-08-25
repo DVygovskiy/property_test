@@ -6,6 +6,7 @@ require 'site_prism'
 require 'nokogiri'
 require_relative '../data_objects/web_data'
 
+
 class BasePage < SitePrism::Page
 
   set_url ""
@@ -29,7 +30,7 @@ class BasePage < SitePrism::Page
   def upload_image(locator, image)
     begin
       page.has_xpath?(locator)
-      find(:xpath, locator).set(File.absolute_path("#{image}"))
+      find(:xpath, locator).set("#{File.expand_path("../../", __FILE__)}/images/#{image}")
     rescue
       page.has_css?(locator)
       find(:css, locator).set(File.absolute_path("#{image}"))
@@ -107,36 +108,8 @@ class BasePage < SitePrism::Page
         path = path + "/child::*"
       end
     end
-    sleep(5)
+    sleep(1)
   end
-
-
-=begin
-  def make_action_in_table(row, action)
-    binding.pry
-    nodes_path  = row.path + "/child::*"
-    all(:xpath, "#{nodes_path}").each do |node|
-      if all(:xpath, "#{nodes_path}/child::*").empty?
-        click_the(node) unless check_element_attr(node, action)
-      else
-        all(:xpath, "#{nodes_path}/child::*")
-    end
-    row.all('td').each do |td|
-      if !td.all('a').empty?
-        td.all('a').each do |a|
-          a.click unless check_element_attr(a, action)
-        end
-      elsif !td.all('div').empty?
-        td.all('div').each do |div|
-          div.click unless check_element_attr(div, action)
-        end
-      else
-        td.click unless check_element_attr(td, action)
-      end
-    end
-  end
-=end
-
 
   def quick_click(text)
     if has_xpath?(".//*[contains(text(),'#{text}')]")

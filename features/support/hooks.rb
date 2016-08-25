@@ -18,7 +18,6 @@ end
 
 After do |scenario|
   if(scenario.failed?)
-    binding.pry
     time = Time.now.strftime('%Y_%m_%d_%Y_%H_%M_%S_')
     name_of_scenario = time + scenario.name.gsub(/\s+/, "_").gsub("/","_")
     puts "Name of snapshot is #{name_of_scenario}"

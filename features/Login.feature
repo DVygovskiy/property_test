@@ -11,10 +11,6 @@ Feature: Login
     And I type "123456" into "Password" field
     And I click the "Login" button
     Then I am on the "Dashboard" page
-    And I upload "Family2.png" image as company logo
-
-
-
 
 
 @admintable

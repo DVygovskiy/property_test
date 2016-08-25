@@ -17,7 +17,7 @@ end
 def parallel_demo(driver)
   use_driver driver
   puts "Running a parallel demo using #{ENV['DRIVER']}"
-  system('bundle exec parallel_cucumber ./ -o "-t @l"')
+  system('bundle exec parallel_cucumber ./ -o "-t @login"')
   fail 'build failed!' unless $?.exitstatus == 0
 end
 

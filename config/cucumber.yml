@@ -1,0 +1,7 @@
+# config/cucumber.yml
+##YAML Template
+---
+parallel: parallel_cucumber
+
+
+
