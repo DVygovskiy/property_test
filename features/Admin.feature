@@ -89,7 +89,3 @@ Feature: Create gig
       | description       | Test                      |
       | venue description | My                        |
       | location          | Amsterdam                 |
-
-  @accept
-  Scenario: Accept gig
-    Given Worker accept gig with id "694"

@@ -19,11 +19,11 @@ class BasePage < SitePrism::Page
 
   def find_element(locator, text = nil)
     begin
-        page.has_xpath?(locator)
-        find(:xpath, locator)
+      page.has_xpath?(locator)
+      find(:xpath, locator)
     rescue
-        page.has_css?(locator)
-        find(:css, locator)
+      page.has_css?(locator)
+      find(:css, locator)
     end
   end
 
@@ -78,9 +78,9 @@ class BasePage < SitePrism::Page
   def check_element_attr(element, query)
     i = false
     attr = {:text => element.text,
-                    :value => element.value,
-                    :href => element[:href],
-                    :title => element[:title]
+            :value => element.value,
+            :href => element[:href],
+            :title => element[:title]
     }
     attr.each_key do |key|
       i = true unless attr[key] != query
@@ -120,7 +120,7 @@ class BasePage < SitePrism::Page
       path = node.path
       if all(:xpath, "#{path}/child::*").empty?
         if check_element_attr(node, action)
-           click_the(node)
+          click_the(node)
         end
       end
       until all(:xpath, "#{path}/child::*").empty?
@@ -133,13 +133,20 @@ class BasePage < SitePrism::Page
     sleep(1)
   end
 
+
   def quick_click(text)
-    if has_xpath?(".//*[contains(text(),'#{text}')]")
-      self.click_the(find(:xpath, ".//*[contains(text(),'#{text}')]"))
-    else
-      self.click_the(find(:xpath, ".//*[contains(@value,'#{text}')]"))
+    if has_xpath?(".//a[text()='#{text}']")
+      self.click_the(find(:xpath, ".//a[text()='#{text}']"))
+    elsif has_xpath?(".//a[contains(@value,'#{text}')]")
+      self.click_the(find(:xpath, ".//a[contains(@value,'#{text}')]"))
+    elsif has_xpath?(".//div[text()='#{text}']")
+      self.click_the(find(:xpath, ".//div[text()='#{text}']"))
+    elsif has_xpath?(".//div[contains(@value,'#{text}')]")
+      self.click_the(find(:xpath, ".//div[contains(@value,'#{text}')]"))
+    elsif has_xpath?(".//span[text()='#{text}']")
+      self.click_the(find(:xpath, ".//span[text()='#{text}']"))
+    elsif has_xpath?(".//span[contains(@value,'#{text}')]")
+      self.click_the(find(:xpath, ".//span[contains(@value,'#{text}')]"))
     end
   end
-
-
 end

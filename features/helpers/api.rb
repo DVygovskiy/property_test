@@ -32,7 +32,7 @@ class API
     id = 0
     list_of_gigs().each do |gig|
       gig.each_key do |key|
-        if gig[key].to_s == query
+        if gig[key].to_s == query && gig["id"] > id
           id = gig["id"]
         end
       end

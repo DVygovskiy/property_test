@@ -11,7 +11,6 @@ require 'net/http'
 require 'net/https'
 require_relative '../helpers/email.rb'
 require_relative '../helpers/finder.rb'
-require_relative '../../features/helpers/email_new'
 require_relative '../helpers/api'
 require 'rspec'
 require_relative '../data_objects/web_data.rb'
@@ -152,12 +151,13 @@ When(/^I return to the "([^"]*)" page$/) do |arg|
 end
 
 Given(/^I check mailbox "([^"]*)" for "([^"]*)" email$/) do |mailbox, subject|
+  sleep(10)
   adress = mailbox.split("@")[1]
   email = EMAIL_HELPER.new(Capybara.current_session)
   email.check_mailbox(adress, "")
   emails = find(:xpath, ".//*[@class='b-datalist__body']")
   nodes_path = emails.path + "/child::*"
-  node = all(:xpath, "#{nodes_path}").detect { |node| node.has_content?("Uw boeking") }
+  node = all(:xpath, "#{nodes_path}").detect { |node| node.has_content?("#{subject}") }
   expect(!node.nil?)
   unless node.nil?
     within(node) do
@@ -169,7 +169,7 @@ Given(/^I check mailbox "([^"]*)" for "([^"]*)" email$/) do |mailbox, subject|
   #expect(page).to have_content(subject)
   #email.sign_out(adress)
   #expect(page).not_to have_content(subject)
-  #test_context[:current_mail] = adress
+  test_context[:current_mail] = adress
 
 end
 
@@ -187,7 +187,7 @@ And(/^delete "([^"]*)" email$/) do |subject|
   page.find(:xpath, ".//*[@aria-label='Delete']").click
 end
 
-Given(/^I loged in as "([^"]*)"$/) do |arg|
+Given(/^I logged in as "([^"]*)"$/) do |arg|
   steps (%Q(
           Given I open the "Home" page
           Then I click the "Sing up" button
@@ -315,7 +315,7 @@ Given(/^I am connected to mysql$/) do
 end
 
 And(/^I quick_click "([^"]*)"$/) do |arg|
-  @current_page.quick_click(arg)
+  BasePage.new.quick_click(arg)
 end
 
 Given(/^API create following GIG:$/) do |table|
@@ -364,6 +364,10 @@ And(/^I should see ([^"]*) "([^"]*)" for the first "([^"]*)" within "([^"]*)" ta
   expect((find(test_context[:current_row_path])).has_text? text)
 end
 
+And(/^I should not see ([^"]*) "([^"]*)" for the first "([^"]*)" within "([^"]*)" table$/) do |any, text, arg2, arg3|
+  expect((find(test_context[:current_row_path])).has_no_text? text)
+end
+
 Then(/^I go back$/) do
   page.evaluate_script('window.history.back()')
   if page.has_text? @current_page.title
@@ -395,7 +399,19 @@ Then(/^I see pop up with "([^"]*)" text$/) do |text|
 end
 
 Then(/^I am redirected to "([^"]*)" page$/) do |arg|
-  step %(I am on the "#{arg}" page)
+  @page = Finder.page_class(arg)
+  begin
+    @page.load
+  rescue
+  end
+  begin
+    new_window = page.driver.browser.window_handles.last
+    page.driver.browser.switch_to.window(new_window)
+    expect(page).to have_text @page.title
+    @current_page = @page
+  rescue
+    screenshot_and_save_page
+  end
 end
 
 And(/^I sleep$/) do

@@ -12,7 +12,6 @@ class ConfirmationPage < BasePage
 
   set_url "#{::WEB_DATA[:base_url]}/events/confirmation"
 
-
   selector :new_gig_tab, "//a[contains(text(), 'Nieuwe gig')]"
 
   selector :my_gig_tab, "//a[contains(text(), 'Mijn gigs')]"
