@@ -39,6 +39,7 @@ class EMAIL_HELPER
       @page.find(:xpath, ".//*[@id='js-mailbox-enter']/span")
       @page.find(:xpath, ".//*[@id='js-mailbox-enter']/span").click
     end
+    @page.has_xpath?(".//*[@id='b-nav_folders']/div/div[1]/a/span[2]")
   end
 
   def delete_all_mailru
@@ -49,9 +50,9 @@ class EMAIL_HELPER
 
   def find_email(adress, query)
     if adress == "mail.ru"
-      @page.find(:xpath, ".//div[@class = 'b-datalist__item__info']//div[contains(text(), '#{query}')]").click
+      @page.first(:xpath, ".//div[@class = 'b-datalist__item__info']//div[contains(text(), '#{query}')]").click
     else
-      @page.find(:xpath, "//*[@role='link']//span/b[contains(text(),'#{query}')]").click
+      @page.first(:xpath, "//*[@role='link']//span/b[contains(text(),'#{query}')]").click
     end
   end
 

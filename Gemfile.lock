@@ -45,7 +45,7 @@ GEM
     cucumber-wire (0.0.1)
     cuke_sniffer (1.0.0)
     diff-lcs (1.2.5)
-    domain_name (0.5.20160615)
+    domain_name (0.5.20160826)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.1.1)
     erubis (2.7.0)
@@ -82,7 +82,7 @@ GEM
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (>= 0.0.9, < 0.2)
     method_source (0.8.2)
-    mime-types (2.99.2)
+    mime-types (2.99.3)
     mimemagic (0.3.2)
     mini_portile2 (2.0.0)
     minitest (5.9.0)
@@ -149,7 +149,7 @@ GEM
     ruby_parser (3.8.2)
       sexp_processor (~> 4.1)
     rubyzip (1.2.0)
-    selenium-webdriver (2.53.0)
+    selenium-webdriver (2.53.4)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
@@ -165,7 +165,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
-    unicode-display_width (1.1.0)
+    unicode-display_width (1.1.1)
     uuid (2.3.8)
       macaddr (~> 1.0)
     webrobots (0.1.2)
@@ -204,7 +204,7 @@ DEPENDENCIES
   rspec (= 3.4.0)
   rspec-expectations
   rubocop
-  selenium-webdriver (= 2.53.0)
+  selenium-webdriver (= 2.53.4)
   site_prism
 
 BUNDLED WITH

@@ -42,17 +42,46 @@ end
 
 When(/^I open the "([^"]*)" page$/) do |arg|
   @page = Finder.page_class(arg)
-  begin
+  if @page.url != ""
     @page.load
-  rescue
   end
   begin
+    new_window = page.driver.browser.window_handles.last
+    page.driver.browser.switch_to.window(new_window)
     expect(page).to have_text @page.title
     @current_page = @page
   rescue
     screenshot_and_save_page
   end
 end
+
+Then(/^I am on the "([^"]*)" page$/) do |arg|
+  step %(I open the "#{arg}" page)
+end
+
+
+When(/^I return to the "([^"]*)" page$/) do |arg|
+  step %(I open the "#{arg}" page)
+  if page.driver.browser.window_handles.first !=page.driver.browser.window_handles.last
+    old_window = page.driver.browser.window_handles.first
+    page.driver.browser.switch_to.window(old_window)
+    Capybara.current_session.current_window.close
+    back = page.driver.browser.window_handles.last
+    page.driver.browser.switch_to.window(back)
+  end
+end
+
+Then(/^I am redirected to "([^"]*)" page$/) do |arg|
+  step %(I open the "#{arg}" page)
+  if page.driver.browser.window_handles.first !=page.driver.browser.window_handles.last
+    old_window = page.driver.browser.window_handles.first
+    page.driver.browser.switch_to.window(old_window)
+    Capybara.current_session.current_window.close
+    back = page.driver.browser.window_handles.last
+    page.driver.browser.switch_to.window(back)
+  end
+end
+
 
 And(/^I fill in form as follows:$/) do |table|
   table.rows_hash.keys.each do |key|
@@ -102,9 +131,6 @@ When(/^I click the "([^"]*)" (link|button|tab)$/) do |text, control|
 
 end
 
-Then(/^I am on the "([^"]*)" page$/) do |arg|
-  step %(I open the "#{arg}" page)
-end
 
 And(/^I type "([^"]*)" into "([^"]*)" field$/) do |text, field|
   selector = field.to_s.downcase + "_field"
@@ -146,10 +172,6 @@ And(/^I click the "([^"]*)" it$/) do |action|
 end
 
 
-When(/^I return to the "([^"]*)" page$/) do |arg|
-  step %(I open the "#{arg}" page)
-end
-
 Given(/^I check mailbox "([^"]*)" for "([^"]*)" email$/) do |mailbox, subject|
   sleep(10)
   adress = mailbox.split("@")[1]
@@ -179,12 +201,7 @@ When(/^I open the "([^"]*)" email$/) do |subject|
 end
 
 Then(/^I should see the text "([^"]*)"$/) do |text|
-  page.should have_content(text)
-  expect(page.should have_content(text))
-end
-
-And(/^delete "([^"]*)" email$/) do |subject|
-  page.find(:xpath, ".//*[@aria-label='Delete']").click
+  expect(page).to have_text text
 end
 
 Given(/^I logged in as "([^"]*)"$/) do |arg|
@@ -201,6 +218,17 @@ Given(/^I logged in as "([^"]*)"$/) do |arg|
                 And I click the "Login" button
                 Then I am on the "Admin" page
       ))
+    elsif page.has_text? DashboardPage.new.title
+      steps (%Q(
+          Given I am on the "Dashboard" page
+          Then I click the "Menu" tab
+          And I click the "Logout" button
+          When I am on the "Login" page
+          And I type "#{USER[:admin_email]}" into "Email" field
+          And I type "#{USER[:admin_password]}" into "Password" field
+          And I click the "Login" button
+          Then I am on the "Admin" page
+       ))
     end
   else
     if page.has_text? LoginPage.new.title
@@ -361,11 +389,11 @@ And(/^It's ([^"]*) is "([^"]*)"$/) do |any, text|
 end
 
 And(/^I should see ([^"]*) "([^"]*)" for the first "([^"]*)" within "([^"]*)" table$/) do |any, text, arg2, arg3|
-  expect((find(test_context[:current_row_path])).has_text? text)
+  expect((@current_page.find_element(test_context[:current_row_path])).has_text? text)
 end
 
 And(/^I should not see ([^"]*) "([^"]*)" for the first "([^"]*)" within "([^"]*)" table$/) do |any, text, arg2, arg3|
-  expect((find(test_context[:current_row_path])).has_no_text? text)
+  expect((@current_page.find_element(test_context[:current_row_path])).has_no_text? text)
 end
 
 Then(/^I go back$/) do
@@ -373,6 +401,7 @@ Then(/^I go back$/) do
   if page.has_text? @current_page.title
     page.evaluate_script('window.history.back()')
   end
+  page.driver.browser.navigate.refresh
 end
 
 Given(/^([^"]*) accept gig with ([^"]*) "([^"]*)"$/) do |any, any2, query|
@@ -398,24 +427,8 @@ Then(/^I see pop up with "([^"]*)" text$/) do |text|
 
 end
 
-Then(/^I am redirected to "([^"]*)" page$/) do |arg|
-  @page = Finder.page_class(arg)
-  begin
-    @page.load
-  rescue
-  end
-  begin
-    new_window = page.driver.browser.window_handles.last
-    page.driver.browser.switch_to.window(new_window)
-    expect(page).to have_text @page.title
-    @current_page = @page
-  rescue
-    screenshot_and_save_page
-  end
-end
-
 And(/^I sleep$/) do
-  sleep(6)
+    sleep(1)
 end
 
 And(/^I drop "([^"]*)" to "([^"]*)" dropzone$/) do |image, where|

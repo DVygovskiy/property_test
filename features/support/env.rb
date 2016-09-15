@@ -54,7 +54,7 @@ def setup_safari
 end
 
 def setup_ie
-  Capybara.app_host = "http://10.37.129.2:5555/wd/hub"
+  Capybara.app_host = "http://10.211.55.3:5555/wd/hub"
   Capybara.default_driver = :selenium
   Capybara::Screenshot.register_driver(:internet_explorer) do |driver, path|
     driver.browser.save_screenshot(path)
@@ -62,7 +62,7 @@ def setup_ie
   Capybara.register_driver :selenium do |app|
     Capybara::Selenium::Driver.new(app,
                                    :browser => :remote,
-                                   :url => "http://10.37.129.2:5555/wd/hub",
+                                   :url => "http://10.211.55.3:5555/wd/hub",
                                    :desired_capabilities => :internet_explorer)
   end
 end

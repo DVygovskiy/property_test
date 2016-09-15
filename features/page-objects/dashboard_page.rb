@@ -12,6 +12,8 @@ class DashboardPage < BasePage
 
   set_url "#{::WEB_DATA[:base_url]}/dashboard"
 
+  selector :menu_tab, "//a[contains(., 'Mijn profiel')]"
+
   selector :new_gig_tab, "//a[contains(text(), 'Nieuwe gig')]"
 
   selector :my_gig_tab, "//a[contains(text(), 'Mijn gigs')]"
@@ -20,7 +22,7 @@ class DashboardPage < BasePage
 
   selector :settings_tab, "//a[contains(text(), 'Instellingen')]"
 
-  selector :logout_button, "//a//span[contains(text(), 'Uitloggen')]"
+  selector :logout_button, "//a[contains(text(), 'Logout')]"
 
   selector :venue_name, "//*[@class='breadcrumbs']/span"
 

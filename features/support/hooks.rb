@@ -8,14 +8,14 @@ require 'selenium/webdriver'
 
 # initialise all pageobjects
 Before do |scenario|
+  Capybara.current_session.driver.browser.manage.delete_all_cookies
+  Capybara.current_session.reset!
   Capybara.current_session.driver.browser.manage.window.resize_to(1920,1080)
-  @test_world = TestWorld.new
-  @home = HomePage.new
-  @results = ResultsPage.new
 end
 
 
 After do |scenario|
+  #Capybara.current_session.driver.browser.manage.delete_all_cookies
   if(scenario.failed?)
     time = Time.now.strftime('%Y_%m_%d_%Y_%H_%M_%S_')
     name_of_scenario = time + scenario.name.gsub(/\s+/, "_").gsub("/","_")
@@ -27,9 +27,7 @@ After do |scenario|
     puts "Scenario:: #{scenario.name}"
     puts "#===========================================================#"
   end
-  #Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
-  #Capybara.send(:session_pool).each { |name, ses| ses.reset! }
-  Capybara.current_session.driver.quit
-  @test_world.clean
+  Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
+  Capybara.reset_sessions!
   @test_context = nil
 end
