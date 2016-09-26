@@ -44,4 +44,6 @@ class AdminPage < BasePage
 
   selector :gigs_table, "//table/tbody"
 
+  selector :vacancy_tab, "//span[contains(text(), 'Vacancies')]"
+
 end

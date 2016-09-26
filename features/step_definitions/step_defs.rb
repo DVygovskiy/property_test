@@ -12,6 +12,7 @@ require 'net/https'
 require_relative '../helpers/email.rb'
 require_relative '../helpers/finder.rb'
 require_relative '../helpers/api'
+require_relative '../helpers/db'
 require 'rspec'
 require_relative '../data_objects/web_data.rb'
 require_relative '../data_objects/user.rb'
@@ -109,6 +110,9 @@ And(/^I fill in form as follows:$/) do |table|
     elsif (key.to_s.include? "change")
       key = key.to_s.gsub("change ", "")
       step %(I select "#{key}" to "#{text}")
+    elsif (key.to_s.include? "select")
+      key = key.to_s.gsub("select ", "")
+      step %(I select "#{key}" to "#{text}")
     else
       step %(I type "#{text}" into "#{key}" field)
     end
@@ -143,6 +147,7 @@ And(/^I type "([^"]*)" into "([^"]*)" field$/) do |text, field|
     end
   end
   Finder.element_of_page(@current_page, selector).set text
+  sleep(0.5)
 end
 
 Then(/^I login using (Facebook|Linkedin)$/) do |source|
@@ -203,6 +208,27 @@ end
 Then(/^I should see the text "([^"]*)"$/) do |text|
   expect(page).to have_text text
 end
+
+And(/^Such data should be displayed:$/) do |table|
+  table.rows_hash.keys.each do |key|
+    text = table.rows_hash[key]
+    expect(page).to have_text text
+  end
+end
+
+
+#Very similar to Step above, the only difference is that One does not need to specify names of fields/data etc.
+#Just list the necessary data
+And(/^I should see ([^"]*):$/) do |any, table|
+  table.transpose.raw[0].each do |text|
+    if page.has_text? text
+      expect(page).to have_text text
+    else
+      expect(page).to have_xpath("//*[@value='#{text}']")
+    end
+  end
+end
+
 
 Given(/^I logged in as "([^"]*)"$/) do |arg|
   steps (%Q(
@@ -287,6 +313,9 @@ And(/^I select "([^"]*)" with ([^"]*) "([^"]*)"$/) do |any, arg, name|
   end
 end
 
+
+
+
 And(/^I set up the date to "([^"]*)" days from today$/) do |days|
   date = Time.now
   if days.include? "+"
@@ -297,6 +326,7 @@ And(/^I set up the date to "([^"]*)" days from today$/) do |days|
   date = date.strftime("%d/%m/%Y")
   @current_page.choose_date(date)
   test_context[:gigs_date] = date
+  sleep(0.5)
 end
 
 And(/^I set up the date to today$/) do
@@ -307,7 +337,19 @@ end
 And(/^I select "([^"]*)" to "([^"]*)"$/) do |selection, option|
   selector = selection.to_s.downcase.gsub(" ", "_")
   @current_page.click_the(Finder.element_of_page(@current_page, selector))
-  @current_page.click_the(find(:xpath, "//option[contains(text(), '#{option}')]"))
+  sleep(0.5)
+  if page.has_xpath? "//*[contains(text(), '#{option}')]"
+    @current_page.click_the(find(:xpath, "//*[contains(text(), '#{option}')]"))
+    begin
+      find(:xpath, "//*[contains(text(), '#{option}')]").native.send_keys(:return)
+    rescue
+    end
+  else
+    Finder.element_of_page(@current_page, selector).set option
+    sleep(0.5)
+    Finder.element_of_page(@current_page, selector).native.send_keys(:return)
+  end
+  sleep(0.5)
 end
 
 And(/^I change "([^"]*)" to "([^"]*)"$/) do |selection, option|
@@ -332,14 +374,8 @@ end
 
 
 Given(/^I am connected to mysql$/) do
-  mysql = Mysql.new("localhost", "root", "admin", "clevergig_rc")
-
-  res = mysql.query("SELECT id from users where email = 'clevergig@mail.ru';")
-  rows = res.num_rows
-  rows.times do
-    puts res.fetch_row.join("\s")
-  end
-  mysql.close
+  DB.connect()
+  binding.pry
 end
 
 And(/^I quick_click "([^"]*)"$/) do |arg|
@@ -428,7 +464,7 @@ Then(/^I see pop up with "([^"]*)" text$/) do |text|
 end
 
 And(/^I sleep$/) do
-    sleep(1)
+  sleep(5)
 end
 
 And(/^I drop "([^"]*)" to "([^"]*)" dropzone$/) do |image, where|
@@ -436,4 +472,27 @@ And(/^I drop "([^"]*)" to "([^"]*)" dropzone$/) do |image, where|
   locator = Finder.locator(@current_page, selector)
   @current_page.drop_image(locator, image)
   sleep(3)
+end
+
+
+And(/^I should see (\d+) ([^"]*) with ([^"]*) "([^"]*)"$/) do |number, more, any2, text|
+  binding.pry
+  nodes_path = test_context[:current_search_results].path + "/child::*"
+  node = all(:xpath, "#{nodes_path}").each { |node| node.has_content?(text) }
+  if more.to_s.include? "more"
+    expect(node.count == (number.to_i + test_context[:current_count_for_search_results].to_i))
+  else
+    expect(node.count == number.to_i)
+  end
+
+end
+
+Given(/^DB get number of "([^"]*)" gigs$/) do |arg|
+  pending
+end
+
+And(/^I count ([^"]*) with ([^"]*) "([^"]*)"$/) do |any1, any2, text|
+  nodes_path = test_context[:current_search_results].path + "/child::*"
+  nodes = all(:xpath, "#{nodes_path}").each { |node| node.has_content?(text) }
+  test_context[:current_count_for_search_results] = nodes.count
 end

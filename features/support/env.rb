@@ -67,21 +67,26 @@ def setup_ie
   end
 end
 
+
 def setup_firefox
   Capybara.register_driver :selenium do |app|
-    firefox_paths = %x[mdfind "kMDItemFSName = Firefox.app"]
-    firefox_path = firefox_paths.split('\n').first.chomp
-    firefox_executable_path = File.join(firefox_path, '/Contents/MacOS/firefox')
-    Selenium::WebDriver::Firefox::Binary.path=firefox_executable_path
+    #firefox_paths = %x[mdfind "kMDItemFSName = Firefox.app"]
+    #firefox_path = firefox_paths.split('\n').first.chomp
+    #firefox_executable_path = File.join(firefox_path, '/Contents/MacOS/firefox')
+    #Selenium::WebDriver::Firefox::Binary.path=firefox_executable_path
 
-    profile = Selenium::WebDriver::Firefox::Profile.new
-    profile['browser.cache.disk.enable'] = false
-    profile['browser.cache.memory.enable'] = false
-    profile['browser.startup.homepage_override.mstone'] = 'ignore'
-    profile['startup.homepage_welcome_url.additional'] = 'about:blank'
-    Capybara::Selenium::Driver.new(app, browser: :firefox, profile: profile)
+    #profile = Selenium::WebDriver::Firefox::Profile.new
+    #profile['browser.cache.disk.enable'] = false
+    #profile['browser.cache.memory.enable'] = false
+    #profile['browser.startup.homepage_override.mstone'] = 'ignore'
+    #profile['startup.homepage_welcome_url.additional'] = 'about:blank'
+    #Selenium::WebDriver::Firefox::Binary.path = "/Applications/Firefox.app/Contents/MacOS/firefox"
+    Capybara::Selenium::Driver.new(app, browser: :firefox, marionette: true)
+
   end
 end
+
+
 
 def test_context
   @test_context ||= Hash.new

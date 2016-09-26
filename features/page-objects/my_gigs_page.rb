@@ -14,7 +14,7 @@ class MyGigsPage < BasePage
 
   selector :new_gig_tab, "//a[contains(text(), 'Nieuwe gig')]"
 
-  selector :my_gig_tab, "//a[contains(text(), 'Mijn gigs')]"
+  selector :my_gigs_tab, "//a[contains(text(), 'Mijn gigs')]"
 
   selector :profile_tab, "//a[contains(text(), 'Bedrijfprofiel')]"
 

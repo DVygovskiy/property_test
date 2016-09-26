@@ -16,9 +16,9 @@ class DashboardPage < BasePage
 
   selector :new_gig_tab, "//a[contains(text(), 'Nieuwe gig')]"
 
-  selector :my_gig_tab, "//a[contains(text(), 'Mijn gigs')]"
+  selector :my_gigs_tab, "//a[contains(text(), 'Mijn gigs')]"
 
-  selector :profile_tab, "//a[contains(text(), 'Bedrijfprofiel')]"
+  selector :profile_tab, "html/body/header/div/nav/ul/li[4]/ul/li[1]/a"
 
   selector :settings_tab, "//a[contains(text(), 'Instellingen')]"
 
@@ -26,13 +26,13 @@ class DashboardPage < BasePage
 
   selector :venue_name, "//*[@class='breadcrumbs']/span"
 
-  selector :urgent_bardienst_button, "//a[@name='urgent'][contains(@href,'Bardienst')]"
+  selector :urgent_bardienst_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/urgent/Bardienst']"
 
-  selector :personal_bardienst_button, "//div[1]/div[2]/div[1]/div/div[1]/div[1]/a[2]"
+  selector :personal_bardienst_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/regular/Bardienst']"
 
-  selector :urgent_bediening_button, "//a[@name='urgent'][contains(@href,'Bediening')]"
+  selector :urgent_bediening_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/urgent/Bediening']"
 
-  selector :personal_bediening_button, "//div[1]/div[2]/div[1]/div/div[1]/div[2]/a[2]"
+  selector :personal_bediening_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/regular/Bediening']"
 
   selector :proceed_button, "//*[@id='step1']/form/div[4]/input"
 

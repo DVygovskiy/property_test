@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<ns2:test-suite xmlns="" xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1471956335861" stop="1471957348308">
+  <name>Registration</name>
+  <title>Registration</title>
+  <test-cases>
+    <test-case start="1471956337397" stop="1471957348308" status="passed">
+      <name>Registration with image</name>
+      <title>Registration with image</title>
+      <steps>
+        <step start="1471956339224" stop="1471956339224" status="passed">
+          <name>I resize window to "1240x960"</name>
+          <title>I resize window to "1240x960"</title>
+          <attachments/>
+        </step>
+        <step start="1471956339224" stop="1471956339224" status="passed">
+          <name>I open the "Home" page</name>
+          <title>I open the "Home" page</title>
+          <attachments/>
+        </step>
+        <step start="1471956339224" stop="1471956340332" status="passed">
+          <name>I click the "Register" button</name>
+          <title>I click the "Register" button</title>
+          <attachments/>
+        </step>
+        <step start="1471956340332" stop="1471956340536" status="passed">
+          <name>I type "15new@new1.com" into "Email" field</name>
+          <title>I type "15new@new1.com" into "Email" field</title>
+          <attachments/>
+        </step>
+        <step start="1471956340536" stop="1471956340691" status="passed">
+          <name>I type "123456" into "Password" field</name>
+          <title>I type "123456" into "Password" field</title>
+          <attachments/>
+        </step>
+        <step start="1471956340691" stop="1471956342587" status="passed">
+          <name>I click the "Create account" button</name>
+          <title>I click the "Create account" button</title>
+          <attachments/>
+        </step>
+        <step start="1471956342587" stop="1471956342608" status="passed">
+          <name>I see pop up with "Welkom bij clevergig" text</name>
+          <title>I see pop up with "Welkom bij clevergig" text</title>
+          <attachments/>
+        </step>
+        <step start="1471956342608" stop="1471956342710" status="passed">
+          <name>I chceck "Agree terms" checkbox</name>
+          <title>I chceck "Agree terms" checkbox</title>
+          <attachments/>
+        </step>
+        <step start="1471956342710" stop="1471956343310" status="passed">
+          <name>I click the "Complete profile" button</name>
+          <title>I click the "Complete profile" button</title>
+          <attachments/>
+        </step>
+        <step start="1471956343310" stop="1471956344146" status="passed">
+          <name>I am redirected to "Complete profile" page</name>
+          <title>I am redirected to "Complete profile" page</title>
+          <attachments/>
+        </step>
+        <step start="1471956344146" stop="1471956344758" status="passed">
+          <name>I click the "Menu" tab</name>
+          <title>I click the "Menu" tab</title>
+          <attachments/>
+        </step>
+        <step start="1471956344758" stop="1471956345652" status="passed">
+          <name>I click the "General info" tab</name>
+          <title>I click the "General info" tab</title>
+          <attachments/>
+        </step>
+        <step start="1471956345652" stop="1471956345945" status="passed">
+          <name>I am on the "General info" page</name>
+          <title>I am on the "General info" page</title>
+          <attachments/>
+        </step>
+        <step start="1471956345945" stop="1471957348224" status="passed">
+          <name>I upload "Family2.png" image as "Company logo"</name>
+          <title>I upload "Family2.png" image as "Company logo"</title>
+          <attachments/>
+        </step>
+      </steps>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="70136233196020"/>
+        <label name="host" value="Daniels-MacBook-Pro.local"/>
+        <label name="feature" value="Registration"/>
+        <label name="story" value="Registration with image"/>
+      </labels>
+      <parameters/>
+    </test-case>
+  </test-cases>
+  <labels>
+    <label name="severity" value="normal"/>
+    <label name="thread" value="70136233196020"/>
+    <label name="host" value="Daniels-MacBook-Pro.local"/>
+  </labels>
+</ns2:test-suite>
