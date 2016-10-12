@@ -17,13 +17,23 @@ class BasePage < SitePrism::Page
     end
   end
 
-  def find_element(locator, text = nil)
+  def find_element(locator)
     begin
       page.has_xpath?(locator)
       find(:xpath, locator)
     rescue
       page.has_css?(locator)
       find(:css, locator)
+    end
+  end
+
+  def find_all_elements(locator)
+    begin
+      page.has_xpath?(locator)
+      all(:xpath, locator)
+    rescue
+      page.has_css?(locator)
+      all(:css, locator)
     end
   end
 
@@ -77,13 +87,16 @@ class BasePage < SitePrism::Page
 
   def check_element_attr(element, query)
     i = false
-    attr = {:text => element.text,
-            :value => element.value,
-            :href => element[:href],
-            :title => element[:title]
-    }
-    attr.each_key do |key|
-      i = true unless attr[key] != query
+    unless element == nil
+      attr = {:text => element.text,
+              :value => element.value,
+              :href => element[:href],
+              :title => element[:title],
+              :innerHtml => element['innerHTML']
+      }
+      attr.each_key do |key|
+        i = true unless attr[key].to_s != query
+      end
     end
     return i
   end

@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 gem 'nokogiri', '1.6.7.2'
 gem 'cucumber', '2.4.0'
-gem 'selenium-webdriver', '3.0.0.beta3.1'
-gem 'capybara', '2.7.1'
+gem 'selenium-webdriver', '3.0.0.beta4.0'
+gem 'capybara', '2.10.1'
 gem 'poltergeist', require: false # Capybara driver for phantom.js
 gem 'parallel_tests', '2.7.1'  # parallel test execution
 gem 'parallel', '1.9.0'

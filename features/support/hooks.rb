@@ -8,15 +8,15 @@ require 'selenium/webdriver'
 
 # initialise all pageobjects
 Before do |scenario|
-  Capybara.current_session.reset!
-  Capybara.current_session.driver.browser.manage.window.resize_to(1920,1080)
+  #Capybara.current_session.reset!
+  #Capybara.current_session.driver.browser.manage.window.resize_to(1920,1080)
 end
 
 
 After do |scenario|
   Capybara.current_session.driver.browser.manage.delete_all_cookies
   if(scenario.failed?)
-    time = Time.now.strftime('%Y_%m_%d_%Y_%H_%M_%S_')
+    time = Time.now.strftime('%Y_%m_%d_%H_%M_%S_')
     name_of_scenario = time + scenario.name.gsub(/\s+/, "_").gsub("/","_")
     puts "Name of snapshot is #{name_of_scenario}"
     file_path = File.expand_path("../screenshots",__FILE__)+'/'+name_of_scenario +'.png'

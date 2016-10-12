@@ -1,4 +1,4 @@
-Feature: Create gig
+Feature: Change gig status
 
 
 
@@ -12,7 +12,7 @@ Feature: Create gig
       | description       | Test                      |
       | venue description | My                        |
       | location          | Amsterdam                 |
-    When I loged in as "Admin"
+    When I logged in as "Admin"
     And I click the "Gigs" tab
     Then I should see table with "Gigs"
     And I look for the first "Gig" with "Expired" status within "Gigs" table

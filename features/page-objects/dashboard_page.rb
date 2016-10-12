@@ -26,13 +26,13 @@ class DashboardPage < BasePage
 
   selector :venue_name, "//*[@class='breadcrumbs']/span"
 
-  selector :urgent_bardienst_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/urgent/Bardienst']"
+  selector :one_day_bardienst_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/urgent/Bardienst']"
 
-  selector :personal_bardienst_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/regular/Bardienst']"
+  selector :multi_day_bardienst_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/multi-day/Bardienst']"
 
-  selector :urgent_bediening_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/urgent/Bediening']"
+  selector :one_day_bediening_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/urgent/Bediening']"
 
-  selector :personal_bediening_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/regular/Bediening']"
+  selector :multi_day_bediening_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/multi-day/Bediening']"
 
   selector :proceed_button, "//*[@id='step1']/form/div[4]/input"
 

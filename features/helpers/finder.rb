@@ -7,6 +7,10 @@ class Finder < BasePage
     return web_element
   end
 
+  def self.all_elements_of_page(page, text)
+    web_element = page.find_all_elements(page.send(text))
+    return web_element
+  end
 
   def self.locator(page, text)
     page.send(text)

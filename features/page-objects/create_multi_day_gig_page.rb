@@ -4,10 +4,10 @@ require 'selenium-webdriver'
 require 'site_prism'
 require_relative './base_page.rb'
 
-class GigDetailsPage < BasePage
+class CreateMultiDayGigPage < BasePage
 
   def title
-    "Datum van de gig"
+    "Choose x days in a row or discrete days"
   end
 
   set_url "#{::WEB_DATA[:base_url]}/events/new"
@@ -34,7 +34,7 @@ class GigDetailsPage < BasePage
 
   selector :required_clothing, ".//*[@placeholder='Welke kleding richtlijnen zijn er?']"
 
-  selector :proceed_button, ".//*[@id='step1']/form/div[4]/input"
+  selector :proceed_button, ".//*[@id='step1']/div[2]/input"
 
   selector :start_time, ".//*[@id='timepicker1']"
 
@@ -48,7 +48,7 @@ class GigDetailsPage < BasePage
 
   selector :terms_checkbox, ".//*[@id='afterpay_terms']"
 
-  selector :finish_button, ".//*[@id='step3']/form/div[2]/input"
+  selector :finish_button, "//input[@value='Afronden & betalen']"
 
   selector :first_role_skills_checkbox, "//input[@name='roleSkills[]'][@value=1]"
 
@@ -56,14 +56,21 @@ class GigDetailsPage < BasePage
 
   selector :number_of_workers_field, "//input[@name='people_needed']"
 
-  def choose_date(datetime)
-    find_element(date_picker).set datetime
-  end
+  selector :x_days_in_a_row_checkbox, "(//i[@class='pseudo-radio'])[1]"
 
-  def set_duration(s_time, e_time)
-    page.driver.browser.execute_script("$(arguments[0]).val('#{s_time}');", find_element(start_time).native)
-    page.driver.browser.execute_script("$(arguments[0]).val('#{e_time}');", find_element(end_time).native)
-  end
+  selector :discreet_days_checkbox, "(//i[@class='pseudo-radio'])[2]"
+
+  selector :calendar, "//div[@class='calendars']"
+
+  selector :set_dates_button, "//button[text()='Set dates']"
+
+  selector :time_table, "//div[@class='timetable']"
+
+  selector :start_time, "//input[contains(@name, 'time_from')]"
+
+  selector :end_time, "//input[contains(@name, 'time_to')]"
+
+  selector :set_time_button, "//span[text()='Update timing']"
 
 
 

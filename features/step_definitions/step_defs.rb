@@ -171,6 +171,14 @@ And(/^I look for the first "([^"]*)" with "([^"]*)" ([^"]*) within "([^"]*)" tab
   test_context[:current_row_path] = test_context[:current_row].path
 end
 
+And(/^I look for the "([^"]*)" with "([^"]*)" ([^"]*) within "([^"]*)" table$/) do |any, arg, any2, name_of_table|
+  name_of_table = name_of_table.to_s.downcase + "_table"
+  test_context[:current_table] = Finder.element_of_page(@current_page, name_of_table)
+  test_context[:current_row]= @current_page.find_first_from_table(test_context[:current_table], arg)
+  expect(!test_context[:current_row].nil?)
+  test_context[:current_row_path] = test_context[:current_row].path
+end
+
 And(/^I click the "([^"]*)" it$/) do |action|
   @current_page.make_action_in_table(test_context[:current_row], action)
   sleep(5)
@@ -271,7 +279,17 @@ end
 
 
 And(/^I set up duration from "([^"]*)" to "([^"]*)"$/) do |s_time, e_time|
-  @current_page.set_duration(s_time, e_time)
+  if test_context[:start_input]!= nil
+    begin
+      test_context[:start_input].native.send_keys(:return)
+      find(:xpath, "//*[text()='#{s_time}']", :visible => true).click
+      find(:xpath, "//*[text()='#{e_time}']", :visible => true).click
+    rescue
+    end
+  else
+    page.driver.browser.execute_script("$(arguments[0]).val('#{s_time}');", (Finder.element_of_page(@current_page, "start_time")).native)
+    page.driver.browser.execute_script("$(arguments[0]).val('#{e_time}');", (Finder.element_of_page(@current_page, "end_time")).native)
+  end
 end
 
 Then(/^I should see (search results|table) with "([^\"]*)"$/) do |group, text|
@@ -285,7 +303,7 @@ end
 
 
 And(/^I set up (duration|time) from "([^"]*)" to "([^"]*)" (local|round local)$/) do |no, start, ending, time|
-  local_time = Time.now.strftime("%H:%M")
+  local_time = Time.now
   if time == 'round local'
     if Time.now.min <= 30
       local_time = Time.now.change(:min => 0)
@@ -293,12 +311,32 @@ And(/^I set up (duration|time) from "([^"]*)" to "([^"]*)" (local|round local)$/
       local_time = Time.now.change(:min => 0) + 3600
     end
   end
-  s_time = (local_time + 3600 * (start.to_s.gsub("+", "").to_i)).strftime("%H:%M")
-  e_time = (local_time + 3600 * (ending.to_s.gsub("+", "").to_i)).strftime("%H:%M")
+  if start.to_s.include? "+"
+    s_time = (local_time + 3600 * (start.to_s.gsub("+", "").to_i)).strftime("%H:%M")
+  else
+    s_time = (local_time - 3600 * (start.to_s.gsub("-", "").to_i)).strftime("%H:%M")
+  end
+  if ending.to_s.include? "+"
+    e_time = (local_time + 3600 * (ending.to_s.gsub("+", "").to_i)).strftime("%H:%M")
+  else
+    e_time = (local_time - 3600 * (ending.to_s.gsub("+", "").to_i)).strftime("%H:%M")
+  end
   step %(I set up duration from "#{s_time}" to "#{e_time}")
   test_context[:gigs_s_time] = s_time
   test_context[:gigs_e_time] = e_time
 end
+
+And(/^I set up table of timings as:$/) do |table|
+  start_t = Finder.all_elements_of_page(@current_page, "start_time")
+  end_t = Finder.all_elements_of_page(@current_page, "end_time")
+  table.transpose.raw[0].each.with_index do |text, i|
+    test_context[:start_input] = start_t[i]
+    test_context[:end_input] = end_t[i]
+    test_context[:i] = i
+    step %(I set up duration #{text})
+  end
+end
+
 
 And(/^I select "([^"]*)" with ([^"]*) "([^"]*)"$/) do |any, arg, name|
   nodes_path = test_context[:current_search_results].path + "/child::*"
@@ -314,8 +352,6 @@ And(/^I select "([^"]*)" with ([^"]*) "([^"]*)"$/) do |any, arg, name|
 end
 
 
-
-
 And(/^I set up the date to "([^"]*)" days from today$/) do |days|
   date = Time.now
   if days.include? "+"
@@ -324,7 +360,7 @@ And(/^I set up the date to "([^"]*)" days from today$/) do |days|
     date = date - days.to_s.gsub("+", "").to_i * 86400
   end
   date = date.strftime("%d/%m/%Y")
-  @current_page.choose_date(date)
+  (Finder.element_of_page(@current_page, "date_picker")).set date
   test_context[:gigs_date] = date
   sleep(0.5)
 end
@@ -465,6 +501,7 @@ end
 
 And(/^I sleep$/) do
   sleep(5)
+  #binding.pry
 end
 
 And(/^I drop "([^"]*)" to "([^"]*)" dropzone$/) do |image, where|
@@ -476,7 +513,6 @@ end
 
 
 And(/^I should see (\d+) ([^"]*) with ([^"]*) "([^"]*)"$/) do |number, more, any2, text|
-  binding.pry
   nodes_path = test_context[:current_search_results].path + "/child::*"
   node = all(:xpath, "#{nodes_path}").each { |node| node.has_content?(text) }
   if more.to_s.include? "more"
@@ -496,3 +532,28 @@ And(/^I count ([^"]*) with ([^"]*) "([^"]*)"$/) do |any1, any2, text|
   nodes = all(:xpath, "#{nodes_path}").each { |node| node.has_content?(text) }
   test_context[:current_count_for_search_results] = nodes.count
 end
+
+And(/^I should see ([^"]*)$/) do |element|
+  selector = element.to_s.downcase.gsub(" ", "_")
+  expect(Finder.element_of_page(@current_page, selector).visible?)
+end
+
+And(/^I choose month ([^"]*)$/) do |month|
+  Calendar.new(@current_page).define_month(month.to_s.downcase)
+end
+
+Then(/^I set dates:$/) do |table|
+  type = ""
+  arr = []
+  table.transpose.raw[0].each do |text|
+    if text.to_s.include? "from"
+      type = "row"
+      arr << text.split[1]+" "+text.split[2]
+      arr << text.split[4]+" "+text.split[5]
+    else
+      arr << text
+    end
+  end
+  Calendar.new(@current_page).set_dates(arr, type)
+end
+

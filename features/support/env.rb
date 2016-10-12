@@ -82,7 +82,6 @@ def setup_firefox
     #profile['startup.homepage_welcome_url.additional'] = 'about:blank'
     #Selenium::WebDriver::Firefox::Binary.path = "/Applications/Firefox.app/Contents/MacOS/firefox"
     Capybara::Selenium::Driver.new(app, browser: :firefox, marionette: true)
-
   end
 end
 
