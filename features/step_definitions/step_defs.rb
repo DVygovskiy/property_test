@@ -227,7 +227,7 @@ end
 
 #Very similar to Step above, the only difference is that One does not need to specify names of fields/data etc.
 #Just list the necessary data
-And(/^I should see ([^"]*):$/) do |any, table|
+And(/^I should see such info|data|results:$/) do |table|
   table.transpose.raw[0].each do |text|
     if page.has_text? text
       expect(page).to have_text text
@@ -287,8 +287,9 @@ And(/^I set up duration from "([^"]*)" to "([^"]*)"$/) do |s_time, e_time|
     rescue
     end
   else
-    page.driver.browser.execute_script("$(arguments[0]).val('#{s_time}');", (Finder.element_of_page(@current_page, "start_time")).native)
-    page.driver.browser.execute_script("$(arguments[0]).val('#{e_time}');", (Finder.element_of_page(@current_page, "end_time")).native)
+    (Finder.element_of_page(@current_page, "start_time")).set s_time
+    (Finder.element_of_page(@current_page, "end_time")).set e_time
+    find(:xpath, "//*[text()='#{e_time}']", :visible => true).click
   end
 end
 
@@ -313,14 +314,20 @@ And(/^I set up (duration|time) from "([^"]*)" to "([^"]*)" (local|round local)$/
   end
   if start.to_s.include? "+"
     s_time = (local_time + 3600 * (start.to_s.gsub("+", "").to_i)).strftime("%H:%M")
-  else
+  elsif start.to_s.include? "-"
     s_time = (local_time - 3600 * (start.to_s.gsub("-", "").to_i)).strftime("%H:%M")
+  else
+    s_time = start
   end
+
   if ending.to_s.include? "+"
     e_time = (local_time + 3600 * (ending.to_s.gsub("+", "").to_i)).strftime("%H:%M")
-  else
+  elsif ending.to_s.include? "-"
     e_time = (local_time - 3600 * (ending.to_s.gsub("+", "").to_i)).strftime("%H:%M")
+  else
+    e_time = ending
   end
+
   step %(I set up duration from "#{s_time}" to "#{e_time}")
   test_context[:gigs_s_time] = s_time
   test_context[:gigs_e_time] = e_time
@@ -491,7 +498,8 @@ And(/^I upload "([^"]*)" image as "([^"]*)"$/) do |image, where|
   locator = Finder.locator(@current_page, selector)
   @current_page.upload_image(locator, image)
   sleep(3)
-  page.driver.browser.save_screenshot File.expand_path("../screenshots", __FILE__)+"upload_image.jpg"
+  file_path = File.expand_path("../../support/screenshots",__FILE__)+'/upload_roleimage_test.png'
+  page.driver.browser.save_screenshot file_path
 end
 
 Then(/^I see pop up with "([^"]*)" text$/) do |text|
@@ -533,7 +541,7 @@ And(/^I count ([^"]*) with ([^"]*) "([^"]*)"$/) do |any1, any2, text|
   test_context[:current_count_for_search_results] = nodes.count
 end
 
-And(/^I should see ([^"]*)$/) do |element|
+And(/^I should see the ([^"]*)$/) do |element|
   selector = element.to_s.downcase.gsub(" ", "_")
   expect(Finder.element_of_page(@current_page, selector).visible?)
 end
@@ -555,5 +563,58 @@ Then(/^I set dates:$/) do |table|
     end
   end
   Calendar.new(@current_page).set_dates(arr, type)
+end
+
+Given(/^API creates promocode "([^"]*)"$/) do |arg|
+  API.create_promocode(arg)
+  @test_context[:promocode] = arg
+end
+
+And(/^API create following one day GIG with promo:$/) do |table|
+  role = table.rows_hash[:role]
+  if role == "Bardienst"
+    role = 3
+  elsif role == "Bediening"
+    role = 6
+  end
+  date = Time.now.strftime("%d/%m/%Y")
+  if table.rows_hash[:date].to_s.include? '+'
+    date = (Time.now + table.rows_hash[:date].to_s.split(" ")[1].to_i*86400).strftime("%d/%m/%Y")
+  elsif table.rows_hash[:date].to_s.include? '-'
+    date = (Time.now - table.rows_hash[:date].to_s.split(" ")[1].to_i*86400).strftime("%d/%m/%Y")
+  end
+  start_time = table.rows_hash[:'start time']
+  end_time = table.rows_hash[:'end time']
+  local_time = Time.now
+  if table.rows_hash[:'start time'].to_s.include? 'round'
+    if Time.now.min <= 30
+      local_time = Time.now.change(:min => 0)
+    else
+      local_time = Time.now.change(:min => 0) + 3600
+    end
+  end
+  if table.rows_hash[:'start time'].to_s.include? '+'
+    start_time = (local_time + (60*60*table.rows_hash[:'start time'].to_s.split(" ")[1].to_i)).strftime("%H/%M").gsub('/', ':')
+    end_time = (local_time + (60*60*table.rows_hash[:'end time'].to_s.split(" ")[1].to_i)).strftime("%H/%M").gsub('/', ':')
+  elsif table.rows_hash[:'start time'].to_s.include? '-'
+    start_time = (local_time - (60*60*table.rows_hash[:'start time'].to_s.split(" ")[1].to_i)).strftime("%H/%M").gsub('/', ':')
+    end_time = (local_time - (60*60*table.rows_hash[:'end time'].to_s.split(" ")[1].to_i)).strftime("%H/%M").gsub('/', ':')
+  end
+  d = Date.parse(date)
+  t_s = Time.parse(start_time)
+  t_f = Time.parse(end_time)
+  start = DateTime.new(d.year, d.month, d.day, t_s.hour, t_s.min, t_s.sec).strftime("%Y-%m-%d %H:%M:%S").to_s
+  if t_s < t_f
+    finish = DateTime.new(d.year, d.month, d.day, t_f.hour, t_f.min, t_f.sec).strftime("%Y-%m-%d %H:%M:%S").to_s
+  else
+    d = Date.parse(date) + 1
+    finish = DateTime.new(d.year, d.month, d.day, t_f.hour, t_f.min, t_f.sec).strftime("%Y-%m-%d %H:%M:%S").to_s
+  end
+  desc = table.rows_hash[:description]
+  v_desc = table.rows_hash[:'venue description']
+  location = table.rows_hash[:location]
+  number_of_workers = table.rows_hash[:'number of workers']
+  promocode = table.rows_hash[:promocode]
+  API.create_gig_with_promo(role, date, start_time, end_time, start, finish, desc, v_desc, location, number_of_workers, promocode)
 end
 

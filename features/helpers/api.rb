@@ -9,19 +9,20 @@ require 'httparty'
 require 'httparty_with_cookies'
 require 'nokogiri'
 require 'bundler/setup'
+require_relative 'requester'
 
 class API
   include HTTParty_with_cookies
 
-  def self.login_app()
+  def self.login_app
     uri_login = URI("#{WEB_DATA[:api_url]}/auth/login")
     res = Net::HTTP.post_form(uri_login, 'email' => "tkach.danilo@mail.ru", 'password' => 'qwerty')
     res.header.each_header { |key, value| puts "#{key} = #{value}" }
     return JSON.parse(res.body)["token"]
   end
 
-  def self.list_of_gigs()
-    @token = login_app()
+  def self.list_of_gigs
+    @token = login_app
     uri_gigs_list = URI("#{WEB_DATA[:api_url]}/events")
     http = Net::HTTP.new(uri_gigs_list.host, uri_gigs_list.port)
     data = http.get(uri_gigs_list.request_uri, initheader = {'Authorization' => "Bearer #{@token}"})
@@ -30,7 +31,7 @@ class API
 
   def self.id_of_latest_gig(query)
     id = 0
-    list_of_gigs().each do |gig|
+    list_of_gigs.each do |gig|
       gig.each_key do |key|
         if gig[key].to_s == query && gig["id"] > id
           id = gig["id"]
@@ -128,6 +129,79 @@ class API
         follow_redirects: true,
         timeout: 10
     )
+  end
+
+  def self.create_gig_with_promo( role, date, start_time, end_time, start, finish, desc, v_desc, location, number_of_workers, promocode)
+    api = API.new
+    requester = Requester.new(api)
+
+    token_form = requester.find_value where: requester.get(path: "auth/login")
+
+    requester.post(path: "auth/login",
+                   body: {:_token => token_form, :email => 'clevergig@mail.ru', :password => '123456'}.to_json,
+                   content_type: "application/json")
+
+    #requester.get(path: "events/upcoming", referrer: "dashboard")
+
+    event_start = requester.get(path: "events/start/one-day/#{role}", referrer: "dashboard")
+
+    event_token = requester.find_value where: event_start
+
+    create = requester.post(path: "events/update",
+                            body: {:_token => event_token,
+                                   :_method => 'put',
+                                   :date => date,
+                                   :time_start => start_time,
+                                   :start => start,
+                                   :time_finish => end_time,
+                                   :finish => finish,
+                                   :venue_description => v_desc,
+                                   :description => desc,
+                                   :location => location,
+                                   :people_needed => number_of_workers},
+                            referrer: "events/new", content_type: "application/x-www-form-urlencoded")
+
+    payment_start = requester.get(path: "events/confirmation", referrer: "events/new")
+
+    token_conf1 = requester.find_value where: payment_start
+
+
+    apply_code = requester.post(path: "events/apply-code",
+                                body: {:_token => token_conf1,
+                                       :promocode => promocode},
+                                referrer: "events/confirmation", content_type: "application/x-www-form-urlencoded")
+
+    event_conf2 = requester.get(path: "events/confirmation", referrer: "dashboard")
+
+    token_conf2 = requester.find_value where: event_conf2
+
+    payment = requester.post(path: "events/payment",
+                             body: {:_token => token_conf2,
+                                    :_method => 'put' },
+                             referrer: "events/confirmation", content_type: "application/x-www-form-urlencoded")
+    sleep(1)
+
+  end
+
+  def self.create_promocode(code)
+    api = API.new
+    @requester = Requester.new(api)
+    token_form = @requester.find_value where: @requester.get(path: "auth/login")
+    login = @requester.post(path: "auth/login",
+                            body: {:_token => token_form, :email => 'admin@clevergig.nl', :password => 'admin'}.to_json,
+                            content_type: "application/json")
+
+
+    promo = @requester.post(path: "admin/promo",
+                            :body => {:_token => token_form,
+                                      :code => code,
+                                      :usage_limit => "100",
+                                      :active => "1",
+                                      :type => "2",
+                                      :amount => "100",
+                                      'users[]' => "64",
+                                      :description => ""},
+                            referrer: "events/new", content_type: "application/x-www-form-urlencoded")
   end
 
 end

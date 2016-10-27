@@ -32,6 +32,6 @@ class ConfirmationPage < BasePage
 
   selector :terms_checkbox, ".//*[@id='afterpay_terms']"
 
-  selector :finish_button, ".//*[@id='step3']/form/div[2]/input"
+  selector :finish_button, "//input[@value='Afronden & betalen']"
 
 end

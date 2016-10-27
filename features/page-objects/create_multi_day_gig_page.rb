@@ -7,7 +7,7 @@ require_relative './base_page.rb'
 class CreateMultiDayGigPage < BasePage
 
   def title
-    "Choose x days in a row or discrete days"
+    "Meerdere dagen"
   end
 
   set_url "#{::WEB_DATA[:base_url]}/events/new"
@@ -62,7 +62,7 @@ class CreateMultiDayGigPage < BasePage
 
   selector :calendar, "//div[@class='calendars']"
 
-  selector :set_dates_button, "//button[text()='Set dates']"
+  selector :set_dates_button, "//button[text()='Bevestigen']"
 
   selector :time_table, "//div[@class='timetable']"
 
@@ -70,8 +70,11 @@ class CreateMultiDayGigPage < BasePage
 
   selector :end_time, "//input[contains(@name, 'time_to')]"
 
-  selector :set_time_button, "//span[text()='Update timing']"
+  selector :set_time_button, "//button/span[text()='Bevestigen']"
 
+  selector :many_workers_checkbox, ".//*[@id='step1']/div[1]/div[1]/div/label[1]/i"
+
+  selector :only_one_worker_checkbox, ".//*[@id='step1']/div[1]/div[1]/div/label[2]/i"
 
 
 end

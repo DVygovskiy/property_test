@@ -34,7 +34,7 @@ class CreateOneDayGigPage < BasePage
 
   selector :required_clothing, ".//*[@placeholder='Welke kleding richtlijnen zijn er?']"
 
-  selector :proceed_button, ".//*[@id='step1']/form/div[4]/input"
+  selector :proceed_button, "//input[@value='Volgende stap']"
 
   selector :start_time, ".//*[@id='timepicker1']"
 
@@ -54,6 +54,10 @@ class CreateOneDayGigPage < BasePage
 
   selector :second_role_skills_checkbox, "//input[@name='roleSkills[]'][@value=2]"
 
-  selector :number_of_workers_field, "//input[@name='people_needed']"
+  selector :number_of_workers_field, ".//*[@id='people-counter']"
+
+  selector :clever_workers_checkbox, "html/body/main/div[1]/div/div[1]/div/form/div[2]/div/div[1]/div[1]/div[1]/label/i"
+
+  selector :own_pool_workers_checkbox, "html/body/main/div[1]/div/div[1]/div/form/div[2]/div/div[1]/div[1]/div[2]/label/i"
 
 end

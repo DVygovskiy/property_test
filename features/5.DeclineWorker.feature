@@ -1,16 +1,19 @@
 Feature: Decline worker
 
-Background:
-    Given API create following GIG:
-      | role              | Bardienst                   |
-      | type              | Urgent                      |
-      | date              | today                       |
-      | start time        | + 3 hours from round local  |
-      | end time          | + 10 hours from round local |
-      | description       | Decline                     |
-      | venue description | My                          |
-      | location          | Amsterdam                   |
-    When Worker accept gig with description "Decline"
+  Background:
+    Given API creates promocode "DANTEST"
+    And API create following one day GIG with promo:
+      | role              | Bardienst                  |
+      | type              | one day                    |
+      | date              | today                      |
+      | start time        | + 2 hours from round local |
+      | end time          | + 8 hours from round local |
+      | description       | Decline                       |
+      | venue description | My                         |
+      | location          | New local                  |
+      | number of workers | 1                          |
+      | promocode         | DANTEST                    |
+    Then Worker accept gig with description "Decline"
 
   @admin_decline_worker
   Scenario: Admin can Decline worker

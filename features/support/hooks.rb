@@ -8,6 +8,7 @@ require 'selenium/webdriver'
 
 # initialise all pageobjects
 Before do |scenario|
+  @test_context ||= Hash.new
   #Capybara.current_session.reset!
   #Capybara.current_session.driver.browser.manage.window.resize_to(1920,1080)
 end
