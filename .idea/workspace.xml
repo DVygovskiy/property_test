@@ -1,23 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7e29bc8-3bfb-4acb-994d-80a0ad8cb8be" name="Default" comment="multi day gig">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/3.CreateVacancy.feature" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/features/Creategig.feature" afterPath="$PROJECT_DIR$/features/2.Creategig.feature" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/acceptance-testing.iml" afterPath="$PROJECT_DIR$/.idea/acceptance-testing.iml" />
+    <list default="true" id="d7e29bc8-3bfb-4acb-994d-80a0ad8cb8be" name="Default" comment="fixes due to recent changes">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/2.Creategig.feature" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/features/Creategig.feature" afterPath="$PROJECT_DIR$/features/3.CreateVacancy.feature" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/4.ChangeGigStatus.feature" afterPath="$PROJECT_DIR$/features/4.ChangeGigStatus.feature" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/5.DeclineWorker.feature" afterPath="$PROJECT_DIR$/features/5.DeclineWorker.feature" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/6.UploadImage.feature" afterPath="$PROJECT_DIR$/features/6.UploadImage.feature" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/helpers/api.rb" afterPath="$PROJECT_DIR$/features/helpers/api.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/helpers/requester.rb" afterPath="$PROJECT_DIR$/features/helpers/requester.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/confirmation_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/confirmation_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/create_multi_day_gig_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/create_multi_day_gig_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/create_one_day_gig_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/create_one_day_gig_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/dashboard_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/dashboard_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/step_definitions/step_defs.rb" afterPath="$PROJECT_DIR$/features/step_definitions/step_defs.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/support/hooks.rb" afterPath="$PROJECT_DIR$/features/support/hooks.rb" />
     </list>
     <ignored path="acceptance-testing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,8 +48,8 @@
       <file leaf-file-name="step_defs.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/features/step_definitions/step_defs.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1156">
-              <caret line="508" column="0" selection-start-line="508" selection-start-column="0" selection-end-line="508" selection-end-column="0" />
+            <state relative-caret-position="-14">
+              <caret line="455" column="12" selection-start-line="455" selection-start-column="12" selection-end-line="455" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -604,7 +591,7 @@
       <workItem from="1477039335997" duration="545000" />
       <workItem from="1477385566336" duration="405000" />
       <workItem from="1477386662192" duration="569000" />
-      <workItem from="1477409296192" duration="9514000" />
+      <workItem from="1477409296192" duration="9674000" />
     </task>
     <task id="LOCAL-00001" summary="API fix">
       <created>1469698379715</created>
@@ -690,17 +677,24 @@
       <option name="project" value="LOCAL" />
       <updated>1476271835801</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fixes due to recent changes">
+      <created>1477557957480</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1477557957480</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="371047000" />
+    <option name="totallyTimeSpent" value="371207000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.171459" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.171459" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21428572" sideWeight="0.5149095" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -743,7 +737,8 @@
     <MESSAGE value="ie fix" />
     <MESSAGE value="multi people gig" />
     <MESSAGE value="multi day gig" />
-    <option name="LAST_COMMIT_MESSAGE" value="multi day gig" />
+    <MESSAGE value="fixes due to recent changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes due to recent changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1096,8 +1091,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/features/step_definitions/step_defs.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="508" column="0" selection-start-line="508" selection-start-column="0" selection-end-line="508" selection-end-column="0" />
+        <state relative-caret-position="-14">
+          <caret line="455" column="12" selection-start-line="455" selection-start-column="12" selection-end-line="455" selection-end-column="12" />
           <folding />
         </state>
       </provider>
