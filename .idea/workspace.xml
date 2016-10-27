@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7e29bc8-3bfb-4acb-994d-80a0ad8cb8be" name="Default" comment="fixes due to recent changes">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/2.Creategig.feature" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/features/Creategig.feature" afterPath="$PROJECT_DIR$/features/3.CreateVacancy.feature" />
+    <list default="true" id="d7e29bc8-3bfb-4acb-994d-80a0ad8cb8be" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="acceptance-testing.iws" />
@@ -591,7 +589,7 @@
       <workItem from="1477039335997" duration="545000" />
       <workItem from="1477385566336" duration="405000" />
       <workItem from="1477386662192" duration="569000" />
-      <workItem from="1477409296192" duration="9674000" />
+      <workItem from="1477409296192" duration="9684000" />
     </task>
     <task id="LOCAL-00001" summary="API fix">
       <created>1469698379715</created>
@@ -684,11 +682,18 @@
       <option name="project" value="LOCAL" />
       <updated>1477557957480</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fixes due to recent changes">
+      <created>1477558101219</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1477558101219</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="371207000" />
+    <option name="totallyTimeSpent" value="371217000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="0" width="1920" height="1080" extended-state="0" />
