@@ -1,27 +1,6 @@
 require_relative '../../config/requirements'
 
 
-Then(/^I should be on the search results for "([^\"]*)"$/) do |search_text|
-  expect(@results.current_url).to include search_text
-end
-
-Then(/^I should be on the search results for user "([^"]*)"$/) do |user_alias|
-  name = @test_world.get_user(user_alias).name
-  expect(@results.current_url).to include name.tr(' ', '+')
-end
-
-
-Then(/^I should see search results for query "([^"]*)"$/) do |user_alias|
-  name = @test_world.get_user(user_alias).name
-  expect(@results).to have_search_results minimum: 10
-  expect(@results.search_results[0]).to have_text name
-end
-
-Then(/^I should see a link to "([^"]*)"$/) do |url|
-  expect(@results.search_result_links).to include(url)
-end
-
-
 When(/^I open the "([^"]*)" page$/) do |arg|
   @page = Finder.page_class(arg)
   if @page.url != ""
@@ -113,22 +92,11 @@ When(/^I click the "([^"]*)" (link|button|tab)$/) do |text, control|
   new_window = page.driver.browser.window_handles.last
   page.driver.browser.switch_to.window(new_window)
   sleep(0.5)
-
 end
 
 
 And(/^I type "([^"]*)" into "([^"]*)" field$/) do |text, field|
-  selector = field.to_s.downcase + "_field"
-  selector = selector.gsub(" ", "_")
-  if text.to_s.downcase.include? "random"
-    if text.to_s.downcase.include? "email"
-      text = FFaker::Internet.email
-    else
-      text = FFaker::Lorem.characters(9)
-    end
-  end
-  Finder.element_of_page(@current_page, selector).set text
-  sleep(0.5)
+  TextField.new(field, @current_page).set_text text
 end
 
 Then(/^I login using (Facebook|Linkedin)$/) do |source|
@@ -169,7 +137,7 @@ end
 Given(/^I check mailbox "([^"]*)" for "([^"]*)" email$/) do |mailbox, subject|
   sleep(10)
   adress = mailbox.split("@")[1]
-  email = EMAIL_HELPER.new(Capybara.current_session)
+  email = EMAIL_HELPER.new(self)
   email.check_mailbox(adress, "")
   emails = find(:xpath, ".//*[@class='b-datalist__body']")
   nodes_path = emails.path + "/child::*"
@@ -190,7 +158,7 @@ Given(/^I check mailbox "([^"]*)" for "([^"]*)" email$/) do |mailbox, subject|
 end
 
 When(/^I open the "([^"]*)" email$/) do |subject|
-  email = EMAIL_HELPER.new(Capybara.current_session)
+  email = EMAIL_HELPER.new(self)
   email.find_email(test_context[:current_mail], subject)
 end
 
@@ -279,10 +247,14 @@ Then(/^I should see (search results|table) with "([^\"]*)"$/) do |group, text|
   if group == "table"
     selector = text.to_s.downcase + "_table"
   end
-  expect(Finder.element_of_page(@current_page, selector).visible?)
-  test_context[:current_search_results] = Finder.element_of_page(@current_page, selector)
+  begin
+    expect(Finder.element_of_page(@current_page, selector).visible?)
+    test_context[:current_search_results] = Finder.element_of_page(@current_page, selector)
+  rescue
+    puts "There is no visible results/table"
+    test_context[:current_search_results] = "null"
+  end
 end
-
 
 And(/^I set up (duration|time) from "([^"]*)" to "([^"]*)" (local|round local)$/) do |no, start, ending, time|
   local_time = Time.now
@@ -479,7 +451,7 @@ And(/^I upload "([^"]*)" image as "([^"]*)"$/) do |image, where|
   locator = Finder.locator(@current_page, selector)
   @current_page.upload_image(locator, image)
   sleep(3)
-  file_path = File.expand_path("../../support/screenshots",__FILE__)+'/upload_roleimage_test.png'
+  file_path = File.expand_path("../../support/screenshots", __FILE__)+'/upload_roleimage_test.png'
   page.driver.browser.save_screenshot file_path
 end
 
@@ -517,9 +489,13 @@ Given(/^DB get number of "([^"]*)" gigs$/) do |arg|
 end
 
 And(/^I count ([^"]*) with ([^"]*) "([^"]*)"$/) do |any1, any2, text|
-  nodes_path = test_context[:current_search_results].path + "/child::*"
-  nodes = all(:xpath, "#{nodes_path}").each { |node| node.has_content?(text) }
-  test_context[:current_count_for_search_results] = nodes.count
+  unless test_context[:current_search_results] == "null"
+    nodes_path = test_context[:current_search_results].path + "/child::*"
+    nodes = all(:xpath, "#{nodes_path}").each { |node| node.has_content?(text) }
+    test_context[:current_count_for_search_results] = nodes.count
+  else
+    test_context[:current_count_for_search_results] = 0
+  end
 end
 
 And(/^I should see the ([^"]*)$/) do |element|
@@ -532,18 +508,7 @@ And(/^I choose month ([^"]*)$/) do |month|
 end
 
 Then(/^I set dates:$/) do |table|
-  type = ""
-  arr = []
-  table.transpose.raw[0].each do |text|
-    if text.to_s.include? "from"
-      type = "row"
-      arr << text.split[1]+" "+text.split[2]
-      arr << text.split[4]+" "+text.split[5]
-    else
-      arr << text
-    end
-  end
-  Calendar.new(@current_page).set_dates(arr, type)
+  Calendar.new(@current_page, table).set_dates
 end
 
 Given(/^API creates promocode "([^"]*)"$/) do |arg|

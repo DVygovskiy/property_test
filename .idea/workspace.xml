@@ -2,46 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7e29bc8-3bfb-4acb-994d-80a0ad8cb8be" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/requirements.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/settings.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/helpers/requirement.rb" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/features/data_objects/web_data.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/features/page-objects/results_page.rb" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/features/data_objects/user.rb" afterPath="$PROJECT_DIR$/features/helpers/test_data.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/acceptance-testing.iml" afterPath="$PROJECT_DIR$/.idea/acceptance-testing.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/elements/requirement.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/elements/text_field.rb" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/features/helpers/calendar.rb" afterPath="$PROJECT_DIR$/features/elements/calendar.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/2.Creategig.feature" afterPath="$PROJECT_DIR$/features/2.Creategig.feature" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/4.ChangeGigStatus.feature" afterPath="$PROJECT_DIR$/features/4.ChangeGigStatus.feature" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/requirements.rb" afterPath="$PROJECT_DIR$/config/requirements.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/helpers/api.rb" afterPath="$PROJECT_DIR$/features/helpers/api.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/helpers/calendar.rb" afterPath="$PROJECT_DIR$/features/helpers/calendar.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/helpers/email.rb" afterPath="$PROJECT_DIR$/features/helpers/email.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/helpers/finder.rb" afterPath="$PROJECT_DIR$/features/helpers/finder.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/helpers/requester.rb" afterPath="$PROJECT_DIR$/features/helpers/requester.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/admin_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/admin_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/base_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/base_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/choose_profile_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/choose_profile_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/complete_profile_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/complete_profile_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/confirmation_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/confirmation_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/create_multi_day_gig_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/create_multi_day_gig_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/create_one_day_gig_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/create_one_day_gig_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/create_vacancy_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/create_vacancy_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/dashboard_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/dashboard_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/decline_worker_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/decline_worker_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/edit_gig_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/edit_gig_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/edit_role_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/edit_role_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/general_info_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/general_info_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/home_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/home_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/ideal_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/ideal_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/login_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/login_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/my_gigs_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/my_gigs_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/vacancy_details_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/vacancy_details_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/view_gig_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/view_gig_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/view_roles_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/view_roles_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/view_vacancies_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/view_vacancies_page.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/helpers/requirement.rb" afterPath="$PROJECT_DIR$/features/helpers/requirement.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/step_definitions/step_defs.rb" afterPath="$PROJECT_DIR$/features/step_definitions/step_defs.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/support/env.rb" afterPath="$PROJECT_DIR$/features/support/env.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/support/hooks.rb" afterPath="$PROJECT_DIR$/features/support/hooks.rb" />
     </list>
     <ignored path="acceptance-testing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,61 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="step_defs.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="step_defs.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/features/step_definitions/step_defs.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="242" column="45" selection-start-line="242" selection-start-column="45" selection-end-line="242" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="email.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/helpers/email.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_data.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/helpers/test_data.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="api.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/features/helpers/api.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1125">
-              <caret line="75" column="77" selection-start-line="75" selection-start-column="77" selection-end-line="75" selection-end-column="77" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="requirement.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/helpers/requirement.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="requester.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/helpers/requester.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="52" />
+            <state relative-caret-position="451">
+              <caret line="510" column="34" selection-start-line="510" selection-start-column="34" selection-end-line="510" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -125,38 +45,88 @@
       <file leaf-file-name="settings.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/settings.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+            <state relative-caret-position="90">
+              <caret line="6" column="10" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="env.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/support/env.rb">
+      <file leaf-file-name="2.Creategig.feature" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/2.Creategig.feature">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+            <state relative-caret-position="375">
+              <caret line="85" column="2" selection-start-line="85" selection-start-column="2" selection-end-line="85" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard_page.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/page-objects/dashboard_page.rb">
+      <file leaf-file-name="calendar.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/elements/calendar.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="79" selection-start-line="30" selection-start-column="79" selection-end-line="30" selection-end-column="79" />
+            <state relative-caret-position="75">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="view_vacancies_page.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/page-objects/view_vacancies_page.rb">
+      <file leaf-file-name="requirements.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/requirements.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="46" column="75" selection-start-line="46" selection-start-column="75" selection-end-line="46" selection-end-column="75" />
+            <state relative-caret-position="405">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="email.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/helpers/email.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dsl.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/capybara-2.10.1/lib/capybara/dsl.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="626">
+              <caret line="46" column="6" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="text_field.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/elements/text_field.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requirement.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/elements/requirement.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requirement.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/helpers/requirement.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -177,9 +147,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/features/features/Login.feature" />
-        <option value="$PROJECT_DIR$/features/features/Registration.feature" />
-        <option value="$PROJECT_DIR$/features/Cancel_gig.feature" />
         <option value="$PROJECT_DIR$/features/Admin.feature" />
         <option value="$PROJECT_DIR$/features/Decline_worker.feature" />
         <option value="$PROJECT_DIR$/features/Registration.feature" />
@@ -196,9 +163,7 @@
         <option value="$PROJECT_DIR$/features/4.ChangeGigStatus.feature" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/features/data_objects/test_data.rb" />
-        <option value="$PROJECT_DIR$/features/helpers/requirement.rb" />
         <option value="$PROJECT_DIR$/config/settings.yml" />
-        <option value="$PROJECT_DIR$/features/helpers/requester.rb" />
         <option value="$PROJECT_DIR$/features/helpers/email.rb" />
         <option value="$PROJECT_DIR$/features/page-objects/create_one_day_gig_page.rb" />
         <option value="$PROJECT_DIR$/features/page-objects/create_multi_day_gig_page.rb" />
@@ -218,16 +183,21 @@
         <option value="$PROJECT_DIR$/features/page-objects/vacancy_details_page.rb" />
         <option value="$PROJECT_DIR$/features/page-objects/view_gig_page.rb" />
         <option value="$PROJECT_DIR$/features/page-objects/view_roles_page.rb" />
-        <option value="$PROJECT_DIR$/features/helpers/calendar.rb" />
-        <option value="$PROJECT_DIR$/features/helpers/finder.rb" />
-        <option value="$PROJECT_DIR$/config/requirements.rb" />
         <option value="$PROJECT_DIR$/features/page-objects/base_page.rb" />
         <option value="$PROJECT_DIR$/features/support/hooks.rb" />
         <option value="$PROJECT_DIR$/features/support/env.rb" />
         <option value="$PROJECT_DIR$/features/page-objects/dashboard_page.rb" />
         <option value="$PROJECT_DIR$/features/page-objects/view_vacancies_page.rb" />
+        <option value="$PROJECT_DIR$/features/helpers/requester.rb" />
         <option value="$PROJECT_DIR$/features/helpers/api.rb" />
+        <option value="$PROJECT_DIR$/features/helpers/finder.rb" />
+        <option value="$PROJECT_DIR$/features/elements/text_field.rb" />
+        <option value="$PROJECT_DIR$/config/requirements.rb" />
+        <option value="$PROJECT_DIR$/features/helpers/calendar.rb" />
+        <option value="$PROJECT_DIR$/features/elements/requirement.rb" />
+        <option value="$PROJECT_DIR$/features/helpers/requirement.rb" />
         <option value="$PROJECT_DIR$/features/step_definitions/step_defs.rb" />
+        <option value="$PROJECT_DIR$/features/elements/calendar.rb" />
       </list>
     </option>
   </component>
@@ -399,6 +369,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="features" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clevergig_test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clevergig_test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -418,19 +406,19 @@
     <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/config" />
-      <recent name="$PROJECT_DIR$/features/helpers" />
-      <recent name="$PROJECT_DIR$/features/images" />
-      <recent name="$PROJECT_DIR$/features/page-objects" />
-      <recent name="$PROJECT_DIR$/features" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/features/elements" />
       <recent name="$PROJECT_DIR$/features/helpers" />
       <recent name="$PROJECT_DIR$/features/support" />
       <recent name="$PROJECT_DIR$/features/images" />
       <recent name="$PROJECT_DIR$/features" />
-      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/features/elements" />
+      <recent name="$PROJECT_DIR$/config" />
+      <recent name="$PROJECT_DIR$/features/helpers" />
+      <recent name="$PROJECT_DIR$/features/images" />
+      <recent name="$PROJECT_DIR$/features/page-objects" />
     </key>
   </component>
   <component name="RunManager">
@@ -625,7 +613,7 @@
       <workItem from="1477907653087" duration="428000" />
       <workItem from="1477923032847" duration="6939000" />
       <workItem from="1478094620583" duration="4500000" />
-      <workItem from="1478175165159" duration="340000" />
+      <workItem from="1478175165159" duration="4253000" />
     </task>
     <task id="LOCAL-00001" summary="API fix">
       <created>1469698379715</created>
@@ -732,11 +720,18 @@
       <option name="project" value="LOCAL" />
       <updated>1477558109180</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Requirements refactoring">
+      <created>1478175540541</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1478175540541</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="384884000" />
+    <option name="totallyTimeSpent" value="388797000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="0" width="1920" height="1080" extended-state="0" />
@@ -747,18 +742,18 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10810811" sideWeight="0.51916933" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10810811" sideWeight="0.4797657" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286119" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286119" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21428572" sideWeight="0.48083067" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -805,7 +800,8 @@
     <MESSAGE value="multi people gig" />
     <MESSAGE value="multi day gig" />
     <MESSAGE value="fixes due to recent changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixes due to recent changes" />
+    <MESSAGE value="Requirements refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Requirements refactoring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -814,15 +810,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/step_definitions/screenshotsupload_image.jpg" />
-    <entry file="file://$PROJECT_DIR$/features/support/screenshots/2016_10_27_10_56_38_Multi_gig_creation.png" />
     <entry file="file://$PROJECT_DIR$/features/support/screenshots/2016_10_27_11_34_07_Admin_can_upload_image_for_role.png" />
     <entry file="file://$PROJECT_DIR$/features/support/screenshotsupload_image.jpg" />
     <entry file="file://$PROJECT_DIR$/features/support/screenshotsupload_roleimage_test.png" />
@@ -834,24 +821,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/features/4.ChangeGigStatus.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/features/6.UploadImage.feature">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/5.DeclineWorker.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -883,6 +856,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="28" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -890,6 +864,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="28" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -897,6 +872,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="28" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -904,6 +880,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="28" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -911,6 +888,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -918,6 +896,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -925,6 +904,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -932,6 +912,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -939,6 +920,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -946,6 +928,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -953,6 +936,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -960,6 +944,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -967,13 +952,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/page-objects/my_gigs_page.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -981,6 +960,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -988,6 +968,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -995,34 +976,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/helpers/calendar.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/helpers/finder.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="43" selection-start-line="0" selection-start-column="43" selection-end-line="0" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/2.Creategig.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/requirements.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="65" selection-start-line="28" selection-start-column="65" selection-end-line="28" selection-end-column="65" />
           <folding />
         </state>
       </provider>
@@ -1031,14 +984,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/page-objects/base_page.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1083,6 +1028,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/features/page-objects/my_gigs_page.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/features/helpers/test_data.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1091,50 +1044,130 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/settings.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/helpers/requirement.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/features/helpers/requester.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/step_definitions/step_defs.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="242" column="45" selection-start-line="242" selection-start-column="45" selection-end-line="242" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/helpers/email.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="510">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/features/helpers/api.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
-          <caret line="75" column="77" selection-start-line="75" selection-start-column="77" selection-end-line="75" selection-end-column="77" />
+        <state relative-caret-position="149">
+          <caret line="255" column="35" selection-start-line="255" selection-start-column="35" selection-end-line="255" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/page-objects/base_page.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/4.ChangeGigStatus.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/5.DeclineWorker.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/helpers/finder.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/capybara-2.10.1/lib/capybara/dsl.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="626">
+          <caret line="46" column="6" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/helpers/email.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/requirements.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/elements/text_field.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/helpers/requirement.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/elements/requirement.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/2.Creategig.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="85" column="2" selection-start-line="85" selection-start-column="2" selection-end-line="85" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/settings.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="10" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/elements/calendar.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/step_definitions/step_defs.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="510" column="34" selection-start-line="510" selection-start-column="34" selection-end-line="510" selection-end-column="34" />
           <folding />
         </state>
       </provider>

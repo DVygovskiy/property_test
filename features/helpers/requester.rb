@@ -6,7 +6,7 @@ class Requester
   end
 
   def get(path:, referrer: '')
-    result = @api.get(URI("#{Global.setting.base_url}/#{path}"),
+    result = @api.get(URI("#{Global.settings.base_url}/#{path}"),
                       :headers => set_header(referrer: referrer),
                       follow_redirects: true)
     set_cookie
@@ -16,7 +16,7 @@ class Requester
   def post(path:, body: {}, content_type: '', referrer: '')
     unless path.include? "http"
       result = @api.post(
-          URI("#{Global.setting.base_url}/#{path}"),
+          URI("#{Global.settings.base_url}/#{path}"),
           :body => body,
           :headers => set_header(content_type: content_type, referrer: referrer),
           follow_redirects: true
@@ -47,7 +47,7 @@ class Requester
     header = {'Accept' => 'text/html, application/xhtml+xml, */*'}
     header.merge! 'Cookie' => @current_cookie                   if @current_cookie.present?
     header.merge! 'Content-Type' => content_type                if content_type.present?
-    header.merge! 'Referer' => "#{Global.setting.base_url}/#{referrer}" if referrer.present?
+    header.merge! 'Referer' => "#{Global.settings.base_url}/#{referrer}" if referrer.present?
     header
   end
 end

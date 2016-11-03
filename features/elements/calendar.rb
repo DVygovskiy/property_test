@@ -1,9 +1,20 @@
-
 class Calendar
 
-  def initialize(page)
+  def initialize(page, table = {})
     @page = page
-
+    @type = ""
+    @arr = []
+    unless table == {}
+      table.transpose.raw[0].each do |text|
+        if text.to_s.include? "from"
+          @type = "row"
+          @arr << text.split[1]+" "+text.split[2]
+          @arr << text.split[4]+" "+text.split[5]
+        else
+          @arr << text
+        end
+      end
+    end
   end
 
   def define_month(month)
@@ -13,14 +24,13 @@ class Calendar
     end
   end
 
-  def set_dates(arr=[], type)
-    @type=type
+  def set_dates
     @many_month = false
     dates = Hash.new.compare_by_identity
-    arr.each do |date|
+    @arr.each do |date|
       dates[date.to_s.split[1]] = date.to_s.split[0]
     end
-    if type == "row"
+    if @type == "row"
       if dates.keys.uniq.count == 2
         @many_month = true
         dates = dates.group_by { |elem| elem[0] }

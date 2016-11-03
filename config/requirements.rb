@@ -28,4 +28,5 @@ end
 
 Dir['../page-objects/*.rb'].each { |file| require_relative file }
 require_relative '../features/helpers/requirement'
+require_relative '../features/elements/requirement'
 

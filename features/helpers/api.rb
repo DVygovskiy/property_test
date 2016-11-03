@@ -264,12 +264,12 @@ class API
                             :body => {:_token => token_form,
                                       :code => code,
                                       :usage_limit => "100",
-                                      :active => "0",
+                                      :active => "1",
                                       :active => "1",
                                       :type => "2",
                                       :amount => "100",
                                       'users[]' => Global.settings.promo_id,
-                                      :description => ""},
+                                      :description => "desc"},
                             referrer: "events/new", content_type: "application/x-www-form-urlencoded")
   end
 
