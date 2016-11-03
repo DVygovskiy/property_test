@@ -11,7 +11,7 @@ Feature: Change gig status
       | venue description | My                         |
       | location          | New local                 |
       | number of workers | 1                          |
-      | promocode         | DanTest                    |
+      | promocode         | DANTEST                   |
     When I logged in as "Admin"
     And I click the "Gigs" tab
     Then I should see table with "Gigs"
@@ -37,7 +37,7 @@ Feature: Change gig status
     | venue description | My                         |
     | location          | New local                 |
     | number of workers | 1                          |
-    | promocode         | DanTest                    |
+    | promocode         | DANTEST                    |
   When Worker accept gig with description "Test status"
   Then I logged in as "Admin"
   And I click the "Gigs" tab

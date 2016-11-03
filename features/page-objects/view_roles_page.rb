@@ -1,8 +1,4 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'selenium-webdriver'
-require 'site_prism'
-require_relative './base_page.rb'
+require_relative 'base_page'
 
 class ViewRolesPage < BasePage
 
@@ -10,7 +6,7 @@ class ViewRolesPage < BasePage
     "Visible to customers"
   end
 
-  set_url "#{WEB_DATA[:base_url]}/admin/roles"
+  set_url "#{Global.settings.base_url}/admin/roles"
 
   selector :roles_table, "//table/tbody"
 

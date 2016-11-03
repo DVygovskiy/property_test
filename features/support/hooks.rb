@@ -1,13 +1,6 @@
-require_relative '../page-objects/home_page'
-require_relative '../page-objects/results_page'
-require 'capybara/cucumber'
-require 'capybara'
-require 'capybara/dsl'
-require 'capybara/poltergeist'
-require 'selenium/webdriver'
-
 # initialise all pageobjects
 Before do |scenario|
+
   @test_context ||= Hash.new
   #Capybara.current_session.reset!
   #Capybara.current_session.driver.browser.manage.window.resize_to(1920,1080)

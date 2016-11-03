@@ -1,8 +1,4 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'selenium-webdriver'
-require 'site_prism'
-require_relative './base_page.rb'
+require_relative 'base_page'
 
 class CompleteProfilePage < BasePage
 
@@ -10,7 +6,7 @@ class CompleteProfilePage < BasePage
     "Profiel aanmaken"
   end
 
-  set_url "http://clevergig.stg.thebrain4web.com/complete-profile"
+  set_url "#{Global.settings.base_url}/complete-profile"
 
   selector :menu_tab, "//a[contains(., 'Mijn profiel')]"
 

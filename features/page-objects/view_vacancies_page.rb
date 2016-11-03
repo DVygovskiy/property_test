@@ -1,8 +1,4 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'selenium-webdriver'
-require 'site_prism'
-require_relative './base_page.rb'
+require_relative 'base_page'
 
 class ViewVacanciesPage < BasePage
 
@@ -48,6 +44,6 @@ class ViewVacanciesPage < BasePage
 
   selector :update_button, "//input[@value='Update']"
 
-  selector :add_new_vacancy_button, "//a[@href='http://clevergig.stg.thebrain4web.com/admin/vacancies/create']"
+  selector :add_new_vacancy_button, "//a[@href='#{Global.settings.base_url}/admin/vacancies/create']"
 
 end

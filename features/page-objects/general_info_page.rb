@@ -1,8 +1,4 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'selenium-webdriver'
-require 'site_prism'
-require_relative './base_page.rb'
+require_relative 'base_page'
 
 class GeneralInfoPage < BasePage
 
@@ -10,7 +6,7 @@ class GeneralInfoPage < BasePage
     "Venue info"
   end
 
-  set_url "#{::WEB_DATA[:base_url]}/about"
+  set_url "#{Global.settings.base_url}/about"
 
   selector :new_gig_tab, "//a[contains(text(), 'Nieuwe gig')]"
 

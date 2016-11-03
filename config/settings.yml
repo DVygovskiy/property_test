@@ -1,0 +1,22 @@
+rc:
+  base_url: 'http://rc.clevergig.nl'
+  api_url: 'http://rc.clevergig.nl/api/v1'
+  customer_email: "clevergig@mail.ru"
+  customer_password: "123456"
+  customer_id: "26"
+  promo_id: "64"
+  admin_email: "admin@clevergig.nl"
+  admin_password: "admin"
+  worker_email: "tkach.danilo@mail.ru"
+  worker_password: "qwerty"
+stg:
+  base_url: 'http://clevergig.stg.thebrain4web.com'
+  api_url: 'http://clevergig.stg.thebrain4web.com/api/v1'
+  customer_email: "clevergig@mail.ru"
+  customer_password: "123456"
+  customer_id: "26"
+  promo_id: "64"
+  admin_email: "admin@clevergig.nl"
+  admin_password: "admin"
+  worker_email: "tkach.danilo@mail.ru"
+  worker_password: "qwerty"

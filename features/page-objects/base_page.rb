@@ -1,11 +1,4 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'selenium-webdriver'
-require 'site_prism/page'
 require 'site_prism'
-require 'nokogiri'
-require_relative '../data_objects/web_data'
-
 
 class BasePage < SitePrism::Page
 

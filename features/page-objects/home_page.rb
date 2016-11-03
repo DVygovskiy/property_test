@@ -1,8 +1,4 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'selenium-webdriver'
-require 'site_prism'
-require_relative './base_page.rb'
+require_relative 'base_page'
 
 class HomePage < BasePage
 
@@ -10,7 +6,7 @@ class HomePage < BasePage
     "Wil je bijverdienen in de horeca? Werken op jouw voorwaarden?"
   end
 
-  set_url "#{WEB_DATA[:base_url]}"
+  set_url "#{Global.settings.base_url}"
 
   selector :register_button, '*//div[1]/div/div[2]/section[1]/div/div[1]/div/div/div[1]/div[2]/a[1]'
 

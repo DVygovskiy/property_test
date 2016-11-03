@@ -1,13 +1,3 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'selenium-webdriver'
-require 'pry-nav'
-require 'active_support/core_ext/string'
-require 'net/http'
-require 'net/https'
-require_relative '../data_objects/web_data'
-require 'rspec'
-
 
 class EMAIL_HELPER
 

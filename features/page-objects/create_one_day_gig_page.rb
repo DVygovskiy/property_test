@@ -1,8 +1,4 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'selenium-webdriver'
-require 'site_prism'
-require_relative './base_page.rb'
+require_relative 'base_page'
 
 class CreateOneDayGigPage < BasePage
 
@@ -10,7 +6,7 @@ class CreateOneDayGigPage < BasePage
     "Datum van de gig"
   end
 
-  set_url "#{::WEB_DATA[:base_url]}/events/new"
+  set_url "#{Global.settings.base_url}/events/new"
 
   selector :new_gig_tab, "//a[contains(text(), 'Nieuwe gig')]"
 

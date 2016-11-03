@@ -1,8 +1,4 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'selenium-webdriver'
-require 'site_prism'
-require_relative './base_page.rb'
+require_relative 'base_page'
 
 class ConfirmationPage < BasePage
 
@@ -10,7 +6,7 @@ class ConfirmationPage < BasePage
     "Heeft u een kortingscode? Gebruik hem hier"
   end
 
-  set_url "#{::WEB_DATA[:base_url]}/events/confirmation"
+  set_url "#{Global.settings.base_url}/events/confirmation"
 
   selector :new_gig_tab, "//a[contains(text(), 'Nieuwe gig')]"
 

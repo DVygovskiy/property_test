@@ -1,8 +1,4 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'selenium-webdriver'
-require 'site_prism'
-require_relative './base_page.rb'
+require_relative 'base_page'
 
 class DashboardPage < BasePage
 
@@ -10,7 +6,7 @@ class DashboardPage < BasePage
     "Waar kunnen we u mee helpen?"
   end
 
-  set_url "#{::WEB_DATA[:base_url]}/dashboard"
+  set_url "#{Global.settings.base_url}/dashboard"
 
   selector :menu_tab, "//a[contains(., 'Mijn profiel')]"
 
@@ -26,13 +22,13 @@ class DashboardPage < BasePage
 
   selector :venue_name, "//*[@class='breadcrumbs']/span"
 
-  selector :one_day_bardienst_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/one-day/3']"
+  selector :one_day_bardienst_button, "//a[@href='#{Global.settings.base_url}/events/start/one-day/3']"
 
-  selector :multi_day_bardienst_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/multi-day/3']"
+  selector :multi_day_bardienst_button, "//a[@href='#{Global.settings.base_url}/events/start/multi-day/3']"
 
-  selector :one_day_bediening_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/one-day/6']"
+  selector :one_day_bediening_button, "//a[@href='#{Global.settings.base_url}/events/start/one-day/6']"
 
-  selector :multi_day_bediening_button, "//a[@href='http://clevergig.stg.thebrain4web.com/events/start/one-day/6']"
+  selector :multi_day_bediening_button, "//a[@href='#{Global.settings.base_url}/events/start/one-day/6']"
 
   selector :proceed_button, "//*[@id='step1']/form/div[4]/input"
 

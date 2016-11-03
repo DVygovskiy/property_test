@@ -16,6 +16,7 @@ gem 'http.rb', '0.11.1'
 gem 'httparty_with_cookies', '0.2.1'
 gem 'mechanize', '2.7.4'
 gem 'httparty', '0.14.0'
+gem 'global', '0.1.2'
 
 gem 'factory_girl' # test data factory
 gem 'site_prism' # pageobjects for capybara

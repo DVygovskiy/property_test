@@ -1,23 +1,4 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'selenium-webdriver'
-require 'site_prism'
-Dir['../page-objects/*.rb'].each { |file| require_relative file }
-Dir['../helpers/*.rb'].each { |file| require_relative file }
-require 'pathname'
-require 'pry-nav'
-require 'active_support/core_ext/string'
-require 'net/http'
-require 'net/https'
-require_relative '../helpers/email.rb'
-require_relative '../helpers/finder.rb'
-require_relative '../helpers/api'
-require_relative '../helpers/db'
-require 'rspec'
-require_relative '../data_objects/web_data.rb'
-require_relative '../data_objects/user.rb'
-require 'mysql'
-require 'ffaker'
+require_relative '../../config/requirements'
 
 
 Then(/^I should be on the search results for "([^\"]*)"$/) do |search_text|
@@ -89,7 +70,7 @@ And(/^I fill in form as follows:$/) do |table|
     text = table.rows_hash[key]
     if key.to_s.include? "set up the date"
       if text.to_s.include? "from"
-        text = text.gsub(" days from today")
+        text = text.split[1]
         step %(I set up the date to "#{text}" days from today)
       else
         step %(I set up the date to today)
@@ -181,7 +162,7 @@ end
 
 And(/^I click the "([^"]*)" it$/) do |action|
   @current_page.make_action_in_table(test_context[:current_row], action)
-  sleep(5)
+  sleep(3)
 end
 
 
@@ -247,8 +228,8 @@ Given(/^I logged in as "([^"]*)"$/) do |arg|
     if page.has_text? LoginPage.new.title
       steps(%Q(
                 When I am on the "Login" page
-                And I type "#{USER[:admin_email]}" into "Email" field
-                And I type "#{USER[:admin_password]}" into "Password" field
+                And I type "#{Global.settings.admin_email}" into "Email" field
+                And I type "#{Global.settings.admin_password}" into "Password" field
                 And I click the "Login" button
                 Then I am on the "Admin" page
       ))
@@ -258,8 +239,8 @@ Given(/^I logged in as "([^"]*)"$/) do |arg|
           Then I click the "Menu" tab
           And I click the "Logout" button
           When I am on the "Login" page
-          And I type "#{USER[:admin_email]}" into "Email" field
-          And I type "#{USER[:admin_password]}" into "Password" field
+          And I type "#{Global.settings.admin_email}" into "Email" field
+                And I type "#{Global.settings.admin_password}" into "Password" field
           And I click the "Login" button
           Then I am on the "Admin" page
        ))
@@ -268,8 +249,8 @@ Given(/^I logged in as "([^"]*)"$/) do |arg|
     if page.has_text? LoginPage.new.title
       steps(%Q(
                 When I am on the "Login" page
-                And I type "#{USER[:valid_email]}" into "Email" field
-                And I type "#{USER[:valid_password]}" into "Password" field
+                And I type "#{Global.settings.customer_email}" into "Email" field
+                And I type "#{Global.settings.customer_password}" into "Password" field
                 And I click the "Login" button
                 Then I am on the "Dashboard" page
       ))

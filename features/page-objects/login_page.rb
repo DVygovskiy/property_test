@@ -1,8 +1,4 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'selenium-webdriver'
-require 'site_prism'
-require_relative './base_page.rb'
+require_relative 'base_page'
 
 class LoginPage < BasePage
 
@@ -10,7 +6,7 @@ class LoginPage < BasePage
     "Inloggen"
   end
 
-  set_url  "#{WEB_DATA[:base_url]}/auth/login"
+  set_url  "#{Global.settings.base_url}/auth/login"
 
   selector :login_button, './/*[@id=\'login\']/input[2]'
 

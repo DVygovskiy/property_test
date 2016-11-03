@@ -1,8 +1,4 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'selenium-webdriver'
-require 'site_prism'
-require_relative './base_page.rb'
+require_relative 'base_page'
 
 class AdminPage < BasePage
 
@@ -10,7 +6,7 @@ class AdminPage < BasePage
     "Admin"
   end
 
-  set_url "#{WEB_DATA[:base_url]}/admin/"
+  set_url "#{Global.settings.base_url}/admin/"
 
   selector :user_management_tab, "//span[contains(text(), 'Users management')]"
 

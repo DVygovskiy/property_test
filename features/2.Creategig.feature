@@ -35,25 +35,24 @@ Feature: Create gig
     And I should see table with "Gigs"
     And I should see 1 more gigs with role "Bardienst"
 
-  @urgent_gig_m
+  @one_day_gig_m
   Scenario: Urgent gig creation
     Given I logged in as "Valid user"
     And I am on the "Dashboard" page
     When I click the "My gigs" tab
     And I am on the "My gigs" page
     And I should see table with "Gigs"
-    And I count gigs with role "Bardienst"
+    And I count gigs with role "Bediening"
     Then I click the "New gig" tab
     And I am on the "Dashboard" page
-    And I click the "Urgent bardienst" button
-    When I am on the "Create gig" page
+    And I click the "One day bediening" button
+    When I am on the "Create one day gig" page
     And I fill in form as follows:
-      | set up the date          | to today                            |
+      | set up the date          | + 1 day from today                            |
       | set up duration          | from "+2:00" to "+7:00" round local |
       | number of workers        | 2                                   |
       | check   checkbox         | clever workers                      |
       | description              | random                              |
-      | check   checkbox         | first role skills                   |
       | select required clothing | black shoes                         |
       | select required skills   | superman                            |
     And I click the "Proceed" button
@@ -67,14 +66,14 @@ Feature: Create gig
     And I click the "Continue" button
     Then I am on the "My gigs" page
     And I should see table with "Gigs"
-    And I should see 2 more gigs with role "Bardienst"
+    And I should see 2 more gigs with role "Bediening"
 
   @urgent_gig_max
   Scenario: Urgent gig creation
     Given I logged in as "Valid user"
     And I am on the "Dashboard" page
-    And I click the "Urgent bardienst" button
-    When I am on the "Create gig" page
+    And I click the "One day bardienst" button
+    When I am on the "Create one day gig" page
     And I fill in form as follows:
       | set up the date   | to today                            |
       | set up duration   | from "+2:00" to "+7:00" round local |

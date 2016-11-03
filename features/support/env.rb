@@ -1,13 +1,7 @@
-require 'capybara/cucumber'
-require 'capybara'
-require 'capybara/dsl'
-require 'capybara/poltergeist'
-require 'selenium/webdriver'
-require 'dotenv'
+
 require 'allure-cucumber'
-require 'bundler/setup'
 require 'capybara-screenshot/cucumber'
-Bundler.require
+require_relative '../../config/requirements'
 
 #Dotenv.load # loads environment variables from .env file
 
