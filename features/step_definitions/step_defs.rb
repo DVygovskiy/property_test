@@ -80,18 +80,7 @@ And(/^I fill in form as follows:$/) do |table|
 end
 
 When(/^I click the "([^"]*)" (link|button|tab)$/) do |text, control|
-  if control == 'link'
-    selector = text.to_s.downcase + "_link"
-  elsif control == 'button'
-    selector = text.to_s.downcase + "_button"
-  else
-    selector = text.to_s.downcase + "_tab"
-  end
-  selector = selector.gsub(" ", "_")
-  @current_page.click_the(Finder.element_of_page(@current_page, selector))
-  new_window = page.driver.browser.window_handles.last
-  page.driver.browser.switch_to.window(new_window)
-  sleep(0.5)
+  ClickableControl.new(control, text, @current_page).click
 end
 
 
@@ -113,11 +102,15 @@ And(/^I look for "([^"]*)" within "([^"]*)" table$/) do |element, name_of_table|
 end
 
 And(/^I look for the first "([^"]*)" with "([^"]*)" ([^"]*) within "([^"]*)" table$/) do |any, arg, any2, name_of_table|
+  @table = Table.new(@current_page, self, name_of_table)
+  @table.cell_exists? arg
+=begin
   name_of_table = name_of_table.to_s.downcase + "_table"
   test_context[:current_table] = Finder.element_of_page(@current_page, name_of_table)
   test_context[:current_row]= @current_page.find_first_from_table(test_context[:current_table], arg)
   expect(!test_context[:current_row].nil?)
   test_context[:current_row_path] = test_context[:current_row].path
+=end
 end
 
 And(/^I look for the "([^"]*)" with "([^"]*)" ([^"]*) within "([^"]*)" table$/) do |any, arg, any2, name_of_table|
@@ -129,7 +122,8 @@ And(/^I look for the "([^"]*)" with "([^"]*)" ([^"]*) within "([^"]*)" table$/) 
 end
 
 And(/^I click the "([^"]*)" it$/) do |action|
-  @current_page.make_action_in_table(test_context[:current_row], action)
+  @table.make_action_in_table(action)
+  #@current_page.make_action_in_table(test_context[:current_row], action)
   sleep(3)
 end
 
@@ -243,17 +237,21 @@ And(/^I set up duration from "([^"]*)" to "([^"]*)"$/) do |s_time, e_time|
 end
 
 Then(/^I should see (search results|table) with "([^\"]*)"$/) do |group, text|
+  @table = Table.new(@current_page, self, text)
+  @table.table_exists?
+=begin
   selector = text.to_s.downcase + "_search_result"
   if group == "table"
     selector = text.to_s.downcase + "_table"
   end
   begin
-    expect(Finder.element_of_page(@current_page, selector).visible?)
+    self.expect(Finder.element_of_page(@current_page, selector).visible?)
     test_context[:current_search_results] = Finder.element_of_page(@current_page, selector)
   rescue
     puts "There is no visible results/table"
     test_context[:current_search_results] = "null"
   end
+=end
 end
 
 And(/^I set up (duration|time) from "([^"]*)" to "([^"]*)" (local|round local)$/) do |no, start, ending, time|
@@ -378,54 +376,21 @@ And(/^I quick_click "([^"]*)"$/) do |arg|
   BasePage.new.quick_click(arg)
 end
 
-Given(/^API create following GIG:$/) do |table|
-  type = table.rows_hash[:type]
-  if type == 'not urgent'
-    type = 'regular'
-  else
-    type = 'urgent'
-  end
-  role = table.rows_hash[:role]
-  date = Time.now.strftime("%d/%m/%Y")
-  if table.rows_hash[:date].to_s.include? '+'
-    date = (Time.now + table.rows_hash[:date].to_s.split(" ")[1].to_i*86400).strftime("%d/%m/%Y")
-  elsif table.rows_hash[:date].to_s.include? '-'
-    date = (Time.now - table.rows_hash[:date].to_s.split(" ")[1].to_i*86400).strftime("%d/%m/%Y")
-  end
-  start_time = table.rows_hash[:'start time']
-  end_time = table.rows_hash[:'end time']
-  local_time = Time.now
-  if table.rows_hash[:'start time'].to_s.include? 'round'
-    if Time.now.min <= 30
-      local_time = Time.now.change(:min => 0)
-    else
-      local_time = Time.now.change(:min => 0) + 3600
-    end
-  end
-  if table.rows_hash[:'start time'].to_s.include? '+'
-    start_time = (local_time + (60*60*table.rows_hash[:'start time'].to_s.split(" ")[1].to_i)).strftime("%H/%M").gsub('/', ':')
-    end_time = (local_time + (60*60*table.rows_hash[:'end time'].to_s.split(" ")[1].to_i)).strftime("%H/%M").gsub('/', ':')
-  elsif table.rows_hash[:'start time'].to_s.include? '-'
-    start_time = (local_time - (60*60*table.rows_hash[:'start time'].to_s.split(" ")[1].to_i)).strftime("%H/%M").gsub('/', ':')
-    end_time = (local_time - (60*60*table.rows_hash[:'end time'].to_s.split(" ")[1].to_i)).strftime("%H/%M").gsub('/', ':')
-  end
-  desc = table.rows_hash[:description]
-  v_desc = table.rows_hash[:'venue description']
-  location = table.rows_hash[:location]
-  API.create_gig(type, role, date, start_time, end_time, desc, v_desc, location)
-end
-
 
 And(/^It's ([^"]*) is "([^"]*)"$/) do |any, text|
   expect(test_context[:current_row].has_text? text)
 end
 
-And(/^I should see ([^"]*) "([^"]*)" for the first "([^"]*)" within "([^"]*)" table$/) do |any, text, arg2, arg3|
-  expect((@current_page.find_element(test_context[:current_row_path])).has_text? text)
+And(/^I should see ([^"]*) "([^"]*)" for the first "([^"]*)" within "([^"]*)" table$/) do |any, text, arg2, name_of_table|
+  @table = Table.new(@current_page, self, name_of_table)
+  @table.cell_exists?(text)
+  #expect((@current_page.find_element(test_context[:current_row_path])).has_text? text)
 end
 
-And(/^I should not see ([^"]*) "([^"]*)" for the first "([^"]*)" within "([^"]*)" table$/) do |any, text, arg2, arg3|
-  expect((@current_page.find_element(test_context[:current_row_path])).has_no_text? text)
+And(/^I should not see ([^"]*) "([^"]*)" for the first "([^"]*)" within "([^"]*)" table$/) do |any, text, arg2, name_of_table|
+  @table = Table.new(@current_page, self, name_of_table)
+  @table.cell_does_not_exist?(text)
+  #expect((@current_page.find_element(test_context[:current_row_path])).has_no_text? text)
 end
 
 Then(/^I go back$/) do
@@ -436,9 +401,6 @@ Then(/^I go back$/) do
   page.driver.browser.navigate.refresh
 end
 
-Given(/^([^"]*) accept gig with ([^"]*) "([^"]*)"$/) do |any, any2, query|
-  API.accept_gig(query)
-end
 
 Given(/^I resize window to "([^"]*)"$/) do |arg|
   x = arg.to_s.split("x")[0]
@@ -474,6 +436,8 @@ end
 
 
 And(/^I should see (\d+) ([^"]*) with ([^"]*) "([^"]*)"$/) do |number, more, any2, text|
+  @table.compare_number_of_items(number, more, text)
+=begin
   nodes_path = test_context[:current_search_results].path + "/child::*"
   node = all(:xpath, "#{nodes_path}").each { |node| node.has_content?(text) }
   if more.to_s.include? "more"
@@ -481,7 +445,7 @@ And(/^I should see (\d+) ([^"]*) with ([^"]*) "([^"]*)"$/) do |number, more, any
   else
     expect(node.count == number.to_i)
   end
-
+=end
 end
 
 Given(/^DB get number of "([^"]*)" gigs$/) do |arg|
@@ -489,13 +453,7 @@ Given(/^DB get number of "([^"]*)" gigs$/) do |arg|
 end
 
 And(/^I count ([^"]*) with ([^"]*) "([^"]*)"$/) do |any1, any2, text|
-  unless test_context[:current_search_results] == "null"
-    nodes_path = test_context[:current_search_results].path + "/child::*"
-    nodes = all(:xpath, "#{nodes_path}").each { |node| node.has_content?(text) }
-    test_context[:current_count_for_search_results] = nodes.count
-  else
-    test_context[:current_count_for_search_results] = 0
-  end
+  @table.count_items text
 end
 
 And(/^I should see the ([^"]*)$/) do |element|
@@ -509,58 +467,5 @@ end
 
 Then(/^I set dates:$/) do |table|
   Calendar.new(@current_page, table).set_dates
-end
-
-Given(/^API creates promocode "([^"]*)"$/) do |arg|
-  API.create_promocode(arg)
-  @test_context[:promocode] = arg
-end
-
-And(/^API create following one day GIG with promo:$/) do |table|
-  role = table.rows_hash[:role]
-  if role == "Bardienst"
-    role = 3
-  elsif role == "Bediening"
-    role = 6
-  end
-  date = Time.now.strftime("%d/%m/%Y")
-  if table.rows_hash[:date].to_s.include? '+'
-    date = (Time.now + table.rows_hash[:date].to_s.split(" ")[1].to_i*86400).strftime("%d/%m/%Y")
-  elsif table.rows_hash[:date].to_s.include? '-'
-    date = (Time.now - table.rows_hash[:date].to_s.split(" ")[1].to_i*86400).strftime("%d/%m/%Y")
-  end
-  start_time = table.rows_hash[:'start time']
-  end_time = table.rows_hash[:'end time']
-  local_time = Time.now
-  if table.rows_hash[:'start time'].to_s.include? 'round'
-    if Time.now.min <= 30
-      local_time = Time.now.change(:min => 0)
-    else
-      local_time = Time.now.change(:min => 0) + 3600
-    end
-  end
-  if table.rows_hash[:'start time'].to_s.include? '+'
-    start_time = (local_time + (60*60*table.rows_hash[:'start time'].to_s.split(" ")[1].to_i)).strftime("%H/%M").gsub('/', ':')
-    end_time = (local_time + (60*60*table.rows_hash[:'end time'].to_s.split(" ")[1].to_i)).strftime("%H/%M").gsub('/', ':')
-  elsif table.rows_hash[:'start time'].to_s.include? '-'
-    start_time = (local_time - (60*60*table.rows_hash[:'start time'].to_s.split(" ")[1].to_i)).strftime("%H/%M").gsub('/', ':')
-    end_time = (local_time - (60*60*table.rows_hash[:'end time'].to_s.split(" ")[1].to_i)).strftime("%H/%M").gsub('/', ':')
-  end
-  d = Date.parse(date)
-  t_s = Time.parse(start_time)
-  t_f = Time.parse(end_time)
-  start = DateTime.new(d.year, d.month, d.day, t_s.hour, t_s.min, t_s.sec).strftime("%Y-%m-%d %H:%M:%S").to_s
-  if t_s < t_f
-    finish = DateTime.new(d.year, d.month, d.day, t_f.hour, t_f.min, t_f.sec).strftime("%Y-%m-%d %H:%M:%S").to_s
-  else
-    d = Date.parse(date) + 1
-    finish = DateTime.new(d.year, d.month, d.day, t_f.hour, t_f.min, t_f.sec).strftime("%Y-%m-%d %H:%M:%S").to_s
-  end
-  desc = table.rows_hash[:description]
-  v_desc = table.rows_hash[:'venue description']
-  location = table.rows_hash[:location]
-  number_of_workers = table.rows_hash[:'number of workers']
-  promocode = table.rows_hash[:promocode]
-  API.create_gig_with_promo(role, date, start_time, end_time, start, finish, desc, v_desc, location, number_of_workers, promocode)
 end
 

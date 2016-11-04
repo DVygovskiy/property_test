@@ -12,6 +12,8 @@ class TestData
             data = FFaker::Name.last_name
         elsif text.include? "password"
             data = FFaker::Internet.password(max_length=9)
+        else
+          data = FFaker::Lorem.phrase(max_length=10)
         end
         return data
     end
