@@ -20,7 +20,7 @@ Feature: Change gig status
     Then I am on the "Edit gig" page
     And I select "Status" to "Expired"
     And I click the "Update" button
-    And I should see the text "Gig is bijgewerkt "
+    And I should see the text "Gig is bijgewerkt"
     Then I go back
     And I should see status "Expired" for the first "Gig" within "Gigs" table
 

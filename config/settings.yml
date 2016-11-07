@@ -3,6 +3,7 @@ rc:
   api_url: 'http://rc.clevergig.nl/api/v1'
   customer_email: "clevergig@mail.ru"
   customer_password: "123456"
+  customer_email_password: "brn521"
   customer_id: "26"
   promo_id: "64"
   admin_email: "admin@clevergig.nl"
@@ -14,6 +15,7 @@ stg:
   api_url: 'http://clevergig.stg.thebrain4web.com/api/v1'
   customer_email: "clevergig@mail.ru"
   customer_password: "123456"
+  customer_email_password:
   customer_id: "26"
   promo_id: "64"
   admin_email: "admin@clevergig.nl"

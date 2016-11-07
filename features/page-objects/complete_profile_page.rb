@@ -42,7 +42,7 @@ class CompleteProfilePage < BasePage
 
   selector :postcode_field, "//input[@name='zip']"
 
-  selector :submit_button, "//input[@type='submit']"
+  selector :submit_button, "//input[@value='Profiel afronden']"
 
 
 end

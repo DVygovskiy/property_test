@@ -1,8 +1,25 @@
 class Calendar
 
+  attr_accessor :month_label
+  attr_accessor :month_button
+
   def initialize(page, table = {})
     @page = page
     @type = ""
+
+    @month_label = "//div[@class='months']/div[1]"
+    @month_button = "//div[@class='clndr-control-button rightalign']"
+  end
+
+  def define_month(month)
+    until @page.find_element(@month_label).has_content?("#{month}")
+      @page.click_the(@page.find_element(@month_button))
+      sleep(0.5)
+    end
+  end
+
+  def set_dates(table = {})
+    @many_month = false
     @arr = []
     unless table == {}
       table.transpose.raw[0].each do |text|
@@ -15,17 +32,6 @@ class Calendar
         end
       end
     end
-  end
-
-  def define_month(month)
-    until @page.find_element("//div[@class='months']/div[1]").has_content?("#{month}")
-      @page.click_the(@page.find(:xpath, "//div[@class='clndr-control-button rightalign']"))
-      sleep(0.5)
-    end
-  end
-
-  def set_dates
-    @many_month = false
     dates = Hash.new.compare_by_identity
     @arr.each do |date|
       dates[date.to_s.split[1]] = date.to_s.split[0]

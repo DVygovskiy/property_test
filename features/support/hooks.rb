@@ -20,7 +20,7 @@ After do |scenario|
     puts "Scenario:: #{scenario.name}"
     puts "#===========================================================#"
   end
-  Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
-  #Capybara.reset_sessions!
+  #Capybara.send(:session_pool).each { |name, ses| ses.driver.quit }
+  Capybara.reset_sessions!
   @test_context = nil
 end

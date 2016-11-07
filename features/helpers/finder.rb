@@ -3,8 +3,11 @@ require_relative '../page-objects/base_page'
 class Finder
 
   def self.element_of_page(page, text)
-    web_element = page.find_element(page.send(text))
-    return web_element
+    if (text.include? "xpath") || (text.include? "css")
+      web_element = page.find(text)
+    else
+      web_element = page.find_element(page.send(text))
+    end
   end
 
   def self.all_elements_of_page(page, text)
@@ -53,7 +56,6 @@ class Finder
       end
     end
   end
-
 
 
 end

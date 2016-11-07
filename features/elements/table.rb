@@ -7,11 +7,11 @@ class Table
   cattr_accessor :number_of_items
 
   def initialize(page, context, name_of_table, group = "table")
-    if group == "search_result"
-      @selector = name_of_table.downcase + "_search_result"
-    else
-      @selector = name_of_table.downcase + "_table"
-    end
+      if group == "search_result"
+        @selector = name_of_table.downcase + "_search_result"
+      elsif group == "table"
+        @selector = name_of_table.downcase + "_table"
+      end
     @page = page
     @context = context
   end
@@ -38,7 +38,7 @@ class Table
   end
 
   def count_items(text)
-    if Table.current_search_results == nil
+    unless table_exists?
       Table.number_of_items = 0
     else
       nodes_path = Table.current_search_results.path + "/child::*"
@@ -63,7 +63,7 @@ class Table
     @context.all(:xpath, "#{nodes_path}").each do |node|
       path = node.path
       if @context.all(:xpath, "#{path}/child::*").empty?
-        if @page.check_element_attr(node, action)
+        if check_element_attr(node, action)
           @page.click_the(node)
         end
       end
@@ -75,6 +75,10 @@ class Table
       end
     end
     sleep(1)
+  end
+
+  def self.define_table(result)
+    Table.current_search_results = result
   end
 
   private
@@ -101,10 +105,26 @@ class Table
     Table.current_search_results ||= Finder.element_of_page(@page, @selector)
     rows_path = Table.current_search_results.path + "/child::*"
     nodes = all(:xpath, "#{rows_path}").each do |node|
-      if node.has_content?(text) && flag
+      if node.has_content?(text)
         return Table.current_row_path = node.path
       end
     end
+  end
+
+  def check_element_attr(element, query)
+    i = false
+    unless element == nil
+      attr = {:text => element.text,
+              :value => element.value,
+              :href => element[:href],
+              :title => element[:title],
+              :innerHtml => element['innerHTML']
+      }
+      attr.each_key do |key|
+        i = true unless attr[key].to_s != query
+      end
+    end
+    return i
   end
 end
 

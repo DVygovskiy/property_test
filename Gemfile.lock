@@ -6,7 +6,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.4.0)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     allure-cucumber (0.5.3)
       allure-ruby-adaptor-api
       cucumber (>= 2.0.0)
@@ -115,6 +116,7 @@ GEM
       slop (~> 3.4)
     pry-nav (0.2.4)
       pry (>= 0.9.10, < 0.11.0)
+    public_suffix (2.0.4)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -151,7 +153,7 @@ GEM
     ruby_parser (3.8.3)
       sexp_processor (~> 4.1)
     rubyzip (1.2.0)
-    selenium-webdriver (3.0.0.beta4.0)
+    selenium-webdriver (3.0.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
@@ -207,7 +209,7 @@ DEPENDENCIES
   rspec (= 3.4.0)
   rspec-expectations
   rubocop
-  selenium-webdriver (= 3.0.0.beta4.0)
+  selenium-webdriver (= 3.0.0)
   site_prism
 
 BUNDLED WITH

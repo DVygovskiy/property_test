@@ -131,8 +131,11 @@ end
 Given(/^I check mailbox "([^"]*)" for "([^"]*)" email$/) do |mailbox, subject|
   sleep(10)
   adress = mailbox.split("@")[1]
-  email = EMAIL_HELPER.new(self)
-  email.check_mailbox(adress, "")
+  email = EMAIL_HELPER.new(@current_page, self, mailbox)
+  email.sign_in
+  email.check_for_email(subject)
+  binding.pry
+  #email.check_mailbox(adress, "")
   emails = find(:xpath, ".//*[@class='b-datalist__body']")
   nodes_path = emails.path + "/child::*"
   node = all(:xpath, "#{nodes_path}").detect { |node| node.has_content?("#{subject}") }
@@ -148,7 +151,6 @@ Given(/^I check mailbox "([^"]*)" for "([^"]*)" email$/) do |mailbox, subject|
   #email.sign_out(adress)
   #expect(page).not_to have_content(subject)
   test_context[:current_mail] = adress
-
 end
 
 When(/^I open the "([^"]*)" email$/) do |subject|
@@ -270,7 +272,6 @@ And(/^I set up (duration|time) from "([^"]*)" to "([^"]*)" (local|round local)$/
   else
     s_time = start
   end
-
   if ending.to_s.include? "+"
     e_time = (local_time + 3600 * (ending.to_s.gsub("+", "").to_i)).strftime("%H:%M")
   elsif ending.to_s.include? "-"
@@ -351,19 +352,11 @@ And(/^I change "([^"]*)" to "([^"]*)"$/) do |selection, option|
 end
 
 And(/^I check "([^"]*)" checkbox$/) do |locator|
-  locator = locator.to_s.downcase.gsub(" ", "_") + "_checkbox"
-  checkbox = Finder.element_of_page(@current_page, locator)
-  unless checkbox.checked?
-    @current_page.click_the(checkbox)
-  end
+  Checkbox.new(locator, @current_page).check
 end
 
 And(/^I uncheck "([^"]*)" checkbox$/) do |locator|
-  locator = selection.to_s.downcase.gsub(" ", "_") + "_checkbox"
-  checkbox = Finder.element_of_page(@current_page, locator)
-  if checkbox.checked?
-    @current_page.click_the(checkbox)
-  end
+  Checkbox.new(locator, @current_page).uncheck
 end
 
 
@@ -372,7 +365,7 @@ Given(/^I am connected to mysql$/) do
   binding.pry
 end
 
-And(/^I quick_click "([^"]*)"$/) do |arg|
+And(/^I click "([^"]*)"$/) do |arg|
   BasePage.new.quick_click(arg)
 end
 
@@ -466,6 +459,6 @@ And(/^I choose month ([^"]*)$/) do |month|
 end
 
 Then(/^I set dates:$/) do |table|
-  Calendar.new(@current_page, table).set_dates
+  Calendar.new(@current_page).set_dates(table)
 end
 
