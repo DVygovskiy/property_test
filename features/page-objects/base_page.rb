@@ -78,68 +78,6 @@ class BasePage < SitePrism::Page
     find_element(locator).set text
   end
 
-  def check_element_attr(element, query)
-    i = false
-    unless element == nil
-      attr = {:text => element.text,
-              :value => element.value,
-              :href => element[:href],
-              :title => element[:title],
-              :innerHtml => element['innerHTML']
-      }
-      attr.each_key do |key|
-        i = true unless attr[key].to_s != query
-      end
-    end
-    return i
-  end
-
-  def find_in_child(path, atr)
-    all(:xpath, "#{path}/child::*").to_a.reverse.each do |node|
-      if check_element_attr(node, atr)
-        click_the(node)
-        return true
-      end
-    end
-    false
-  end
-
-
-  def find_from_table(table, text)
-    rows_path = table.path + "/child::*"
-    node = all(:xpath, "#{rows_path}").detect { |node| node.has_content?(text) }
-    return node
-  end
-
-  def find_first_from_table(table, text)
-    rows_path = table.path + "/child::*"
-    node = all(:xpath, "#{rows_path}").each do |nod|
-      if nod.has_content?(text)
-        return nod
-      end
-    end
-  end
-
-  def make_action_in_table(row, action)
-    nodes_path = row.path + "/child::*"
-    all(:xpath, "#{nodes_path}").each do |node|
-      path = node.path
-      if all(:xpath, "#{path}/child::*").empty?
-        if check_element_attr(node, action)
-          click_the(node)
-        end
-      end
-      until all(:xpath, "#{path}/child::*").empty?
-        if find_in_child(path, action)
-          return
-        end
-        path = path + "/child::*"
-      end
-    end
-    sleep(1)
-  end
-
-
   def quick_click(text)
     if has_xpath?(".//a[text()='#{text}']")
       self.click_the(find(:xpath, ".//a[text()='#{text}']"))

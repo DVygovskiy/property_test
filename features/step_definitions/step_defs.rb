@@ -114,6 +114,9 @@ And(/^I look for the first "([^"]*)" with "([^"]*)" ([^"]*) within "([^"]*)" tab
 end
 
 And(/^I look for the "([^"]*)" with "([^"]*)" ([^"]*) within "([^"]*)" table$/) do |any, arg, any2, name_of_table|
+  @table = Table.new(@current_page, self, name_of_table)
+  @table.cell_exists? arg
+
   name_of_table = name_of_table.to_s.downcase + "_table"
   test_context[:current_table] = Finder.element_of_page(@current_page, name_of_table)
   test_context[:current_row]= @current_page.find_first_from_table(test_context[:current_table], arg)
@@ -127,14 +130,20 @@ And(/^I click the "([^"]*)" it$/) do |action|
   sleep(3)
 end
 
+When(/^I go to the customer email$/) do
+  @current_page = Email.new
+  @current_page.sign_in(Global.settings.customer_email)
+end
+
 
 Given(/^I check mailbox "([^"]*)" for "([^"]*)" email$/) do |mailbox, subject|
   sleep(10)
+
+
   adress = mailbox.split("@")[1]
   email = EMAIL_HELPER.new(@current_page, self, mailbox)
   email.sign_in
   email.check_for_email(subject)
-  binding.pry
   #email.check_mailbox(adress, "")
   emails = find(:xpath, ".//*[@class='b-datalist__body']")
   nodes_path = emails.path + "/child::*"
@@ -154,8 +163,7 @@ Given(/^I check mailbox "([^"]*)" for "([^"]*)" email$/) do |mailbox, subject|
 end
 
 When(/^I open the "([^"]*)" email$/) do |subject|
-  email = EMAIL_HELPER.new(self)
-  email.find_email(test_context[:current_mail], subject)
+  @current_page.quick_click(subject)
 end
 
 Then(/^I should see the text "([^"]*)"$/) do |text|
@@ -366,7 +374,7 @@ Given(/^I am connected to mysql$/) do
 end
 
 And(/^I click "([^"]*)"$/) do |arg|
-  BasePage.new.quick_click(arg)
+  @current_page.quick_click(arg)
 end
 
 
@@ -461,4 +469,5 @@ end
 Then(/^I set dates:$/) do |table|
   Calendar.new(@current_page).set_dates(table)
 end
+
 

@@ -49,6 +49,9 @@ Scenario: Email
   And delete "Completed Event" email
 
 @email2
-Scenario: Email
-    Given I check mailbox "clevergig@mail.ru" for "Welcome" email
-
+Scenario: Customer can Decline worker
+  Given I logged in as "valid user"
+  When I go to the customer email
+  Then I look for the first "email" with "Uw boeking is geaccepteerd" title within "Emails" table
+  Then I open the "Uw boeking is geaccepteerd" email
+  And I sleep
