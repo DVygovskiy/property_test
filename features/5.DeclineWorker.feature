@@ -33,7 +33,7 @@ Feature: Decline worker
   @customer_decline_worker
   Scenario: Customer can Decline worker
     Given I logged in as "valid user"
-    When I check mailbox "clevergig@mail.ru" for "Uw boeking is geaccepteerd" email
+    When I check customer's mailbox for "Uw boeking is geaccepteerd" email
     And I open the "Uw boeking is geaccepteerd" email
     Then I click "hier"
     And I am redirected to "Decline worker" page
@@ -42,7 +42,7 @@ Feature: Decline worker
 
   @customer_decline_worker_notloggedin
   Scenario: Customer can Decline worker
-    Given I check mailbox "clevergig@mail.ru" for "Uw boeking is geaccepteerd" email
+    Given I check customer's mailbox for "Uw boeking is geaccepteerd" email
     And I open the "Uw boeking is geaccepteerd" email
     Then I click "hier"
     And I am redirected to "Login" page

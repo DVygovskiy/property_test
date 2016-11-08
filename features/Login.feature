@@ -51,7 +51,7 @@ Scenario: Email
 @email2
 Scenario: Customer can Decline worker
   Given I logged in as "valid user"
-  When I go to the customer email
+  When I go to the customer's email
   Then I look for the first "email" with "Uw boeking is geaccepteerd" title within "Emails" table
   Then I open the "Uw boeking is geaccepteerd" email
   And I sleep

@@ -32,18 +32,23 @@ class Table
     @context.expect(@page.find_element(Table.current_row_path).has_text? text)
   end
 
+  def first_cell_exists?(text)
+    Table.current_row_path ||= find_first_from_table(text)
+    @context.expect(@page.find_element(Table.current_row_path).has_text? text)
+  end
+
   def cell_does_not_exist?(text)
     Table.current_row_path ||= find_from_table(text)
     @context.expect(@page.find_element(Table.current_row_path).has_no_text? text)
   end
 
   def count_items(text)
-    unless table_exists?
-      Table.number_of_items = 0
-    else
+    if table_exists?
       nodes_path = Table.current_search_results.path + "/child::*"
       nodes = @context.all(:xpath, "#{nodes_path}").each { |node| node.has_content?(text) }
       Table.number_of_items = nodes.count
+    else
+      Table.number_of_items = 0
     end
   end
 

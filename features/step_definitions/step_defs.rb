@@ -94,72 +94,17 @@ Then(/^I login using (Facebook|Linkedin)$/) do |source|
 end
 
 
-And(/^I look for "([^"]*)" within "([^"]*)" table$/) do |element, name_of_table|
-  name_of_table = name_of_table.to_s.downcase + "_table"
-  test_context[:current_table] = Finder.element_of_page(@current_page, name_of_table)
-  test_context[:current_row]= @current_page.find_from_table(test_context[:current_table], element)
-  expect(!test_context[:current_row].nil?)
-end
 
-And(/^I look for the first "([^"]*)" with "([^"]*)" ([^"]*) within "([^"]*)" table$/) do |any, arg, any2, name_of_table|
-  @table = Table.new(@current_page, self, name_of_table)
-  @table.cell_exists? arg
-=begin
-  name_of_table = name_of_table.to_s.downcase + "_table"
-  test_context[:current_table] = Finder.element_of_page(@current_page, name_of_table)
-  test_context[:current_row]= @current_page.find_first_from_table(test_context[:current_table], arg)
-  expect(!test_context[:current_row].nil?)
-  test_context[:current_row_path] = test_context[:current_row].path
-=end
-end
 
-And(/^I look for the "([^"]*)" with "([^"]*)" ([^"]*) within "([^"]*)" table$/) do |any, arg, any2, name_of_table|
-  @table = Table.new(@current_page, self, name_of_table)
-  @table.cell_exists? arg
-
-  name_of_table = name_of_table.to_s.downcase + "_table"
-  test_context[:current_table] = Finder.element_of_page(@current_page, name_of_table)
-  test_context[:current_row]= @current_page.find_first_from_table(test_context[:current_table], arg)
-  expect(!test_context[:current_row].nil?)
-  test_context[:current_row_path] = test_context[:current_row].path
-end
-
-And(/^I click the "([^"]*)" it$/) do |action|
-  @table.make_action_in_table(action)
-  #@current_page.make_action_in_table(test_context[:current_row], action)
-  sleep(3)
-end
-
-When(/^I go to the customer email$/) do
+When(/^I go to the customer's email$/) do
   @current_page = Email.new
   @current_page.sign_in(Global.settings.customer_email)
 end
 
 
-Given(/^I check mailbox "([^"]*)" for "([^"]*)" email$/) do |mailbox, subject|
-  sleep(10)
-
-
-  adress = mailbox.split("@")[1]
-  email = EMAIL_HELPER.new(@current_page, self, mailbox)
-  email.sign_in
-  email.check_for_email(subject)
-  #email.check_mailbox(adress, "")
-  emails = find(:xpath, ".//*[@class='b-datalist__body']")
-  nodes_path = emails.path + "/child::*"
-  node = all(:xpath, "#{nodes_path}").detect { |node| node.has_content?("#{subject}") }
-  expect(!node.nil?)
-  unless node.nil?
-    within(node) do
-      find(:xpath, ".//*[@class='b-checkbox__box']").click
-    end
-  end
-  sleep(5)
-  #email.delete_all_mailru
-  #expect(page).to have_content(subject)
-  #email.sign_out(adress)
-  #expect(page).not_to have_content(subject)
-  test_context[:current_mail] = adress
+Given(/^I check customer's mailbox for "([^"]*)" email$/) do |subject|
+  step %(I go to the customer's email)
+  step %(I look for the first "email" with "#{subject}" title within "Emails" table)
 end
 
 When(/^I open the "([^"]*)" email$/) do |subject|
@@ -246,23 +191,7 @@ And(/^I set up duration from "([^"]*)" to "([^"]*)"$/) do |s_time, e_time|
   end
 end
 
-Then(/^I should see (search results|table) with "([^\"]*)"$/) do |group, text|
-  @table = Table.new(@current_page, self, text)
-  @table.table_exists?
-=begin
-  selector = text.to_s.downcase + "_search_result"
-  if group == "table"
-    selector = text.to_s.downcase + "_table"
-  end
-  begin
-    self.expect(Finder.element_of_page(@current_page, selector).visible?)
-    test_context[:current_search_results] = Finder.element_of_page(@current_page, selector)
-  rescue
-    puts "There is no visible results/table"
-    test_context[:current_search_results] = "null"
-  end
-=end
-end
+
 
 And(/^I set up (duration|time) from "([^"]*)" to "([^"]*)" (local|round local)$/) do |no, start, ending, time|
   local_time = Time.now
@@ -367,7 +296,6 @@ And(/^I uncheck "([^"]*)" checkbox$/) do |locator|
   Checkbox.new(locator, @current_page).uncheck
 end
 
-
 Given(/^I am connected to mysql$/) do
   DB.connect()
   binding.pry
@@ -380,18 +308,6 @@ end
 
 And(/^It's ([^"]*) is "([^"]*)"$/) do |any, text|
   expect(test_context[:current_row].has_text? text)
-end
-
-And(/^I should see ([^"]*) "([^"]*)" for the first "([^"]*)" within "([^"]*)" table$/) do |any, text, arg2, name_of_table|
-  @table = Table.new(@current_page, self, name_of_table)
-  @table.cell_exists?(text)
-  #expect((@current_page.find_element(test_context[:current_row_path])).has_text? text)
-end
-
-And(/^I should not see ([^"]*) "([^"]*)" for the first "([^"]*)" within "([^"]*)" table$/) do |any, text, arg2, name_of_table|
-  @table = Table.new(@current_page, self, name_of_table)
-  @table.cell_does_not_exist?(text)
-  #expect((@current_page.find_element(test_context[:current_row_path])).has_no_text? text)
 end
 
 Then(/^I go back$/) do
@@ -433,28 +349,6 @@ And(/^I drop "([^"]*)" to "([^"]*)" dropzone$/) do |image, where|
   locator = Finder.locator(@current_page, selector)
   @current_page.drop_image(locator, image)
   sleep(3)
-end
-
-
-And(/^I should see (\d+) ([^"]*) with ([^"]*) "([^"]*)"$/) do |number, more, any2, text|
-  @table.compare_number_of_items(number, more, text)
-=begin
-  nodes_path = test_context[:current_search_results].path + "/child::*"
-  node = all(:xpath, "#{nodes_path}").each { |node| node.has_content?(text) }
-  if more.to_s.include? "more"
-    expect(node.count == (number.to_i + test_context[:current_count_for_search_results].to_i))
-  else
-    expect(node.count == number.to_i)
-  end
-=end
-end
-
-Given(/^DB get number of "([^"]*)" gigs$/) do |arg|
-  pending
-end
-
-And(/^I count ([^"]*) with ([^"]*) "([^"]*)"$/) do |any1, any2, text|
-  @table.count_items text
 end
 
 And(/^I should see the ([^"]*)$/) do |element|
