@@ -9,6 +9,7 @@ require_relative '../../config/requirements'
 
 #Chrome
 def setup_chrome
+  Selenium::WebDriver::Chrome.driver_path = "/usr/local/bin/chromedriver"
   Capybara.register_driver :chrome do |app|
     Capybara::Selenium::Driver.new(app, browser: :chrome)
   end
