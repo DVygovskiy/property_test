@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d7e29bc8-3bfb-4acb-994d-80a0ad8cb8be" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/requirements.rb" afterPath="$PROJECT_DIR$/config/requirements.rb" />
     </list>
     <ignored path="acceptance-testing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -608,7 +607,7 @@
       <workItem from="1478175165159" duration="25666000" />
       <workItem from="1478272769553" duration="26467000" />
       <workItem from="1478622386777" duration="549000" />
-      <workItem from="1478693757933" duration="21616000" />
+      <workItem from="1478693757933" duration="21628000" />
     </task>
     <task id="LOCAL-00001" summary="API fix">
       <created>1469698379715</created>
@@ -764,11 +763,18 @@
       <option name="project" value="LOCAL" />
       <updated>1478872004717</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="calendar refactoring">
+      <created>1478874033537</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1478874033537</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="458842000" />
+    <option name="totallyTimeSpent" value="458854000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="0" width="1920" height="1080" extended-state="0" />
