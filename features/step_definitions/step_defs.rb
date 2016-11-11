@@ -7,8 +7,14 @@ When(/^I open the "([^"]*)" page$/) do |arg|
     @page.load
   end
   begin
-    new_window = page.driver.browser.window_handles.last
-    page.driver.browser.switch_to.window(new_window)
+    if page.driver.browser.window_handles.first !=page.driver.browser.window_handles.last
+      old_window = page.driver.browser.window_handles.first
+      page.driver.browser.switch_to.window(old_window)
+      Capybara.current_session.current_window.close
+      back = page.driver.browser.window_handles.last
+      page.driver.browser.switch_to.window(back)
+      sleep(1)
+    end
     expect(page).to have_text @page.title
     @current_page = @page
   rescue
@@ -23,24 +29,10 @@ end
 
 When(/^I return to the "([^"]*)" page$/) do |arg|
   step %(I open the "#{arg}" page)
-  if page.driver.browser.window_handles.first !=page.driver.browser.window_handles.last
-    old_window = page.driver.browser.window_handles.first
-    page.driver.browser.switch_to.window(old_window)
-    Capybara.current_session.current_window.close
-    back = page.driver.browser.window_handles.last
-    page.driver.browser.switch_to.window(back)
-  end
 end
 
 Then(/^I am redirected to "([^"]*)" page$/) do |arg|
   step %(I open the "#{arg}" page)
-  if page.driver.browser.window_handles.first !=page.driver.browser.window_handles.last
-    old_window = page.driver.browser.window_handles.first
-    page.driver.browser.switch_to.window(old_window)
-    Capybara.current_session.current_window.close
-    back = page.driver.browser.window_handles.last
-    page.driver.browser.switch_to.window(back)
-  end
 end
 
 
@@ -92,9 +84,6 @@ Then(/^I login using (Facebook|Linkedin)$/) do |source|
   source = "#{source.downcase}_login"
   @page = class_method(source)
 end
-
-
-
 
 When(/^I go to the customer's email$/) do
   @current_page = Email.new
@@ -178,19 +167,19 @@ end
 
 And(/^I set up duration from "([^"]*)" to "([^"]*)"$/) do |s_time, e_time|
   if test_context[:start_input]!= nil
-    begin
-      test_context[:start_input].native.send_keys(:return)
-      find(:xpath, "//*[text()='#{s_time}']", :visible => true).click
-      find(:xpath, "//*[text()='#{e_time}']", :visible => true).click
-    rescue
-    end
+    start = test_context[:start_input]
+    finish = test_context[:end_input]
   else
-    (Finder.element_of_page(@current_page, "start_time")).set s_time
-    (Finder.element_of_page(@current_page, "end_time")).set e_time
-    find(:xpath, "//*[text()='#{e_time}']", :visible => true).click
+    start = Finder.element_of_page(@current_page, "start_time")
+    finish = Finder.element_of_page(@current_page, "end_time")
   end
+  start.click
+  start.set s_time
+  start.find(:xpath, "./*[text()='#{s_time}']").click
+  finish.click
+  finish.set e_time
+  finish.find(:xpath, "./*[text()='#{e_time}']").click
 end
-
 
 
 And(/^I set up (duration|time) from "([^"]*)" to "([^"]*)" (local|round local)$/) do |no, start, ending, time|
@@ -223,6 +212,7 @@ And(/^I set up (duration|time) from "([^"]*)" to "([^"]*)" (local|round local)$/
 end
 
 And(/^I set up table of timings as:$/) do |table|
+
   start_t = Finder.all_elements_of_page(@current_page, "start_time")
   end_t = Finder.all_elements_of_page(@current_page, "end_time")
   table.transpose.raw[0].each.with_index do |text, i|

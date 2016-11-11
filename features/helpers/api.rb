@@ -159,19 +159,29 @@ class API
 
     event_start = requester.get(path: "events/start/one-day/#{role}", referrer: "dashboard")
 
+    event_update_time = requester.get(path: "events/start/one-day/#{role}", referrer: "dashboard")
+
     event_token = requester.find_value where: event_start
+
+    update_date = requester.post(path: "events/update-date",
+                                 body: {:_token => event_token,
+                                                                   :_method => 'put',
+                                                                   :start => start,
+                                                                   :finish => finish},
+                                 referrer: "events/new", content_type: "application/x-www-form-urlencoded")
+
+    update_venue = requester.post(path: "events/update-venue",
+                                 body: {:_token => event_token,
+                                        :_method => 'put',
+                                        :description => v_desc,
+                                        :location => location},
+                                 referrer: "events/new", content_type: "application/x-www-form-urlencoded")
 
     create = requester.post(path: "events/update",
                             body: {:_token => event_token,
                                    :_method => 'put',
-                                   :date => date,
-                                   :time_start => start_time,
-                                   :start => start,
-                                   :time_finish => end_time,
-                                   :finish => finish,
-                                   :venue_description => v_desc,
                                    :description => desc,
-                                   :location => location,
+                                   :match_type => "1",
                                    :people_needed => number_of_workers},
                             referrer: "events/new", content_type: "application/x-www-form-urlencoded")
 

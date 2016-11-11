@@ -6,12 +6,10 @@ class Timepicker
     @page = page
   end
 
-  def set_text(text)
-    if text.to_s.downcase.include? "random"
-      text = TestData.generate(text)
-    end
-    Finder.element_of_page(@page, @selector).set text
-    sleep(0.5)
+  def set_time(time)
+    Finder.element_of_page(@page, @selector).click
+    Finder.element_of_page(@page, @selector).set time
+    Finder.element_of_page(@page, @selector).find(:xpath, "./*[text()='#{time}']").click
   end
 
 end

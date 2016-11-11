@@ -66,11 +66,7 @@ class BasePage < SitePrism::Page
     if element.kind_of? String
       element = find_element(element)
     end
-    begin
       element.click
-    rescue
-      page.driver.browser.execute_script("$(arguments[0]).click();", element.native)
-    end
   end
 
   def send_text(locator, text)
@@ -92,5 +88,21 @@ class BasePage < SitePrism::Page
     elsif has_xpath?(".//span[contains(@value,'#{text}')]")
       self.click_the(find(:xpath, ".//span[contains(@value,'#{text}')]"))
     end
+  end
+
+  def check_element_attr(element, query)
+    i = false
+    unless element == nil
+      attr = {:text => element.text,
+              :value => element.value,
+              :href => element[:href],
+              :title => element[:title],
+              :innerHtml => element['innerHTML']
+      }
+      attr.each_key do |key|
+        i = true unless attr[key].to_s != query
+      end
+    end
+    return i
   end
 end

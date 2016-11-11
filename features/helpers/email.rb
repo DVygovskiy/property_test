@@ -34,6 +34,7 @@ class Email < BasePage
       find(:xpath, ".//*[@id='js-mailbox-enter']/span")
       find(:xpath, ".//*[@id='js-mailbox-enter']/span").click
     end
+    sleep(1)
     has_xpath?(".//*[@id='b-nav_folders']/div/div[1]/a/span[2]")
   end
 
@@ -62,6 +63,7 @@ class Email < BasePage
     elsif email == "gmail.com"
       sign_in_gmail(account)
     end
+
   end
 end
 

@@ -3,7 +3,7 @@ require_relative 'base_page'
 class CreateOneDayGigPage < BasePage
 
   def title
-    "Datum van de gig"
+    "En de werktijden"
   end
 
   set_url "#{Global.settings.base_url}/events/new"
@@ -26,17 +26,13 @@ class CreateOneDayGigPage < BasePage
 
   selector :about_venue_field, ".//*[@placeholder='Omschrijving']"
 
-  selector :required_skills, ".//*[@placeholder='Welke andere vaardigheden zijn nodig?']"
+  selector :required_skills, ".//input[@placeholder='Welke andere vaardigheden zijn nodig?']"
 
-  selector :required_clothing, ".//*[@placeholder='Welke kleding richtlijnen zijn er?']"
+  selector :required_clothing, ".//input[@placeholder='Welke kleding richtlijnen zijn er?']"
 
-  selector :proceed_button, "//input[@value='Volgende stap']"
+  selector :start_time, "//label[text()='van']/following-sibling::select"
 
-  selector :start_time, ".//*[@id='timepicker1']"
-
-  selector :end_time, ".//*[@id='timepicker2']"
-
-  selector :workers_search_result, "#cards"
+  selector :end_time, "//label[text()='tot']/following-sibling::select"
 
   selector :select_button, ".//button[contains(text(),'Select')]"
 
@@ -52,8 +48,23 @@ class CreateOneDayGigPage < BasePage
 
   selector :number_of_workers_field, ".//*[@id='people-counter']"
 
-  selector :clever_workers_checkbox, "html/body/main/div[1]/div/div[1]/div/form/div[2]/div/div[1]/div[1]/div[1]/label/i"
+  selector :clever_workers_checkbox, "//input[@value=1]/following-sibling::i[@class='pseudo-radio']"
 
-  selector :own_pool_workers_checkbox, "html/body/main/div[1]/div/div[1]/div/form/div[2]/div/div[1]/div[1]/div[2]/label/i"
+  selector :own_pool_workers_checkbox, "//input[@value=2]/following-sibling::i[@class='pseudo-radio']"
+
+  selector :calendar, "//table"
+
+  selector :days, "//table"
+
+  selector :month_label, "//div[@class='month']"
+
+  selector :month_button, "//div[contains(@class, 'clndr-control-button')][2]"
+
+  selector :set_up_dates_button, "//button/span[text()='Bevestigen']"
+
+  selector :set_venue_details_button, "//form[@action='#{Global.settings.base_url}/events/update-venue']/following-sibling::div/button"
+
+  selector :proceed_button, "//form[@action='#{Global.settings.base_url}/events/update']/following-sibling::div/div/button"
+
 
 end

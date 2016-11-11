@@ -7,13 +7,15 @@ class Table
   cattr_accessor :number_of_items
 
   def initialize(page, context, name_of_table, group = "table")
-      if group == "search_result"
-        @selector = name_of_table.downcase + "_search_result"
-      elsif group == "table"
-        @selector = name_of_table.downcase + "_table"
-      end
+    if group == "search_result"
+      @selector = name_of_table.downcase + "_search_result"
+    elsif group == "table"
+      @selector = name_of_table.downcase + "_table"
+    end
     @page = page
     @context = context
+    Table.current_search_results = nil
+    Table.current_row_path = nil
   end
 
   def table_exists?
@@ -63,7 +65,6 @@ class Table
   end
 
   def make_action_in_table(action)
-    Table.current_row_path ||= find_first_from_table(text)
     nodes_path = Table.current_row_path + "/child::*"
     @context.all(:xpath, "#{nodes_path}").each do |node|
       path = node.path
@@ -89,7 +90,7 @@ class Table
   private
   def find_in_child(path, atr)
     @context.all(:xpath, "#{path}/child::*").to_a.reverse.each do |node|
-      if @page.check_element_attr(node, atr)
+      if check_element_attr(node, atr)
         @page.click_the(node)
         return true
       end
@@ -109,7 +110,7 @@ class Table
   def find_first_from_table(text)
     Table.current_search_results ||= Finder.element_of_page(@page, @selector)
     rows_path = Table.current_search_results.path + "/child::*"
-    nodes = all(:xpath, "#{rows_path}").each do |node|
+    nodes = @context.all(:xpath, "#{rows_path}").each do |node|
       if node.has_content?(text)
         return Table.current_row_path = node.path
       end

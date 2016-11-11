@@ -21,12 +21,10 @@ Then(/^I should see (search results|table) with "([^\"]*)"$/) do |group, text|
 end
 
 And(/^I should see ([^"]*) "([^"]*)" for the first "([^"]*)" within "([^"]*)" table$/) do |any, text, arg2, name_of_table|
-  @table = Table.new(@current_page, self, name_of_table)
   @table.first_cell_exists?(text)
 end
 
 And(/^I should not see ([^"]*) "([^"]*)" for the first "([^"]*)" within "([^"]*)" table$/) do |any, text, arg2, name_of_table|
-  @table = Table.new(@current_page, self, name_of_table)
   @table.cell_does_not_exist?(text)
 end
 
