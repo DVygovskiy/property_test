@@ -257,19 +257,22 @@ end
 
 
 And(/^I select "([^"]*)" to "([^"]*)"$/) do |selection, option|
+
   selector = selection.to_s.downcase.gsub(" ", "_")
-  @current_page.click_the(Finder.element_of_page(@current_page, selector))
-  sleep(0.5)
-  if page.has_xpath? "//*[contains(text(), '#{option}')]"
-    @current_page.click_the(find(:xpath, "//*[contains(text(), '#{option}')]"))
-    begin
-      find(:xpath, "//*[contains(text(), '#{option}')]").native.send_keys(:return)
-    rescue
+  if @current_page.has_selector? ("//*[contains(text(), '#{option}')]")
+    if find("//*[contains(text(), '#{option}')]").visible?
+      Finder.element_of_page(@current_page, selector).find(:xpath, "//*[contains(text(), '#{option}')]").click
     end
   else
-    Finder.element_of_page(@current_page, selector).set option
+    @current_page.click_the(Finder.element_of_page(@current_page, selector))
     sleep(0.5)
-    Finder.element_of_page(@current_page, selector).native.send_keys(:return)
+    if Finder.element_of_page(@current_page, selector).has_xpath? "//*[contains(text(), '#{option}')]"
+      @current_page.click_the(find(:xpath, "//*[contains(text(), '#{option}')]"))
+    else
+      Finder.element_of_page(@current_page, selector).set option
+      sleep(0.5)
+      Finder.element_of_page(@current_page, selector).native.send_keys(:return)
+    end
   end
   sleep(0.5)
 end

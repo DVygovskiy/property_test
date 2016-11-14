@@ -15,8 +15,8 @@ Feature: Create vacancy
       | select status     | Visible           |
       | select role       | Bardienst         |
       | check checkbox    | role skills first |
-      | select skills     | master            |
-      | select clothing   | nude              |
+      | select skills     | master11            |
+      | select clothing   | nude11              |
       | select location   | Earth             |
       | description       | Need a hero!      |
       | venue description | Pub               |
