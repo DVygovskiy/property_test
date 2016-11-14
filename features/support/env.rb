@@ -6,12 +6,22 @@ require_relative '../../config/requirements'
 #Dotenv.load # loads environment variables from .env file
 
 @default_capybara_driver = :chrome
+if  ENV['docker'] == true
+  @url = "http://localhost:4444/wd/hub"
+end
 
 #Chrome
 def setup_chrome
   Selenium::WebDriver::Chrome.driver_path = "/usr/local/bin/chromedriver"
+  if  ENV['docker'] == true
+  Capybara.app_host = "http://localhost:4444/wd/hub"
   Capybara.register_driver :chrome do |app|
-    Capybara::Selenium::Driver.new(app, browser: :chrome)
+    Capybara::Selenium::Driver.new(app, :url => "http://localhost:4444/wd/hub", browser: :chrome)
+  end
+  else
+    Capybara.register_driver :chrome do |app|
+      Capybara::Selenium::Driver.new(app, browser: :chrome)
+    end
   end
   Capybara::Screenshot.register_driver(:chrome) do |driver, path|
     driver.browser.save_screenshot(path)

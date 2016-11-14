@@ -325,8 +325,8 @@ And(/^I upload "([^"]*)" image as "([^"]*)"$/) do |image, where|
   @current_page.upload_image(locator, image)
   sleep(3)
   begin
-  file_path = File.expand_path("../../support/screenshots", __FILE__)+'/upload_roleimage_test.png'
-  page.driver.browser.save_screenshot file_path
+    file_path = File.expand_path("../../support/screenshots", __FILE__)+'/upload_roleimage_test.png'
+    page.driver.browser.save_screenshot file_path
   end
 end
 
