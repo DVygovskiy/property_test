@@ -25,8 +25,8 @@ class Email < BasePage
   end
 
   def sign_in_mailru(account)
-
-    if has_xpath?(".//*[@id='PH_authLink']")
+binding.pry
+    if has_xpath?(".//*[text()='#{Global.settings.customer_email}']")
       find(:xpath, ".//*[@id='mailbox__login']").set account
       find(:xpath, ".//*[@id='mailbox__password']").set Global.settings.customer_email_password
       find(:xpath, ".//*[@id='mailbox__auth__button']").click

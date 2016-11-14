@@ -327,6 +327,7 @@ And(/^I upload "([^"]*)" image as "([^"]*)"$/) do |image, where|
   begin
     file_path = File.expand_path("../../support/screenshots", __FILE__)+'/upload_roleimage_test.png'
     page.driver.browser.save_screenshot file_path
+  rescue
   end
 end
 
