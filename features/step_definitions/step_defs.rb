@@ -86,6 +86,7 @@ Then(/^I login using (Facebook|Linkedin)$/) do |source|
 end
 
 When(/^I go to the customer's email$/) do
+  sleep(10)
   @current_page = Email.new
   @current_page.sign_in(Global.settings.customer_email)
 end
@@ -323,8 +324,10 @@ And(/^I upload "([^"]*)" image as "([^"]*)"$/) do |image, where|
   locator = Finder.locator(@current_page, selector)
   @current_page.upload_image(locator, image)
   sleep(3)
+  begin
   file_path = File.expand_path("../../support/screenshots", __FILE__)+'/upload_roleimage_test.png'
   page.driver.browser.save_screenshot file_path
+  end
 end
 
 Then(/^I see pop up with "([^"]*)" text$/) do |text|
