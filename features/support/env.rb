@@ -1,4 +1,3 @@
-
 require 'allure-cucumber'
 require 'capybara-screenshot/cucumber'
 require_relative '../../config/requirements'

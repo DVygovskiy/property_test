@@ -33,7 +33,11 @@ class BasePage < SitePrism::Page
   def upload_image(locator, image)
     begin
       page.has_xpath?(locator)
-      find(:xpath, locator).set("#{File.expand_path("../../", __FILE__)}/images/#{image}")
+      if ENV['docker'] == true
+      find(:xpath, locator).set("/images/#{image}")
+      else
+        find(:xpath, locator).set("#{File.expand_path("../../", __FILE__)}/images/#{image}")
+        end
     rescue
       page.has_css?(locator)
       find(:css, locator).set(File.absolute_path("#{image}"))

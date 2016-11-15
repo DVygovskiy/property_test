@@ -324,11 +324,9 @@ And(/^I upload "([^"]*)" image as "([^"]*)"$/) do |image, where|
   locator = Finder.locator(@current_page, selector)
   @current_page.upload_image(locator, image)
   sleep(3)
-  begin
-    file_path = File.expand_path("../../support/screenshots", __FILE__)+'/upload_roleimage_test.png'
+    file_path = File.expand_path("../../support/screenshots", __FILE__)+'/upload_image_test.png'
     page.driver.browser.save_screenshot file_path
-  rescue
-  end
+
 end
 
 Then(/^I see pop up with "([^"]*)" text$/) do |text|

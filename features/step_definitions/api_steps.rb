@@ -106,3 +106,10 @@ And(/^API create following one day GIG with promo:$/) do |table|
   API.create_gig_with_promo(role, date, start_time, end_time, start, finish, desc, v_desc, location, number_of_workers, promocode)
 end
 
+And(/^API deletes latest gig$/) do
+  API.delete_latest_gig
+end
+
+And(/^API deletes latest vacancy$/) do
+  API.delete_latest_vacancy
+end

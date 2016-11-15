@@ -32,3 +32,4 @@ Feature: Create vacancy
       | Earth        |
       | Need a hero! |
       | Pub          |
+    And API deletes latest vacancy

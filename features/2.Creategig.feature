@@ -35,6 +35,7 @@ Feature: Create gig
     Then I am on the "My gigs" page
     And I should see table with "Gigs"
     And I should see 1 more gigs with role "Bardienst"
+    And API deletes latest gig
 
   @one_day_gig_m
   @urgent_gig
@@ -72,6 +73,7 @@ Feature: Create gig
     Then I am on the "My gigs" page
     And I should see table with "Gigs"
     And I should see 2 more gigs with role "Bediening"
+    And API deletes latest gig
 
   @urgent_gig_max
   Scenario: Urgent gig creation
@@ -124,3 +126,4 @@ Feature: Create gig
     And I click the "Accepted" button
     And I click the "Continue" button
     And I should see the text "Meerdaagse gig, begint op 2 december"
+    And API deletes latest gig
