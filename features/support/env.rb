@@ -12,7 +12,7 @@ end
 
 #Chrome
 def setup_chrome
-  Selenium::WebDriver::Chrome.driver_path = "/usr/local/bin/chromedriver"
+  #Selenium::WebDriver::Chrome.driver_path = "/usr/local/bin/chromedriver"
   if  ENV['docker'] == true
   Capybara.app_host = "http://localhost:4444/wd/hub"
   Capybara.register_driver :chrome do |app|
