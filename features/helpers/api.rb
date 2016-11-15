@@ -110,7 +110,7 @@ class API
                            body: {:_token => token_form, :email => Global.settings.admin_email, :password => Global.settings.admin_password}.to_json,
                            content_type: "application/json")
     list_of_promos = requester.get(path: "admin/promo")
-    id_of_last_promo = Nokogiri::HTML(list_of_vacancies).xpath("//table/tbody/tr[2]/td[1]").text
+    id_of_last_promo = Nokogiri::HTML(list_of_promos).xpath("//table/tbody/tr[2]/td[1]").text
     token_delete = requester.find_value where: requester.get(path: "admin/promo/#{id_of_last_promo}")
     delete = requester.post(path: "admin/promo/#{id_of_last_promo}",
                             :body => {:_token => token_delete,

@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d7e29bc8-3bfb-4acb-994d-80a0ad8cb8be" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/4.ChangeGigStatus.feature" afterPath="$PROJECT_DIR$/features/4.ChangeGigStatus.feature" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/5.DeclineWorker.feature" afterPath="$PROJECT_DIR$/features/5.DeclineWorker.feature" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/helpers/api.rb" afterPath="$PROJECT_DIR$/features/helpers/api.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/base_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/base_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/step_definitions/api_steps.rb" afterPath="$PROJECT_DIR$/features/step_definitions/api_steps.rb" />
     </list>
     <ignored path="acceptance-testing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,14 +28,14 @@
       <file leaf-file-name="step_defs.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/features/step_definitions/step_defs.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="90" column="20" selection-start-line="90" selection-start-column="20" selection-end-line="90" selection-end-column="20" />
+            <state relative-caret-position="-1710">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="5.DeclineWorker.feature" pinned="false" current-in-tab="true">
+      <file leaf-file-name="5.DeclineWorker.feature" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/features/5.DeclineWorker.feature">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
@@ -51,8 +48,8 @@
       <file leaf-file-name="api_steps.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/features/step_definitions/api_steps.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="639">
-              <caret line="113" column="20" selection-start-line="113" selection-start-column="20" selection-end-line="113" selection-end-column="20" />
+            <state relative-caret-position="654">
+              <caret line="118" column="15" selection-start-line="118" selection-start-column="15" selection-end-line="118" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -68,11 +65,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base_page.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base_page.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/features/page-objects/base_page.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+            <state relative-caret-position="300">
+              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="6.UploadImage.feature" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/6.UploadImage.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -81,8 +88,8 @@
       <file leaf-file-name="api.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/features/helpers/api.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="654">
-              <caret line="117" column="69" selection-start-line="117" selection-start-column="69" selection-end-line="117" selection-end-column="69" />
+            <state relative-caret-position="388">
+              <caret line="112" column="32" selection-start-line="112" selection-start-column="32" selection-end-line="112" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -113,16 +120,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="696">
               <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="email.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/helpers/email.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -189,11 +186,11 @@
         <option value="$PROJECT_DIR$/features/2.Creategig.feature" />
         <option value="$PROJECT_DIR$/features/3.CreateVacancy.feature" />
         <option value="$PROJECT_DIR$/features/helpers/email.rb" />
-        <option value="$PROJECT_DIR$/features/page-objects/base_page.rb" />
-        <option value="$PROJECT_DIR$/features/helpers/api.rb" />
         <option value="$PROJECT_DIR$/features/step_definitions/api_steps.rb" />
         <option value="$PROJECT_DIR$/features/4.ChangeGigStatus.feature" />
         <option value="$PROJECT_DIR$/features/5.DeclineWorker.feature" />
+        <option value="$PROJECT_DIR$/features/helpers/api.rb" />
+        <option value="$PROJECT_DIR$/features/page-objects/base_page.rb" />
       </list>
     </option>
   </component>
@@ -590,7 +587,7 @@
       <workItem from="1478175165159" duration="25666000" />
       <workItem from="1478272769553" duration="26467000" />
       <workItem from="1478622386777" duration="549000" />
-      <workItem from="1478693757933" duration="40845000" />
+      <workItem from="1478693757933" duration="41576000" />
     </task>
     <task id="LOCAL-00001" summary="API fix">
       <created>1469698379715</created>
@@ -837,11 +834,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479202203459</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="API step for promocode deletion">
+      <created>1479205235116</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1479205235116</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="478071000" />
+    <option name="totallyTimeSpent" value="478802000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="0" width="1920" height="1080" extended-state="0" />
@@ -898,7 +902,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fill form" />
     <MESSAGE value="Decline worker feature + Redirect" />
     <MESSAGE value="Driver quit" />
     <MESSAGE value="ie fix" />
@@ -923,7 +926,8 @@
     <MESSAGE value="fix for docker env" />
     <MESSAGE value="add delete gig/vacancy step" />
     <MESSAGE value="fix for images upload" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix for images upload" />
+    <MESSAGE value="API step for promocode deletion" />
+    <option name="LAST_COMMIT_MESSAGE" value="API step for promocode deletion" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1200,14 +1204,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/features/6.UploadImage.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/features/elements/table.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1232,42 +1228,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/features/step_definitions/step_defs.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="90" column="20" selection-start-line="90" selection-start-column="20" selection-end-line="90" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/features/helpers/email.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/page-objects/base_page.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/helpers/api.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="117" column="69" selection-start-line="117" selection-start-column="69" selection-end-line="117" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/step_definitions/api_steps.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="639">
-          <caret line="113" column="20" selection-start-line="113" selection-start-column="20" selection-end-line="113" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1308,6 +1272,46 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/step_definitions/api_steps.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="654">
+          <caret line="118" column="15" selection-start-line="118" selection-start-column="15" selection-end-line="118" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/helpers/api.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="112" column="32" selection-start-line="112" selection-start-column="32" selection-end-line="112" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/step_definitions/step_defs.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1710">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/6.UploadImage.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/page-objects/base_page.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
           <folding />
         </state>
       </provider>
