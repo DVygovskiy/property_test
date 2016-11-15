@@ -45,7 +45,7 @@ And(/^API create following one day GIG:$/) do |table|
   location = table.rows_hash[:location]
   number_of_workers = table.rows_hash[:'number of workers']
   API.create_gig(role, date, start_time, end_time, start, finish, desc, v_desc, location, number_of_workers)
-  sleep(3)
+  sleep(5)
 end
 
 
@@ -104,6 +104,7 @@ And(/^API create following one day GIG with promo:$/) do |table|
   number_of_workers = table.rows_hash[:'number of workers']
   promocode = table.rows_hash[:promocode]
   API.create_gig_with_promo(role, date, start_time, end_time, start, finish, desc, v_desc, location, number_of_workers, promocode)
+  sleep(5)
 end
 
 And(/^API deletes latest gig$/) do

@@ -34,7 +34,7 @@ class BasePage < SitePrism::Page
     begin
       page.has_xpath?(locator)
       if ENV['docker'] == true
-      find(:xpath, locator).set("/images/#{image}")
+      find(:xpath, locator).set("#{File.expand_path(__FILE__)}/images/#{image}")
       else
         find(:xpath, locator).set("#{File.expand_path("../../", __FILE__)}/images/#{image}")
         end
