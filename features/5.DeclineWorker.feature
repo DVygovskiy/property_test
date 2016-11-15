@@ -1,8 +1,7 @@
 Feature: Decline worker
 
   Background:
-    Given API creates promocode "DANTEST"
-    And API create following one day GIG with promo:
+    Given API create following one day GIG with promo:
       | role              | Bardienst                  |
       | type              | one day                    |
       | date              | today                      |
@@ -17,7 +16,7 @@ Feature: Decline worker
 
   @admin_decline_worker
   Scenario: Admin can Decline worker
-    Given I logged in as "Admin"
+    When I logged in as "Admin"
     And I click the "Gigs" tab
     When I should see table with "Gigs"
     And I look for the first "Gig" with "Accepted" status within "Gigs" table
@@ -52,3 +51,4 @@ Feature: Decline worker
     And I am redirected to "Decline worker" page
     And I click the "Confirm" button
     And I should see the text "De kandidaat is afgewezen"
+    And API deletes latest promocode

@@ -1,7 +1,8 @@
 Feature: Change gig status
 
   Scenario: Admin edit
-    Given API create following one day GIG with promo:
+    Given API creates promocode "DANTEST"
+    And API create following one day GIG with promo:
       | role              | Bardienst                  |
       | type              | one day                    |
       | date              | +1 day from today          |
@@ -50,3 +51,4 @@ Feature: Change gig status
   And I should see the text "Gig is bijgewerkt "
   Then I go back
   And I should see status "Completed" for the first "Gig" within "Gigs" table
+

@@ -114,3 +114,7 @@ end
 And(/^API deletes latest vacancy$/) do
   API.delete_latest_vacancy
 end
+
+And(/^API deletes latest promocode$/) do
+  API.delete_latest_promo
+end

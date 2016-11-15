@@ -101,6 +101,23 @@ class API
                             referrer: "admin/gigs/#{id_of_last_vacancy}", content_type: "application/x-www-form-urlencoded")
   end
 
+  def self.delete_latest_promo
+    api = API.new
+    requester = Requester.new(api)
+    token_form = requester.find_value where: requester.get(path: "auth/login")
+
+    login = requester.post(path: "auth/login",
+                           body: {:_token => token_form, :email => Global.settings.admin_email, :password => Global.settings.admin_password}.to_json,
+                           content_type: "application/json")
+    list_of_promos = requester.get(path: "admin/promo")
+    id_of_last_promo = Nokogiri::HTML(list_of_vacancies).xpath("//table/tbody/tr[2]/td[1]").text
+    token_delete = requester.find_value where: requester.get(path: "admin/promo/#{id_of_last_promo}")
+    delete = requester.post(path: "admin/promo/#{id_of_last_promo}",
+                            :body => {:_token => token_delete,
+                                      :_method =>"DELETE"},
+                            referrer: "admin/promo/#{id_of_last_promo}", content_type: "application/x-www-form-urlencoded")
+  end
+
   def self.create_gig( role, date, start_time, end_time, start, finish, desc, v_desc, location, number_of_workers)
     api = API.new
     requester = Requester.new(api)

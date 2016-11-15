@@ -34,10 +34,10 @@ class BasePage < SitePrism::Page
     begin
       page.has_xpath?(locator)
       if ENV['docker'] == true
-      find(:xpath, locator).set("#{File.expand_path(__FILE__)}/images/#{image}")
+        find(:xpath, locator).set("/images/#{image}")
       else
         find(:xpath, locator).set("#{File.expand_path("../../", __FILE__)}/images/#{image}")
-        end
+      end
     rescue
       page.has_css?(locator)
       find(:css, locator).set(File.absolute_path("#{image}"))
@@ -70,7 +70,7 @@ class BasePage < SitePrism::Page
     if element.kind_of? String
       element = find_element(element)
     end
-      element.click
+    element.click
   end
 
   def send_text(locator, text)
