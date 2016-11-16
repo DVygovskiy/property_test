@@ -31,6 +31,7 @@ Feature: Registration
     Then I am redirected to "Dashboard" page
     And I click the "Menu" tab
     And I click the "Profile" tab
+    And I am on the "General info" page
     And I should see such info:
       | test 22    |
       | For Chrome |
@@ -43,3 +44,4 @@ Feature: Registration
       | Street     |
       | 1          |
       | 1111qq     |
+    And I upload "Family2.png" image as "Company logo"

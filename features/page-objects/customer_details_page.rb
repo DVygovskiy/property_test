@@ -1,14 +1,14 @@
 require_relative 'base_page'
 
-class AdminPage < BasePage
+class CustomerDetailsPage < BasePage
 
   def title
-    "Admin"
+    "General information"
   end
 
-  set_url "#{Global.settings.base_url}/admin/"
+  set_url ""
 
-  selector :users_management_tab, "//span[contains(text(), 'Users management')]"
+  selector :manage_isolated_environment_button, "//a[contains(@href, 'environment')]"
 
   selector :workers_tab, "//span[contains(text(), 'Workers')]"
 
@@ -46,8 +46,10 @@ class AdminPage < BasePage
 
   selector :vacancy_tab, "//span[contains(text(), 'Vacancies')]"
 
-  selector :venue_name_search_field, "//input[@name='venue']"
+  selector :delete_customer_button, "//button[text()='Delete customer']"
 
-  selector :search_button, "//input[@value='Search']"
+  selector :menu_button, "//a[@class='dropdown-toggle']"
+
+  selector :log_out_button, "//a[@class='dropdown-toggle']"
 
 end

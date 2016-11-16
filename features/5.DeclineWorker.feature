@@ -34,7 +34,7 @@ Feature: Decline worker
     Given I logged in as "valid user"
     When I check customer's mailbox for "Uw boeking is geaccepteerd" email
     And I open the "Uw boeking is geaccepteerd" email
-    Then I click "hier"
+    Then I click "hier" link
     And I am redirected to "Decline worker" page
     And I click the "Confirm" button
     And I should see the text "De kandidaat is afgewezen"
@@ -43,7 +43,7 @@ Feature: Decline worker
   Scenario: Customer can Decline worker
     Given I check customer's mailbox for "Uw boeking is geaccepteerd" email
     And I open the "Uw boeking is geaccepteerd" email
-    Then I click "hier"
+    Then I click "hier" link
     And I am redirected to "Login" page
     And I type "clevergig@mail.ru" into "Email" field
     And I type "123456" into "Password" field

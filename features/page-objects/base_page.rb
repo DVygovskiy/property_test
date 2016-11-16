@@ -31,7 +31,6 @@ class BasePage < SitePrism::Page
   end
 
   def upload_image(locator, image)
-    binding.pry
     begin
       page.has_xpath?(locator)
       if ENV['docker'] == "true"

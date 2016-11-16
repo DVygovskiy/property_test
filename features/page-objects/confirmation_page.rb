@@ -3,7 +3,7 @@ require_relative 'base_page'
 class ConfirmationPage < BasePage
 
   def title
-    "Heeft u een kortingscode? Gebruik hem hier"
+    "Veilig betalen bij clevergig"
   end
 
   set_url "#{Global.settings.base_url}/events/confirmation"
@@ -28,6 +28,6 @@ class ConfirmationPage < BasePage
 
   selector :terms_checkbox, ".//*[@id='afterpay_terms']"
 
-  selector :finish_button, "//input[@value='Afronden & betalen']"
+  selector :finish_button, "//input[contains(@value, 'Afronden')]"
 
 end

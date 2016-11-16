@@ -10,7 +10,7 @@ class HomePage < BasePage
 
   selector :register_button, '*//div[1]/div/div[2]/section[1]/div/div[1]/div/div/div[1]/div[2]/a[1]'
 
-  selector :sing_up_button, "//header//a[contains(text(), 'Inloggen')]"
+  selector :sign_up_button, "//header//a[contains(text(), 'Inloggen')]"
 
   selector :email_field, "//input[@name='email']"
 

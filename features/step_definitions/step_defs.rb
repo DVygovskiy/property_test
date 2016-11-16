@@ -55,7 +55,7 @@ And(/^I fill in form as follows:$/) do |table|
         step %(I check "#{text}" checkbox)
       end
     elsif key.to_s.include? "image"
-      step %(I upload "#{text}" image as "#{key}")
+      step %(I upload "#{text}" image as "#{key.to_s.gsub(" image", "")}")
     elsif key.to_s.include? "select"
       key = key.to_s.gsub("select ", "")
       step %(I select "#{key}" to "#{text}")
@@ -129,7 +129,7 @@ end
 Given(/^I logged in as "([^"]*)"$/) do |arg|
   steps (%Q(
           Given I open the "Home" page
-          Then I click the "Sing up" button
+          Then I click the "Sign up" button
        ))
   if arg.to_s.include? 'Admin'
     if page.has_text? LoginPage.new.title
@@ -258,7 +258,6 @@ end
 
 
 And(/^I select "([^"]*)" to "([^"]*)"$/) do |selection, option|
-
   selector = selection.to_s.downcase.gsub(" ", "_")
   if @current_page.has_selector? ("//*[contains(text(), '#{option}')]")
     if find("//*[contains(text(), '#{option}')]").visible?
@@ -278,6 +277,11 @@ And(/^I select "([^"]*)" to "([^"]*)"$/) do |selection, option|
   sleep(0.5)
 end
 
+And(/^I select ([^"]*) with ([^"]*) "([^"]*)" from "([^"]*)" dropdown$/) do |any, any2, value, dropdown|
+  step %(I select "#{dropdown}" to "#{value}")
+end
+
+
 And(/^I change "([^"]*)" to "([^"]*)"$/) do |selection, option|
   step %(I select "#{selection}" to "#{option}")
 end
@@ -295,7 +299,7 @@ Given(/^I am connected to mysql$/) do
   binding.pry
 end
 
-And(/^I click "([^"]*)"$/) do |arg|
+And(/^I click "([^"]*)" ([^"]*)$/) do |arg, any|
   @current_page.quick_click(arg)
 end
 
@@ -310,6 +314,7 @@ Then(/^I go back$/) do
     page.evaluate_script('window.history.back()')
   end
   page.driver.browser.navigate.refresh
+
 end
 
 
@@ -360,3 +365,6 @@ Then(/^I set dates:$/) do |table|
 end
 
 
+And(/^I accept pop up message$/) do
+  page.driver.browser.switch_to.alert.accept
+end
