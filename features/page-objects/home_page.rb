@@ -3,7 +3,7 @@ require_relative 'base_page'
 class HomePage < BasePage
 
   def title
-    "Wil je bijverdienen in de horeca? Werken op jouw voorwaarden?"
+    "Vraag demo aan"
   end
 
   set_url "#{Global.settings.base_url}"

@@ -33,7 +33,7 @@ Feature: Closed environment
     Then I click the "Menu" button
     And I click the "Log out" button
 
-@closed
+  @closed
   Scenario: Customer creates urgent gig for closed environment
     Given I am on the "Home" page
     And I click the "Sign up" button
@@ -70,4 +70,3 @@ Feature: Closed environment
     And I should see 1 more gigs with role "Role for TEST"
     And API deletes latest gig
 
-      

@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7e29bc8-3bfb-4acb-994d-80a0ad8cb8be" name="Default" comment="fixes for CI">
+    <list default="true" id="d7e29bc8-3bfb-4acb-994d-80a0ad8cb8be" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/1.Registration.feature" afterPath="$PROJECT_DIR$/features/1.Registration.feature" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/5.DeclineWorker.feature" afterPath="$PROJECT_DIR$/features/5.DeclineWorker.feature" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/admin_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/admin_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/base_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/base_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/confirmation_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/confirmation_page.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/7.ClosedEnvironment.feature" afterPath="$PROJECT_DIR$/features/7.ClosedEnvironment.feature" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/page-objects/home_page.rb" afterPath="$PROJECT_DIR$/features/page-objects/home_page.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/step_definitions/step_defs.rb" afterPath="$PROJECT_DIR$/features/step_definitions/step_defs.rb" />
     </list>
     <ignored path="acceptance-testing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,8 +38,8 @@
       <file leaf-file-name="home_page.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/features/page-objects/home_page.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+            <state relative-caret-position="210">
+              <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -53,8 +48,18 @@
       <file leaf-file-name="7.ClosedEnvironment.feature" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/features/7.ClosedEnvironment.feature">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="39" column="26" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
+            <state relative-caret-position="690">
+              <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/settings.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -90,16 +95,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin_page.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/page-objects/admin_page.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="651">
-              <caret line="50" column="53" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="customer_details_page.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/features/page-objects/customer_details_page.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -115,16 +110,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="570">
               <caret line="38" column="59" selection-start-line="36" selection-start-column="2" selection-end-line="38" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="1.Registration.feature" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/1.Registration.feature">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -191,11 +176,11 @@
         <option value="$PROJECT_DIR$/features/page-objects/admin_page.rb" />
         <option value="$PROJECT_DIR$/features/page-objects/manage_environment_page.rb" />
         <option value="$PROJECT_DIR$/features/page-objects/customer_details_page.rb" />
-        <option value="$PROJECT_DIR$/features/page-objects/home_page.rb" />
         <option value="$PROJECT_DIR$/features/step_definitions/step_defs.rb" />
         <option value="$PROJECT_DIR$/features/page-objects/confirmation_page.rb" />
-        <option value="$PROJECT_DIR$/features/7.ClosedEnvironment.feature" />
         <option value="$PROJECT_DIR$/features/elements/table.rb" />
+        <option value="$PROJECT_DIR$/features/page-objects/home_page.rb" />
+        <option value="$PROJECT_DIR$/features/7.ClosedEnvironment.feature" />
       </list>
     </option>
   </component>
@@ -261,6 +246,46 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="features">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="clevergig_test">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="features">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="support">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="clevergig_test">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="features">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="support">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="screenshots">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -594,7 +619,7 @@
       <workItem from="1478622386777" duration="549000" />
       <workItem from="1478693757933" duration="47446000" />
       <workItem from="1479299383828" duration="208000" />
-      <workItem from="1479299972546" duration="4148000" />
+      <workItem from="1479299972546" duration="5261000" />
     </task>
     <task id="LOCAL-00001" summary="API fix">
       <created>1469698379715</created>
@@ -855,11 +880,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479206122368</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Closed environment feature">
+      <created>1479307121794</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1479307121794</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="489028000" />
+    <option name="totallyTimeSpent" value="490141000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="0" width="1920" height="1080" extended-state="0" />
@@ -916,7 +948,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Driver quit" />
     <MESSAGE value="ie fix" />
     <MESSAGE value="multi people gig" />
     <MESSAGE value="multi day gig" />
@@ -941,7 +972,8 @@
     <MESSAGE value="fix for images upload" />
     <MESSAGE value="API step for promocode deletion" />
     <MESSAGE value="fixes for CI" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixes for CI" />
+    <MESSAGE value="Closed environment feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="Closed environment feature" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -950,7 +982,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/features/support/screenshots/2016_11_08_15_40_01_Admin_can_Decline_worker.png" />
     <entry file="file://$APPLICATION_HOME_DIR$/rubystubs23/kernel.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10095">
@@ -1186,14 +1217,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/settings.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/features/page-objects/login_page.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1266,14 +1289,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/features/page-objects/home_page.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/features/step_definitions/step_defs.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -1306,10 +1321,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/settings.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/page-objects/home_page.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/support/screenshots/upload_image_test.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/features/7.ClosedEnvironment.feature">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" column="26" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
+        <state relative-caret-position="690">
+          <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
           <folding />
         </state>
       </provider>
