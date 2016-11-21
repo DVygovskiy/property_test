@@ -3,7 +3,7 @@ Feature: Registration
   Background:
     Given I resize window to "1240x960"
 
-  @reg
+  @skip
   Scenario: Registration with image
     Given I open the "Home" page
     And I click the "Register" button

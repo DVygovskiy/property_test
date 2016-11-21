@@ -1,9 +1,13 @@
 # initialise all pageobjects
-Before do |scenario|
 
+Before do |scenario|
+  if scenario.tags.to_s.include? "skip"
+    skip_this_scenario
+  else
   @test_context ||= Hash.new
   #Capybara.current_session.reset!
   #Capybara.current_session.driver.browser.manage.window.resize_to(1920,1080)
+  end
 end
 
 
