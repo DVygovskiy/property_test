@@ -13,3 +13,4 @@ Feature: Upload image for Role
     And I upload "barista.jpeg" image as "Role logo"
     And I click the "Update" button
     And I should see the text "Role has been updated"
+    And I take a screenshot

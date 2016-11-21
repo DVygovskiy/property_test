@@ -15,6 +15,12 @@ And(/^I click the "([^"]*)" it$/) do |action|
   sleep(1)
 end
 
+And(/^I click on the "([^"]*)" with ([^"]*) "([^"]*)"$/) do |any, arg, name|
+  @table.make_action_in_table("click")
+  new_window = page.driver.browser.window_handles.last
+  page.driver.browser.switch_to.window(new_window)
+end
+
 Then(/^I should see (search results|table) with "([^\"]*)"$/) do |group, text|
   @table = Table.new(@current_page, self, text)
   @table.table_exists?
@@ -35,3 +41,4 @@ end
 And(/^I count ([^"]*) with ([^"]*) "([^"]*)"$/) do |any1, any2, text|
   @table.count_items text
 end
+

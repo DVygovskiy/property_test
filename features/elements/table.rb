@@ -65,19 +65,25 @@ class Table
   end
 
   def make_action_in_table(action)
-    nodes_path = Table.current_row_path + "/child::*"
-    @context.all(:xpath, "#{nodes_path}").each do |node|
-      path = node.path
-      if @context.all(:xpath, "#{path}/child::*").empty?
-        if check_element_attr(node, action)
-          @page.click_the(node)
+    if action == "click"
+      nodes_path = Table.current_row_path + "/child::*"
+      node = @context.all(:xpath, "#{nodes_path}").detect { |node| node.has_content?(text) }
+      @page.click_the(node)
+    else
+      nodes_path = Table.current_row_path + "/child::*"
+      @context.all(:xpath, "#{nodes_path}").each do |node|
+        path = node.path
+        if @context.all(:xpath, "#{path}/child::*").empty?
+          if check_element_attr(node, action)
+            @page.click_the(node)
+          end
         end
-      end
-      until @context.all(:xpath, "#{path}/child::*").empty?
-        if find_in_child(path, action)
-          return
+        until @context.all(:xpath, "#{path}/child::*").empty?
+          if find_in_child(path, action)
+            return
+          end
+          path = path + "/child::*"
         end
-        path = path + "/child::*"
       end
     end
     sleep(1)

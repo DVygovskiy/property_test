@@ -10,6 +10,25 @@ class BasePage < SitePrism::Page
     end
   end
 
+  def open
+    if self.url != ""
+      self.load
+    end
+    begin
+      if page.driver.browser.window_handles.first !=page.driver.browser.window_handles.last
+        old_window = page.driver.browser.window_handles.first
+        page.driver.browser.switch_to.window(old_window)
+        Capybara.current_session.current_window.close
+        back = page.driver.browser.window_handles.last
+        page.driver.browser.switch_to.window(back)
+        sleep(1)
+      end
+      expect(page).to have_text self.title
+    rescue
+      screenshot_and_save_page
+    end
+  end
+
   def find_element(locator)
     begin
       page.has_xpath?(locator)
@@ -30,41 +49,7 @@ class BasePage < SitePrism::Page
     end
   end
 
-  def upload_image(locator, image)
-    begin
-      page.has_xpath?(locator)
-      if ENV['docker'] == "true"
-        find(:xpath, locator).set("/images/#{image}")
-      else
-        find(:xpath, locator).set("#{File.expand_path("../../", __FILE__)}/images/#{image}")
-      end
-    rescue
-      page.has_css?(locator)
-      find(:css, locator).set(File.absolute_path("#{image}"))
-    end
-  end
 
-
-  #Not working. Should be implemented
-  def drop_image(locator, image)
-    # Generate a fake input selector
-    page.execute_script <<-JS
-    fakeFileInput = window.$('<input/>').attr(
-      {id: 'fakeFileInput', type:'file'}
-    ).appendTo('body');
-    JS
-    file_path = "#{File.expand_path("../../", __FILE__)}/images/#{image}"
-    # Attach the file to the fake input selector with Capybara
-    attach_file("fakeFileInput", file_path)
-    # Add the file to a fileList array
-    page.execute_script("var fileList = [fakeFileInput.get(0).files[0]]")
-    # Trigger the fake drop event
-    page.execute_script <<-JS
-    var e = jQuery.Event('drop', { dataTransfer : { files : [fakeFileInput.get(0).files[0]]  } });
-    $('.upload_zone').dropzone.listeners[0].events.drop(e);
-    JS
-    sleep(10)
-  end
 
   def click_the(element)
     if element.kind_of? String

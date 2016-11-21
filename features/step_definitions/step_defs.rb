@@ -3,23 +3,8 @@ require_relative '../../config/requirements'
 
 When(/^I open the "([^"]*)" page$/) do |arg|
   @page = Finder.page_class(arg)
-  if @page.url != ""
-    @page.load
-  end
-  begin
-    if page.driver.browser.window_handles.first !=page.driver.browser.window_handles.last
-      old_window = page.driver.browser.window_handles.first
-      page.driver.browser.switch_to.window(old_window)
-      Capybara.current_session.current_window.close
-      back = page.driver.browser.window_handles.last
-      page.driver.browser.switch_to.window(back)
-      sleep(1)
-    end
-    expect(page).to have_text @page.title
-    @current_page = @page
-  rescue
-    screenshot_and_save_page
-  end
+  @page.open
+  @current_page = @page
 end
 
 Then(/^I am on the "([^"]*)" page$/) do |arg|
@@ -35,6 +20,13 @@ Then(/^I am redirected to "([^"]*)" page$/) do |arg|
   step %(I open the "#{arg}" page)
 end
 
+Then(/^I go back$/) do
+  page.evaluate_script('window.history.back()')
+  if page.has_text? @current_page.title
+    page.evaluate_script('window.history.back()')
+  end
+  page.driver.browser.navigate.refresh
+end
 
 And(/^I fill in form as follows:$/) do |table|
   table.rows_hash.keys.each do |key|
@@ -213,7 +205,6 @@ And(/^I set up (duration|time) from "([^"]*)" to "([^"]*)" (local|round local)$/
 end
 
 And(/^I set up table of timings as:$/) do |table|
-
   start_t = Finder.all_elements_of_page(@current_page, "start_time")
   end_t = Finder.all_elements_of_page(@current_page, "end_time")
   table.transpose.raw[0].each.with_index do |text, i|
@@ -223,21 +214,6 @@ And(/^I set up table of timings as:$/) do |table|
     step %(I set up duration #{text})
   end
 end
-
-
-And(/^I select "([^"]*)" with ([^"]*) "([^"]*)"$/) do |any, arg, name|
-  nodes_path = test_context[:current_search_results].path + "/child::*"
-  node = all(:xpath, "#{nodes_path}").detect { |node| node.has_content?(name) }
-  expect(!node.nil?)
-  unless node.nil?
-    within(node) do
-      @current_page.click_the(@current_page.select_button)
-      new_window = page.driver.browser.window_handles.last
-      page.driver.browser.switch_to.window(new_window)
-    end
-  end
-end
-
 
 And(/^I set up the date to "([^"]*)" days from today$/) do |days|
   date = Time.now
@@ -308,31 +284,18 @@ And(/^It's ([^"]*) is "([^"]*)"$/) do |any, text|
   expect(test_context[:current_row].has_text? text)
 end
 
-Then(/^I go back$/) do
-  page.evaluate_script('window.history.back()')
-  if page.has_text? @current_page.title
-    page.evaluate_script('window.history.back()')
-  end
-  page.driver.browser.navigate.refresh
-
-end
-
-
 Given(/^I resize window to "([^"]*)"$/) do |arg|
   x = arg.to_s.split("x")[0]
   y = arg.to_s.split("x")[1]
   Capybara.current_session.driver.browser.manage.window.resize_to(x, y)
 end
 
-And(/^I upload "([^"]*)" image as "([^"]*)"$/) do |image, where|
-  selector = where.to_s.downcase.gsub(" ", "_") + "_image"
-  locator = Finder.locator(@current_page, selector)
-  @current_page.upload_image(locator, image)
-  sleep(3)
-    file_path = File.expand_path("../../support/screenshots", __FILE__)+'/upload_image_test.png'
-    page.driver.browser.save_screenshot file_path
-
+And(/^I upload "([^"]*)" image as "([^"]*)"$/) do |name, where|
+  image = Image.new(where, @current_page, self)
+  image.upload(name)
 end
+
+
 
 Then(/^I see pop up with "([^"]*)" text$/) do |text|
   expect(page.should have_content(text))
@@ -367,4 +330,9 @@ end
 
 And(/^I accept pop up message$/) do
   page.driver.browser.switch_to.alert.accept
+end
+
+And(/^I take a screenshot$/) do
+  file_path = File.expand_path("../../support/screenshots", __FILE__)+"/#{page.title.to_s.gsub(" ", "")}.png"
+  page.driver.browser.save_screenshot file_path
 end
