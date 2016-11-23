@@ -22,7 +22,6 @@ Feature: Registration
       | phone number | 09999999   |
       | kvk          | 12345      |
       | btw          | 12345      |
-      | btw          | 12345      |
       | street       | Street     |
       | house number | 1          |
       | postcode     | 1111qq     |

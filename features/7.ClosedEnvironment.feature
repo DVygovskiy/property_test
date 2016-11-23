@@ -4,7 +4,7 @@ Feature: Closed environment
     Given I logged in as "Admin"
     And I click the "Users management" tab
     When I click the "Customers" tab
-    And I type "test 22" into "Venue name search" field
+    And I type "First" into "name" field
     And I click the "Search" button
     And I should see table with "Customers"
     And I look for the first "Customer" with "test 22" name within "Customers" table
