@@ -14,7 +14,7 @@ class CreateVacancyPage < BasePage
 
   selector :status, ".//select/*[text()='Select status']"
 
-  selector :role, ".//*[@id='app']/div/form/div[4]/span/span[1]/span"
+  selector :role, "//span[contains(@id, 'role')]"
 
   selector :role_skills_first_checkbox, "//input[@name='roleSkills[]'][1]"
 
@@ -44,17 +44,17 @@ class CreateVacancyPage < BasePage
 
   selector :update_button, "//input[@value='Update']"
 
-  selector :add_new_vacancy_button, "//a[@href='http://clevergig.stg.thebrain4web.com/admin/vacancies/create']"
+  selector :add_new_vacancy_button, "//a[@href='#{Global.settings.base_url}/admin/vacancies/create']"
 
-  selector :skills, ".//*[@id='app']/div/form/div[6]/span/span[1]/span/ul/li/input"
+  selector :skills, "//input[contains(@placeholder, 'andere')]"
 
-  selector :clothing, ".//*[@id='app']/div/form/div[7]/span/span[1]/span/ul/li/input"
+  selector :clothing, "//input[contains(@placeholder, 'kleding')]"
 
   selector :location, ".//input[@name='location']"
 
-  selector :description_field, ".//*[@id='app']/div/form/div[9]/textarea"
+  selector :description_field, ".//textarea[@name='description']"
 
-  selector :venue_description_field, ".//*[@id='app']/div/form/div[10]/textarea"
+  selector :venue_description_field, ".//textarea[@name='venue_description']"
 
   selector :create_button, "//input[@value='Create']"
 

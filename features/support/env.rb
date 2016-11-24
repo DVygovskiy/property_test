@@ -5,18 +5,18 @@ require_relative '../../config/requirements'
 #Dotenv.load # loads environment variables from .env file
 
 @default_capybara_driver = :chrome
-if  ENV['docker'] == "true"
+if ENV['docker'] == "true"
   @url = "http://localhost:4444/wd/hub"
 end
 
 #Chrome
 def setup_chrome
   #Selenium::WebDriver::Chrome.driver_path = "/usr/local/bin/chromedriver"
-  if  ENV['docker'] == "true"
-  Capybara.app_host = "http://localhost:4444/wd/hub"
-  Capybara.register_driver :chrome do |app|
-    Capybara::Selenium::Driver.new(app, :url => "http://localhost:4444/wd/hub", browser: :chrome)
-  end
+  if ENV['docker'] == "true"
+    Capybara.app_host = "http://localhost:4444/wd/hub"
+    Capybara.register_driver :chrome do |app|
+      Capybara::Selenium::Driver.new(app, :url => "http://localhost:4444/wd/hub", browser: :chrome)
+    end
   else
     Capybara.register_driver :chrome do |app|
       Capybara::Selenium::Driver.new(app, browser: :chrome)
@@ -90,7 +90,6 @@ def setup_firefox
 end
 
 
-
 def test_context
   @test_context ||= Hash.new
 end
@@ -102,19 +101,29 @@ end
 
 
 Capybara.default_driver = case ENV['DRIVER']
-                          when 'firefox' then :selenium
-                          when 'chrome' then  :chrome
-                          when 'safari' then :safari
-                          when 'ie' then :internet_explorer
-                          else @default_capybara_driver
+                            when 'firefox' then
+                              :selenium
+                            when 'chrome' then
+                              :chrome
+                            when 'safari' then
+                              :safari
+                            when 'ie' then
+                              :internet_explorer
+                            else
+                              @default_capybara_driver
                           end
 
 case ENV['DRIVER']
-  when 'firefox' then setup_firefox
-  when 'chrome' then  setup_chrome
-  when 'safari' then setup_safari
-  when 'ie' then setup_ie
-  else setup_chrome
+  when 'firefox' then
+    setup_firefox
+  when 'chrome' then
+    setup_chrome
+  when 'safari' then
+    setup_safari
+  when 'ie' then
+    setup_ie
+  else
+    setup_chrome
 end
 
 

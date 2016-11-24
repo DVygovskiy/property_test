@@ -50,6 +50,6 @@ class AdminPage < BasePage
 
   selector :search_button, "//input[@value='Search']"
 
-  selector :customer_name_field, "//input[@name='name']"
+  selector :search_name_field, "//input[@name='name']"
 
 end

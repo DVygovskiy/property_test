@@ -30,21 +30,17 @@ class BasePage < SitePrism::Page
   end
 
   def find_element(locator)
-    begin
-      page.has_xpath?(locator)
+    if page.has_xpath?(locator)
       find(:xpath, locator)
-    rescue
-      page.has_css?(locator)
+    elsif page.has_css?(locator)
       find(:css, locator)
     end
   end
 
   def find_all_elements(locator)
-    begin
-      page.has_xpath?(locator)
+    if page.has_xpath?(locator)
       all(:xpath, locator)
-    rescue
-      page.has_css?(locator)
+    elsif page.has_css?(locator)
       all(:css, locator)
     end
   end
