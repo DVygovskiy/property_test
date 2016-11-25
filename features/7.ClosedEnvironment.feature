@@ -7,7 +7,7 @@ Feature: Closed environment
     And I type "First" into "Search name" field
     And I click the "Search" button
     And I should see table with "Customers"
-    And I look for the first "Customer" with "test 22" name within "Customers" table
+    And I look for the first "Customer" with "First" name within "Customers" table
     And I click the "View" it
     Then I am on the "Customer details" page
     And I click the "Manage isolated environment" button
