@@ -78,7 +78,7 @@ Then(/^I login using (Facebook|Linkedin)$/) do |source|
 end
 
 When(/^I go to the customer's email$/) do
-  sleep(10)
+  sleep(15)
   @current_page = Email.new
   @current_page.sign_in(Global.settings.customer_email)
 end
