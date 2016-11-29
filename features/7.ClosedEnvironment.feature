@@ -1,5 +1,6 @@
 Feature: Closed environment
 
+  @skip
   Scenario: Admin can manage closed environment
     Given I logged in as "Admin"
     And I click the "Users management" tab

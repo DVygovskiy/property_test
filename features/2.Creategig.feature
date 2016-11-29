@@ -73,6 +73,7 @@ Feature: Create gig
     Then I am on the "My gigs" page
     And I should see table with "Gigs"
     And I should see 2 more gigs with role "Bediening"
+    Then API deletes latest gig
     And API deletes latest gig
 
   @urgent_gig_max
