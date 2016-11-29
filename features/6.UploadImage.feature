@@ -7,7 +7,7 @@ Feature: Upload image for Role
     And I click the "Roles" tab
     When I am on the "Roles" page
     And I should see table with "Roles"
-    And I look for the "Role" with "Barista" title within "Roles" table
+    And I look for the "Role" with "Afwashulp" title within "Roles" table
     And I click the "Edit" it
     Then I am on the "Edit role" page
     And I upload "barista.jpeg" image as "Role logo"

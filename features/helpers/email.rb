@@ -34,7 +34,6 @@ class Email < BasePage
       find(:xpath, ".//*[@id='js-mailbox-enter']/span").click
     end
     sleep(1)
-    has_xpath?(".//*[@id='b-nav_folders']/div/div[1]/a/span[2]")
   end
 
   def delete_all_mailru
