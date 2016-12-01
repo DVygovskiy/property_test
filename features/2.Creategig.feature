@@ -15,7 +15,7 @@ Feature: Create gig
     And I should see the calendar
     And I choose month december
     Then I set dates:
-      | 11 december |
+      | 21 december |
     Then I set up duration from "+2:00" to "+7:00" round local
     And I click the "Set up dates" button
     And I click the "Set venue details" button
@@ -53,7 +53,7 @@ Feature: Create gig
     And I should see the calendar
     And I choose month december
     Then I set dates:
-      | 12 december |
+      | 19 december |
     Then I set up duration from "+2:00" to "+7:00" round local
     And I click the "Set up dates" button
     And I click the "Set venue details" button
@@ -85,7 +85,7 @@ Feature: Create gig
     And I should see the calendar
     And I choose month december
     Then I set dates:
-      | 12 december |
+      | 19 december |
     Then I set up duration from "+2:00" to "+7:00" round local
     And I click the "Set up dates" button
     And I click the "Set venue details" button
@@ -105,9 +105,9 @@ Feature: Create gig
     And I should see the calendar
     And I choose month december
     Then I set dates:
-      | 2 december |
-      | 15 december |
-      | 12 januari  |
+      | 21 december |
+      | 12 januari |
+      | 15 januari  |
     And I click the "Set dates" button
     And I set up table of timings as:
       | from "11:00" to "16:00" |

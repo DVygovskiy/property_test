@@ -27,7 +27,7 @@ Feature: Decline worker
     Then I go back
     And I should not see status "Accepted" for the first "Gig" within "Gigs" table
     And I should see status "Pending" for the first "Gig" within "Gigs" table
-
+    And API deletes latest gig
 
   @customer_decline_worker
   Scenario: Customer can Decline worker
@@ -38,6 +38,7 @@ Feature: Decline worker
     And I am redirected to "Decline worker" page
     And I click the "Confirm" button
     And I should see the text "De kandidaat is afgewezen"
+    And API deletes latest gig
 
   @customer_decline_worker_notloggedin
   Scenario: Customer can Decline worker
@@ -52,3 +53,4 @@ Feature: Decline worker
     And I click the "Confirm" button
     And I should see the text "De kandidaat is afgewezen"
     And API deletes latest promocode
+    And API deletes latest gig
