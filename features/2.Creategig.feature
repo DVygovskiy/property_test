@@ -126,5 +126,5 @@ Feature: Create gig
     And I click the "Submit" button
     And I click the "Accepted" button
     And I click the "Continue" button
-    And I should see the text "Meerdaagse gig, begint op 2 december"
+    And I should see the text "Meerdaagse gig, begint op 21 december"
     And API deletes latest gig
