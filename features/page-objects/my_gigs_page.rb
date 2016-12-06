@@ -20,6 +20,6 @@ class MyGigsPage < BasePage
 
   selector :venue_name, "//*[@class='breadcrumbs']/span"
 
-  selector :gigs_table, ".//*[@class='category_group']"
+  selector :gigs_table, "//div[@class='category_group myGigs']"
 
 end

@@ -15,7 +15,7 @@ Feature: Create gig
     And I should see the calendar
     And I choose month december
     Then I set dates:
-      | 21 december |
+      | 30 december |
     Then I set up duration from "+2:00" to "+7:00" round local
     And I click the "Set up dates" button
     And I click the "Set venue details" button
@@ -35,7 +35,7 @@ Feature: Create gig
     Then I am on the "My gigs" page
     And I should see table with "Gigs"
     And I should see 1 more gigs with role "Bardienst"
-    And API deletes latest gig
+
 
   @one_day_gig_m
   @urgent_gig
@@ -53,7 +53,7 @@ Feature: Create gig
     And I should see the calendar
     And I choose month december
     Then I set dates:
-      | 19 december |
+      | 29 december |
     Then I set up duration from "+2:00" to "+7:00" round local
     And I click the "Set up dates" button
     And I click the "Set venue details" button
@@ -73,8 +73,6 @@ Feature: Create gig
     Then I am on the "My gigs" page
     And I should see table with "Gigs"
     And I should see 2 more gigs with role "Bediening"
-    Then API deletes latest gig
-    And API deletes latest gig
 
   @urgent_gig_max
   Scenario: Urgent gig creation
@@ -105,7 +103,7 @@ Feature: Create gig
     And I should see the calendar
     And I choose month december
     Then I set dates:
-      | 21 december |
+      | 25 december |
       | 12 januari |
       | 15 januari  |
     And I click the "Set dates" button
@@ -126,5 +124,11 @@ Feature: Create gig
     And I click the "Submit" button
     And I click the "Accepted" button
     And I click the "Continue" button
-    And I should see the text "Meerdaagse gig, begint op 21 december"
-    And API deletes latest gig
+    And I should see the text "Meerdaagse gig, begint op 25 december"
+
+    @delete_gigs
+    Scenario: Cleaning
+      Given API deletes latest gig
+      When API deletes latest gig
+      Then API deletes latest gig
+      And API deletes latest gig

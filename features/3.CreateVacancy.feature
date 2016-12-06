@@ -33,7 +33,3 @@ Feature: Create vacancy
       | Need a hero! |
       | Pub          |
     And API deletes latest vacancy
-
-    @delete_vac
-    Scenario: Delete
-      Given API deletes latest gig

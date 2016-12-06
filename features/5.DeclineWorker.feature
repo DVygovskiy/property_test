@@ -52,5 +52,7 @@ Feature: Decline worker
     And I am redirected to "Decline worker" page
     And I click the "Confirm" button
     And I should see the text "De kandidaat is afgewezen"
+
+    Scenario: Cleaning
     And API deletes latest promocode
     And API deletes latest gig
