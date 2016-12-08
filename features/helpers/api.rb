@@ -162,7 +162,6 @@ class API
   end
 
   def self.create_gig_with_promo( role, date, start_time, end_time, start, finish, desc, v_desc, location, number_of_workers, promocode)
-    binding.pry
     api = API.new
     requester = Requester.new(api)
 
