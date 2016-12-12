@@ -51,3 +51,8 @@ Feature: Change gig status
   And I should see the text "Gig is bijgewerkt "
   Then I go back
   And I should see status "Completed" for the first "Gig" within "Gigs" table
+
+  @delete_gigs
+  Scenario: Cleaning
+    Given API deletes latest gig
+
