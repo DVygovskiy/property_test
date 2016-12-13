@@ -14,8 +14,9 @@ class BasePage < SitePrism::Page
     if self.url != ""
       self.load
     end
+    sleep(0.5)
     begin
-      if page.driver.browser.window_handles.first !=page.driver.browser.window_handles.last
+      if page.driver.browser.window_handles.first != page.driver.browser.window_handles.last
         old_window = page.driver.browser.window_handles.first
         page.driver.browser.switch_to.window(old_window)
         Capybara.current_session.current_window.close
@@ -23,7 +24,10 @@ class BasePage < SitePrism::Page
         page.driver.browser.switch_to.window(back)
         sleep(1)
       end
-      expect(page).to have_text self.title
+      unless page.has_text? self.title
+        open
+      end
+      #expect(page).to have_text self.title
     rescue
       screenshot_and_save_page
     end
