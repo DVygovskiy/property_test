@@ -19,6 +19,7 @@ require 'mechanize'
 require 'httparty'
 require 'httparty_with_cookies'
 require 'global'
+require 'csv'
 
 Global.configure do |config|
   config.environment = ENV["TEST_SERVER"] || "stg"

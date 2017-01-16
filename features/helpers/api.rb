@@ -320,4 +320,10 @@ class API
   end
 
 
+  def self.csv
+      api = API.new
+      requester = Requester.new(api)
+      requester.get_csv
+  end
+
 end

@@ -118,3 +118,7 @@ end
 And(/^API deletes latest promocode$/) do
   API.delete_latest_promo
 end
+
+Given(/^API test csv$/) do
+  API.csv
+end

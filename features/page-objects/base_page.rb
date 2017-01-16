@@ -24,12 +24,11 @@ class BasePage < SitePrism::Page
         page.driver.browser.switch_to.window(back)
         sleep(1)
       end
-      unless page.has_text? self.title
+      expect(page).to have_text self.title
+    rescue
+      if page.driver.browser.window_handles.first != page.driver.browser.window_handles.last
         open
       end
-      #expect(page).to have_text self.title
-    rescue
-      screenshot_and_save_page
     end
   end
 
@@ -48,8 +47,6 @@ class BasePage < SitePrism::Page
       all(:css, locator)
     end
   end
-
-
 
   def click_the(element)
     if element.kind_of? String

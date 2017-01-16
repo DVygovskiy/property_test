@@ -3,7 +3,7 @@ Feature: Registration
   Background:
     Given I resize window to "1240x960"
 
-  @skip
+  @sk
   Scenario: Registration with image
     Given I open the "Home" page
     And I click the "Register" button
@@ -44,3 +44,6 @@ Feature: Registration
       | 1          |
       | 1111qq     |
     And I upload "Family2.png" image as "Company logo"
+
+  Scenario: CSV
+    Given API test csv

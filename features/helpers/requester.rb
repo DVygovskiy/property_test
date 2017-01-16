@@ -1,4 +1,4 @@
-
+require 'csv'
 class Requester
   def initialize(api)
     @api = api
@@ -37,6 +37,29 @@ class Requester
     Nokogiri::HTML(where).xpath("//input[@name='#{value}']").attr('value').value
   end
 
+  def get_csv
+    CSV.foreach("www.maxp.csv") do |row|
+      unless row[0] == "URL"
+        begin
+          result = @api.get(URI(row[0].to_s),
+                            follow_redirects: true)
+          if result.code == 404
+            File.open("errors.txt", 'a') do |f|
+              f.write(row[0].to_s + ' code - ' + result.code.to_s)
+              f.write("\n")
+            end
+          end
+        rescue
+          File.open("errors.txt", 'a') do |f|
+            f.write(row[0].to_s + ' - NOT WELL FORMED URL ')
+            f.write("\n")
+          end
+        end
+      end
+    end
+    binding.pry
+  end
+
   private
 
   def set_cookie
@@ -45,9 +68,11 @@ class Requester
 
   def set_header(referrer: '', content_type: '')
     header = {'Accept' => 'text/html, application/xhtml+xml, */*'}
-    header.merge! 'Cookie' => @current_cookie                   if @current_cookie.present?
-    header.merge! 'Content-Type' => content_type                if content_type.present?
+    header.merge! 'Cookie' => @current_cookie if @current_cookie.present?
+    header.merge! 'Content-Type' => content_type if content_type.present?
     header.merge! 'Referer' => "#{Global.settings.base_url}/#{referrer}" if referrer.present?
     header
   end
+
+
 end
