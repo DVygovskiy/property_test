@@ -336,3 +336,12 @@ And(/^I take a screenshot$/) do
   file_path = File.expand_path("../../support/screenshots", __FILE__)+"/#{page.title.to_s.gsub(" ", "")}.png"
   page.driver.browser.save_screenshot file_path
 end
+
+And(/^I set up value to "([^"]*)" wheel as "([^"]*)"$/) do |name, value|
+  Wheel.new(name, @current_page).set_value value
+end
+
+
+And(/^I set "([^"]*)" into "([^"]*)" field$/) do |value, name|
+  TextField.new(name, @current_page).set value
+end

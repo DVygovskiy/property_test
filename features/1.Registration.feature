@@ -44,6 +44,3 @@ Feature: Registration
       | 1          |
       | 1111qq     |
     And I upload "Family2.png" image as "Company logo"
-
-  Scenario: CSV
-    Given API test csv

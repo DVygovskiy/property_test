@@ -15,4 +15,10 @@ class TextField
     sleep(0.5)
   end
 
+  def set(text)
+    Finder.element_of_page(@page, @selector).set text
+    sleep 1
+    @page.find(:css, 'h1').click
+  end
+
 end
